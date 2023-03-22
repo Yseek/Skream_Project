@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Spring Board</title>
+    <style>
+		a{text-decoration:none}
+	</style>
+	<script language="javascript">
+	   function check(){
+	       for(var i=0; i<document.input.elements.length; i++){
+		      if(document.input.elements[i].value == ""){
+			     alert("모든 값을 입력 하셔야 합니다. ");
+				 return false;
+			  }
+		   }
+		   document.input.submit();
+       }
+       
+        function updateImageDisplay() {
+            let preview = document.getElementById("preview");
+            const imageLimit = 1;
+            let imagecounting = 0;
+            
+            while(preview.firstChild) {
+                preview.removeChild(preview.firstChild);
+            }
+            
+            let input = document.getElementById("file");
+            const curFiles = input.files;
+
+            if(curFiles.length === 0) {
+                const para = document.createElement('p');
+                para.textContent = '이미지 없음';
+                preview.appendChild(para);
+            }else if(curFiles.length > imageLimit){
+                const para = document.createElement('p');
+                para.textContent = `이미지는 ${imageLimit}개 이하로 올려주세요`;
+                preview.appendChild(para);
+                return;
+            }else{
+                const list = document.createElement('ol');
+                preview.appendChild(list);
+
+                for(const file of curFiles) {
+                    imagecounting += 1;
+                    const listItem = document.createElement('li');
+                    const para = document.createElement('p');
+                    para.textContent = `파일 이름: ${file.name}, 파일 사이즈: ${returnFileSize(file.size)}`;
+                    const image = document.createElement('img');
+                    image.src = URL.createObjectURL(file);
+                    // 다른 생성 방법으로 test
+                    console.log(`파일의 상대경로 출력: ${file.name}`);
+                    image.style.width = "10em";
+                    listItem.appendChild(image);
+                    listItem.appendChild(para);
+                    list.appendChild(listItem);
+                }
+            }
+        }
+
+        function returnFileSize(number) {
+            if(number < 1024) {
+                return number + 'bytes';
+            } else if(number >= 1024 && number < 1048576) {
+                return (number/1024).toFixed(1) + 'KB';
+            } else if(number >= 1048576) {
+                return (number/1048576).toFixed(1) + 'MB';
+            }
+        }
+
+	</script>
+  </head>
+  <body onload="input.writer.focus()">
+    <center>
+	   <hr width="600" size='2' color="gray" noshade>
+	      <h3> write front 작업 </h3>
+			<a href=''>리스트</a>
+			<a href=''>인덱스</a>
+	   <hr width="600" size="2" color="gray" noshade>
+	</center>
+
+	<form name="input" method="post" action="write.do" enctype="multipart/form-data">
+	   <table border="0" width="600" align="center"  cellpadding="3" cellspacing="1" bordercolor="gray">
+	      <tr>
+		     <td width="30%" align="center">WRITER</td>
+			 <td><input type="text" name="writer" size="60"></td>
+		  </tr>
+          <tr>
+              <td align="center">SUBJECT</td>
+              <td><input type="text" name="subject" size="60"></td>
+            </tr>
+        <tr>
+            <td align="center">IMAGE</td>
+            <td>
+                <div id="preview">
+                    <p>이미지 없음</p>
+                </div>
+            </td>
+        </tr>
+		  <tr>
+		     <td align="center">CONTENT</td>
+			 <td><textarea  name="content" rows="15" cols="70"></textarea></td>
+		  </tr>
+		  <tr>
+		     <td colspan="2" align="center">
+			    <input type="button" value="전송" onclick="check()">
+				<input type="reset" value="다시입력" onclick="input.writer.focus()">
+                <input type="file" id="file" multiple="multiple" accept="image/*" onchange="updateImageDisplay()"> 
+                <span>(최대 10개(하드코딩))</span>
+			 </td>
+		  </tr>
+	   </table>
+	   <hr width="600" size="2" color="gray" noshade>
+	</form>
+	</font>
+  </body>
+</html>
