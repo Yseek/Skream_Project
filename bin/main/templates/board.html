@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../static/css/board.css">
+	<title>Document</title>
+</head>
+
+<body>
+	<article>
+		<div style="float: left;">
+			<button>전체글</button>
+			<button>공지</button>
+			<div class="dropdown">
+				<span class="dropbtn">브랜드별</span>
+				<div class="dropdown-content">
+					<a href="#">나이키</a>
+					<a href="#">아디다스</a>
+					<a href="#">뉴발란스</a>
+				</div>
+			</div>
+		</div>
+		<div style="float: right; padding-right: 2%;">
+			<select name="" id="" onchange="f(this.options[this.selectedIndex].text, this.value)">
+				<option value="" selected disabled hidden></option>
+				<option>1</option>
+				<option>5</option>
+				<option>10</option>
+			</select>
+			<a href="">글쓰기</a>
+		</div>
+		<br>
+		<table style="width: 100%;">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th class="thimage">이미지</th>
+					<th id="subject_th" class="thsubject">제목</th>
+					<th class="thwriter">글쓴이</th>
+					<th class="thrdate">작성일</th>
+					<th>조회</th>
+					<th>추천</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>이미지</td>
+					<td id="subject">
+						<a href="#" id="content_link" style="float: left;">제목링크</a>
+					</td>
+					<td>봇</td>
+					<td>23/03/16</td>
+					<td>조회</td>
+					<td>추천</td>
+				</tr>
+			</tbody>
+		</table>
+		<div style="float: left;">
+			<button>전체글</button>
+			<button>글쓰기</button>
+		</div>
+		<br>
+		<div style="width: 100%; margin-top: 1%; border: 1px solid red;">
+			<div style="float: left;">
+				<div>총페이지: list.total</div>
+			</div>
+			<span id="paging">
+				<a>처음페이지</a>
+				<a>&lt;&lt;</a>
+				<strong>&lt;&lt;</strong>
+				<span>
+					<a>1</a>
+					<strong style="color: red;"></strong>
+				</span>
+				<a>&gt;&gt;</a>
+				<strong>&gt;&gt;</strong>
+				<a>마지막페이지</a>
+			</span>
+			<div class="modalz" style="float: right; margin-right: 2%;">
+				<div>
+					<div>
+						<span>( TOTAL: </span>
+						<span>30</span>
+						<span>)</span>
+					</div>
+					<div class="modal">
+						<div style="border-bottom: 1px solid black; width: 100%;">
+							<div>페이지이동</div>
+							<div class="modal_button"><button>x</button></div>
+						</div>
+						<div>이동할 페이지 번호를 입력하세요.</div>
+						<div class="moveset">
+							<span>페이지</span>
+							<span><input type="text" style="width: 10%;"></span>
+							<span>/</span>
+							<span>1000</span>
+							<span>
+								<button>이동</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div>
+					<a href="#" class="movePage">페이지이동</a>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div style="width: 100%; margin-top: 1%; border: 1px solid red;">
+			<span style="float: left;">
+				<a href="">최신순</a>
+				<a href="">조회순</a>
+				<a href="">추천순</a>
+			</span>
+			<span style="float: right; margin-right: 1%;">
+				<select name="" id="">
+					<option value="">전체</option>
+					<option value="">나이키</option>
+					<option value="">아디다스</option>
+					<option value="">뉴발란스</option>
+				</select>
+				<select name="" id="">
+					<option value="">제목</option>
+					<option value="">내용</option>
+					<option value="">제목+내용</option>
+					<option value="">작성자</option>
+				</select>
+				<input type="search">
+				<button>검색</button>
+			</span>
+		</div>
+	</article>
+
+	<script>
+		const modal = document.querySelector('.modal');
+		const movePage = document.querySelector('.movePage');
+		const modal_button = document.querySelector('.modal_button');
+		const brand = document.querySelector('.dropbtn');
+		const brand_list = document.querySelector('.dropdown-content');
+		movePage.addEventListener('click', () => modal.classList.toggle('show'));
+		modal_button.addEventListener('click', () => modal.classList.toggle('show'));
+		brand.addEventListener('click', () => brand_list.classList.toggle('show'));
+	</script>
+</body>
+
+</html>
