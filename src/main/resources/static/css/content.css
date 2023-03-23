@@ -25,6 +25,10 @@ article {
 .comment_count_row ,.comment_view_row ,.comment_view_normal{
 	width: 100%;
 }
+.comment_count_row>input{
+	float: left;
+	width:90%;
+}
 .comment_wrapper div{
 	border: 1px solid red;
 	display: inline-block;
