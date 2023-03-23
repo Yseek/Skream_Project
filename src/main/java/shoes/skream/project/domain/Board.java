@@ -23,8 +23,8 @@ public class Board extends RUDate{
 	private int hits;
 	private int recom;
 	
-	@ManyToOne
-	@JoinColumn(name = "ID")
-	private Category category;
+	// @ManyToOne
+	// @JoinColumn(name = "ID")
+	// private Category category;
 
 }
