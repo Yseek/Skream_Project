@@ -16,7 +16,7 @@
            <hr width="600" size="2" color="gray" noshade>
         </center>
     
-        <form name="input" method="post" action="write.do" enctype="multipart/form-data">
+        <form name="input" method="post" action="write" enctype="multipart/form-data">
            <table border="0" width="600" align="center"  cellpadding="3" cellspacing="1" bordercolor="gray">
               <tr>
                  <td width="30%" align="center">WRITER</td>
@@ -42,9 +42,8 @@
                  <td colspan="2" align="center">
                     <input type="button" value="전송" onclick="check()">
                     <input type="reset" value="다시입력" onclick="input.writer.focus()">
-                    <input type="file" id="file" multiple="multiple" accept="image/*" onchange="updateImageDisplay()"> 
-                    <span>(최대 10개)</span>
-                    <input type="file" id="thumbnail">
+                    <label id="fileButton" for="file">업로드(최대 10개)</label>
+                    <input type="file" name="file" id="file" multiple="multiple" accept="image/*" onchange="updateImageDisplay()"> 
                  </td>
               </tr>
            </table>

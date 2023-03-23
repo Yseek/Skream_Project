@@ -1,7 +1,10 @@
 function check(){
     for(var i=0; i<document.input.elements.length; i++){
-       if(document.input.elements[i].value == ""){
-          alert("모든 값을 입력 하셔야 합니다. ");
+       if(document.input.elements[i].value === ""){
+        if(document.input.elements[i].name === "file"){
+            continue;
+        }  
+        alert("모든 값을 입력 하셔야 합니다. ");
           return false;
        }
     }
@@ -11,7 +14,6 @@ function check(){
 function updateImageDisplay() {
      let preview = document.getElementById("preview");
      const imageLimit = 10;
-     console.log("updateImageDisplay 진입");
      
      while(preview.firstChild) {
          preview.removeChild(preview.firstChild);
@@ -36,17 +38,11 @@ function updateImageDisplay() {
          
          for(const file of curFiles) {
              imagecounting += 1;
-              if(imagecounting === 1){
-                 let thumbnail = document.getElementById("thumbnail");
-                 let formData = new FormData();
-                 formData.append('thumbnail', 'file');
-                 
-                 //thumbnail.value = file;
-                 //console.log(`thumbnail에 넘긴 파일 이름: ${file.name}`);
-             } 
              const listItem = document.createElement('li');
              const para = document.createElement('p');
-             //para.textContent = file.name;
+             para.textContent = file.name.length < 12 ? file.name : file.name.substring(0, 8) + "...";
+             console.log(imagecounting + "번째 이름 길이 : " + file.name.length);
+             para.style.textAlign = "center";
              const image = document.createElement('img');
              image.src = URL.createObjectURL(file);
              image.style.width = "7em";
@@ -56,6 +52,8 @@ function updateImageDisplay() {
              listItem.appendChild(para);
              list.appendChild(listItem);
          }
+         const fileButton = document.getElementById("fileButton");
+         fileButton.innerHTML = `업로드(${imagecounting}/10)`;
      }
 }
 
