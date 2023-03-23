@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shoes.skream.project.mapper.yun.BoardDtoMapper">
+    <select id="selectBoardFile" resultType="Boardfile">
+        select * from BOARDFILE where BOARD_ID=#{board_id}
+    </select>
+	<select id="selectFileup" resultType="Fileup">
+        select * from Fileup where FILE_ID=#{file_id}
+    </select>
+</mapper>

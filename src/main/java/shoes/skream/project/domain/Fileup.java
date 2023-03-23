@@ -2,7 +2,6 @@ package shoes.skream.project.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Table(name = "FILEUP")
+// @Table(name = "FILEUP")
 @Entity
 public class Fileup {
 	@Id

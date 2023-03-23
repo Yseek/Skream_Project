@@ -26,5 +26,7 @@ public class Board extends RUDate{
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
-
+	@ManyToOne
+	@JoinColumn(name = "MEMBER_EMAIL")
+	private Member member;
 }

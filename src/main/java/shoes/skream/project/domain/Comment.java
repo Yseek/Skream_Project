@@ -23,6 +23,6 @@ public class Comment extends RUDate{
 	@JoinColumn(name="board_id")
 	private Board board;
 	@ManyToOne
-	@JoinColumn(name="EMAIL")
+	@JoinColumn(name="MEMBER_EMAIL")
 	private Member member;
 }

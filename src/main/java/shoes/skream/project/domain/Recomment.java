@@ -21,7 +21,7 @@ public class Recomment extends RUDate{
 	private long recomment_id;
 	private String reco_content;
 	@ManyToOne
-	@JoinColumn(name = "email")
+	@JoinColumn(name = "MEMBER_EMAIL")
 	private Member member;
 	@ManyToOne
 	@JoinColumn(name = "comment_id")
