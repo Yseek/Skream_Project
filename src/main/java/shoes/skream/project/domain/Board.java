@@ -17,14 +17,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Board extends RUDate{
 	@Id
-	private long id;
+	private long board_id;
 	private String subject;
 	private String content;
 	private int hits;
 	private int recom;
 	
 	@ManyToOne
-	//@JoinColumn(name = "ID")
+	@JoinColumn(name = "category_id")
 	private Category category;
 
 }

@@ -20,7 +20,7 @@ public class Comment extends RUDate{
 	private long comment_id;
 	private String co_content;
 	@ManyToOne
-	@JoinColumn(name="ID")
+	@JoinColumn(name="board_id")
 	private Board board;
 	@ManyToOne
 	@JoinColumn(name="EMAIL")
