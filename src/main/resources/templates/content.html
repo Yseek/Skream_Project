@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/content.css}">
+	<link rel="stylesheet" th:href="@{/css/board.css}">
+	<!-- <script th:src="@{/js/content.js}"></script> -->
+	<title>Document</title>
+</head>
+
+<body>
+	<article>
+		<div class="subject_row">
+			<h4 class="subject">
+				<span class="subject_text">
+					<span class="category_text">[나이키]</span>
+					<span class="subject_inner_text">제목</span>
+					<strong class="reply_count">[12]</strong>
+				</span>
+			</h4>
+		</div>
+		<br>
+		<div class="user_info">
+			유저정보
+			<br><br><br>
+		</div>
+		<div class="board_main_view">
+			<div class="content">
+				내용
+				<br><br><br><br><br><br><br><br><br><br><br><br><br>
+			</div>
+		</div>
+		<div class="comment_wrapper">
+			<div class="comment_count_row">
+				<div class="comment_count_row_left">
+					<span>댓글</span>
+					<span>총 12 개</span>
+				</div>
+				<div class="comment_count_row_center">
+					<span>중앙</span>
+				</div>
+				<div class="comment_count_row_right">
+					<button>댓글작성</button>
+				</div>
+			</div>
+			<br><br>
+			<div class="comment_view_row">
+				<div class="comment_view_normal">
+					<table class="comment_table">
+						<tbody>
+							<tr class="comment_element_parent">
+								<td class="user">이름</td>
+								<td class="comment">댓글내용</td>
+								<td class="element_info">
+									<span>23/01/01</span>
+									<button>대댓글</button>
+								</td>
+							</tr>
+							<tr class="comment_element_child">
+								<td class="user">대댓글단사람이름</td>
+								<td class="comment" colspan="2">내용 23/01/01</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="content_bottom_button">
+			<button>목록</button> |
+			<button>이전글</button> |
+			<button>다음글</button>
+		</div>
+		<br>
+	</article>
+	<article th:replace="~{board :: boardFragment}"></article>
+</body>
+
+</html>

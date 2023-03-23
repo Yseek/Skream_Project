@@ -1,0 +1,52 @@
+article {
+	width: 50%;
+	position: relative;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.subject_row{
+	border: 1px solid red;
+}
+.user_info{
+	border: 1px solid red;
+	margin-bottom: 1%;
+}
+.board_main_view{
+	border: 1px solid red;
+	margin-bottom: 1%;
+}
+
+.comment_count_row ,.comment_view_row ,.comment_view_normal{
+	width: 100%;
+}
+.comment_wrapper div{
+	border: 1px solid red;
+	display: inline-block;
+}
+
+.comment_count_row_left{
+	float: left;
+}
+
+.comment_count_row_right{
+	float: right;
+}
+
+.comment_table{
+	width: 100%;
+	border: 1px solid #444444;
+    border-collapse: collapse;
+}
+.comment_element_parent{
+	background-color: pink;
+	height: 70px;
+}
+.comment_element_child{
+	background-color: aquamarine;
+	height: 70px;
+}
+td{
+	border: 1px solid #444444;
+}
