@@ -7,11 +7,15 @@ article {
 }
 
 .subject_row{
-	border: 1px solid red;
+	text-align: left;
 }
 .user_info{
-	border: 1px solid red;
-	margin-bottom: 1%;
+	text-align: left;
+	font-size: 13px;
+}
+.user_info > img{
+	width: 15px;
+	vertical-align:middle;
 }
 .board_main_view{
 	border: 1px solid red;
@@ -26,6 +30,9 @@ article {
 	display: inline-block;
 }
 
+.comment_count_row_left{
+	float: left;
+}
 .comment_count_row_left{
 	float: left;
 }
