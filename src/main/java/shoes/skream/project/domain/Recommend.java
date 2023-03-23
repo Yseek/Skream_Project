@@ -21,6 +21,6 @@ public class Recommend {
 	private Member member;
 
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "board_id")
 	private Board board;
 }
