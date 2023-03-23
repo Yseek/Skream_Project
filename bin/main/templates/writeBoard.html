@@ -21,6 +21,7 @@
             display:inline-block;
             marker: none;
         }
+        #thumbnail{opacity: 0;}
 	</style>
 	<script language="javascript">
 	   function check(){
@@ -36,7 +37,6 @@
         function updateImageDisplay() {
             let preview = document.getElementById("preview");
             const imageLimit = 10;
-            let imagecounting = 0;
             
             while(preview.firstChild) {
                 preview.removeChild(preview.firstChild);
@@ -44,7 +44,7 @@
             
             let input = document.getElementById("file");
             const curFiles = input.files;
-
+            
             if(curFiles.length === 0) {
                 const para = document.createElement('p');
                 para.textContent = '이미지 없음';
@@ -57,16 +57,21 @@
             }else{
                 const list = document.createElement('ol');
                 preview.appendChild(list);
-
+                let imagecounting = 0;
+                
                 for(const file of curFiles) {
                     imagecounting += 1;
+                     if(imagecounting === 1){
+                        let thumbnail = document.getElementById("thumbnail");
+                        //thumbnail.value = file;
+                        //console.log(`thumbnail에 넘긴 파일 이름: ${file.name}`);
+                    } 
                     const listItem = document.createElement('li');
                     const para = document.createElement('p');
                     // para.textContent = `파일 이름: ${file.name}, 파일 사이즈: ${returnFileSize(file.size)}`;
                     //para.textContent = file.name;
                     const image = document.createElement('img');
                     image.src = URL.createObjectURL(file);
-                    console.log(`파일의 상대경로 출력: ${file.name}`);
                     image.style.width = "7em";
                     image.style.height = "7em";
                     image.style.margin = "0 1em";
@@ -127,6 +132,7 @@
                     <input type="reset" value="다시입력" onclick="input.writer.focus()">
                     <input type="file" id="file" multiple="multiple" accept="image/*" onchange="updateImageDisplay()"> 
                     <span>(최대 10개)</span>
+                    <input type="file" id="thumbnail">
                  </td>
               </tr>
            </table>
