@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../static/css/board.css">
+	<link rel="stylesheet"  th:href="@{/css/board.css}">
 	<title>Document</title>
 </head>
 
 <body>
-	<article>
+	<article th:fragment="boardFragment">
 		<div style="float: left;">
 			<button>전체글</button>
 			<button>공지</button>
@@ -33,7 +33,7 @@
 			<a href="">글쓰기</a>
 		</div>
 		<br>
-		<table style="width: 100%;">
+		<table class="board_table" style="width: 100%;">
 			<thead>
 				<tr>
 					<th>번호</th>
@@ -50,7 +50,7 @@
 					<td>1</td>
 					<td>이미지</td>
 					<td id="subject">
-						<a href="#" id="content_link" style="float: left;">제목링크</a>
+						<a href="content.html" id="content_link" style="float: left;">제목링크</a>
 					</td>
 					<td>봇</td>
 					<td>23/03/16</td>
@@ -133,18 +133,17 @@
 				<button>검색</button>
 			</span>
 		</div>
+		<script>
+			const modal = document.querySelector('.modal');
+			const movePage = document.querySelector('.movePage');
+			const modal_button = document.querySelector('.modal_button');
+			const brand = document.querySelector('.dropbtn');
+			const brand_list = document.querySelector('.dropdown-content');
+			movePage.addEventListener('click', () => modal.classList.toggle('show'));
+			modal_button.addEventListener('click', () => modal.classList.toggle('show'));
+			brand.addEventListener('click', () => brand_list.classList.toggle('show'));
+		</script>
 	</article>
-
-	<script>
-		const modal = document.querySelector('.modal');
-		const movePage = document.querySelector('.movePage');
-		const modal_button = document.querySelector('.modal_button');
-		const brand = document.querySelector('.dropbtn');
-		const brand_list = document.querySelector('.dropdown-content');
-		movePage.addEventListener('click', () => modal.classList.toggle('show'));
-		modal_button.addEventListener('click', () => modal.classList.toggle('show'));
-		brand.addEventListener('click', () => brand_list.classList.toggle('show'));
-	</script>
 </body>
 
 </html>

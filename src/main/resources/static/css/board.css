@@ -6,7 +6,7 @@ article {
 	margin-right: auto;
 }
 
-table {
+.board_table {
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -22,10 +22,6 @@ table {
 }
 
 /* 페이지 이동 css */
-div {
-	display: inline-block;
-}
-
 .modalz {
 	position: relative;
 }
