@@ -24,7 +24,7 @@ public class Board extends RUDate{
 	private int recom;
 	
 	@ManyToOne
-	@JoinColumn(name = "ID")
+	//@JoinColumn(name = "ID")
 	private Category category;
 
 }

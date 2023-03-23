@@ -40,6 +40,7 @@ function updateImageDisplay() {
                  let thumbnail = document.getElementById("thumbnail");
                  let formData = new FormData();
                  formData.append('thumbnail', 'file');
+                 
                  //thumbnail.value = file;
                  //console.log(`thumbnail에 넘긴 파일 이름: ${file.name}`);
              } 
