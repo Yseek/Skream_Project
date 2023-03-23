@@ -20,6 +20,6 @@ public class Boardfile {
 	@JoinColumn(name = "file_id")
 	private Fileup fileup;
 	@ManyToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="board_id")
 	private Board board;
 }
