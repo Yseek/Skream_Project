@@ -1,0 +1,121 @@
+article {
+	width: 50%;
+	position: relative;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.board_table {
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: collapse;
+}
+th, td{
+	border-bottom:1px solid lightgrey;
+	border-collapse: collapse;
+}
+td>img{
+	height:100px; 
+	padding:10px;
+}
+
+.thimage {
+	width: 20%;
+}
+.thwriter, .thrdate{
+	width: 10%;
+}
+.thsubject{
+	width: 45%;
+}
+
+/* 페이지 이동 css */
+.modalz {
+	position: relative;
+}
+
+.modal {
+	position: absolute;
+	border-radius: 3px;
+	left: -25px;
+	top: -6px;
+	background-color: lightgrey;
+	border : 1px solid black;
+	width: 210px;
+	height: 30px;
+	display: none;
+	z-index: 1;
+}
+
+.modal_button {
+	margin-left: 5px;
+}
+
+.modal.show {
+	display: block;
+}
+
+.hidden {
+	opacity: 0;
+	visibility: hidden;
+}
+
+.dropdown{
+  position : relative;
+  display : inline-block;
+}
+
+.dropbtn_icon{
+  font-family : 'Material Icons';
+}
+.dropbtn{
+  border : 1px solid rgb(37, 37, 37);
+  border-radius : 3px;
+  background-color:black;
+  font-weight: 400;
+  color : white;
+  padding : 1.6px;
+  width :300px;
+  text-align: center;
+  cursor : pointer;
+  font-size : 12px;
+}
+.dropdown-content{
+  display : none;
+  position : absolute;
+  z-index : 1; /*다른 요소들보다 앞에 배치*/
+  font-weight: 400;
+  background-color: lightgrey;
+  min-width : 100px;
+	border-radius: 3px;
+}
+
+.dropdown-content a{
+  display : block;
+  text-decoration : none;
+  color : rgb(37, 37, 37);
+  font-size: 12px;
+  padding : 6px 10px;
+}
+
+.dropdown-content a:hover{
+  background-color : #ececec
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+button{
+	background-color: black;
+	color: white;
+	border-radius: 3px;
+	font-size: 12px;
+	cursor: pointer;
+}
