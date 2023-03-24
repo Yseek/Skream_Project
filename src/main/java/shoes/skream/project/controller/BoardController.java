@@ -9,4 +9,9 @@ public class BoardController {
 	public String content(){
 		return "content";
 	}
+
+	@GetMapping("board")
+	public String board(){
+		return "board";
+	}
 }

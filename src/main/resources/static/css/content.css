@@ -7,25 +7,46 @@ article {
 }
 
 .subject_row{
-	border: 1px solid red;
+	text-align: left;
 }
 .user_info{
-	border: 1px solid red;
-	margin-bottom: 1%;
+	text-align: left;
+	font-size: 13px;
+}
+.user_info > img{
+	width: 15px;
+	vertical-align:middle;
 }
 .board_main_view{
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	margin-bottom: 1%;
 }
 
 .comment_count_row ,.comment_view_row ,.comment_view_normal{
 	width: 100%;
 }
+.comment_count_row>input{
+	float: left;
+	width:90%;
+	height:20px;
+}
+.comment_count_row>button{
+	float: right;
+	width:9%;
+	height: 26px;
+	background-color:black;
+	border-radius: 3px;
+	color: white;
+	cursor: pointer;
+}
 .comment_wrapper div{
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	display: inline-block;
 }
 
+.comment_count_row_left{
+	float: left;
+}
 .comment_count_row_left{
 	float: left;
 }
@@ -36,17 +57,43 @@ article {
 
 .comment_table{
 	width: 100%;
-	border: 1px solid #444444;
-    border-collapse: collapse;
+	/* border: 1px solid #444444;
+   border-collapse: collapse; */
+}
+tr td{
+	border-bottom:1px dotted lightgrey;
+}
+tr:last-child td{
+	border-bottom:none;
+}
+.comment_element_parent > .user >button{
+	background-color: transparent;
+	border: none;
+	float: left;
+	color: blue;
+	cursor: pointer;
 }
 .comment_element_parent{
-	background-color: pink;
 	height: 70px;
 }
 .comment_element_child{
-	background-color: aquamarine;
 	height: 70px;
 }
-td{
-	border: 1px solid #444444;
+.comment_element_child > .user >button{
+	background-color: transparent;
+	border: none;
+	float: left;
+	color: blue;
+	cursor: pointer;
+}
+.content_bottom_button > button{
+	background-color: black;
+	color: white;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.left_ad_img img, .right_ad_img img{
+	width: 163.25px;
+	height: 100px;
+	object-fit: cover;
 }
