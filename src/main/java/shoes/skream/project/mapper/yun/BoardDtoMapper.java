@@ -7,6 +7,6 @@ import shoes.skream.project.domain.Fileup;
 
 @Mapper
 public interface BoardDtoMapper {
-	Boardfile selectBoardFile(long board_id);
-	Fileup selectFileup(long file_id);
+	Boardfile selectBoardFile(long boardId);
+	Fileup selectFileup(long fileId);
 }

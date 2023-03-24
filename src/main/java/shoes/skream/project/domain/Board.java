@@ -1,5 +1,6 @@
 package shoes.skream.project.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,7 +18,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Board extends RUDate{
 	@Id
-	private long board_id;
+	@Column(name = "board_id")
+	private long boardId;
 	private String subject;
 	private String content;
 	private int hits;

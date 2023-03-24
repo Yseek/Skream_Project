@@ -1,5 +1,6 @@
 package shoes.skream.project.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,14 +14,15 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Fileup {
 	@Id
-	private long file_id;
+	@Column(name = "file_id")
+	private long fileId;
 	private String orgnm;
 	private String savednm;
 	private String savedpath;
 
 	@Builder
-	public Fileup(long file_id, String orgnm, String savednm, String savedpath) {
-		this.file_id = file_id;
+	public Fileup(long fileId, String orgnm, String savednm, String savedpath) {
+		this.fileId = fileId;
 		this.orgnm = orgnm;
 		this.savednm = savednm;
 		this.savedpath = savedpath;
