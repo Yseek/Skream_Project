@@ -92,8 +92,10 @@ tr:last-child td{
 	border-radius: 3px;
 	cursor: pointer;
 }
-.left_ad_img img, .right_ad_img img{
+.left_ad_btn button{
 	width: 163.25px;
-	height: 100px;
+	height: 81.625px;
+	font-size: 30px;
+	font-weight: bold;
 	object-fit: cover;
 }
