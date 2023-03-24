@@ -21,6 +21,7 @@ public class BoardDto {
 	private final LocalDateTime udate;
 	private final int hits;
 	private final int recom;
+	private final String cgname;
 
 	public static BoardDto from(Board board,BoardDtoMapper boardDtoMapper){
 		Boardfile file = boardDtoMapper.selectBoardFile(board.getBoardId());
@@ -34,6 +35,7 @@ public class BoardDto {
 		.udate(board.getUdate())
 		.hits(board.getHits())
 		.recom(board.getRecom())
+		.cgname(board.getCategory().getCgname())
 		.build();
 	}
 }

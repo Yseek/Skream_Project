@@ -26,7 +26,7 @@ public class BoardController {
 
 	@GetMapping("board")
 	public String board(Model model,
-			@PageableDefault(page = 0, size = 10, sort = "boardId", direction = Sort.Direction.DESC) Pageable pageable) {
+			@PageableDefault(page = 0, size = 1, sort = "boardId", direction = Sort.Direction.DESC) Pageable pageable) {
 		Page<BoardDto> list = boardServiceInterface.list(pageable);
 		int nowPage = list.getPageable().getPageNumber()+1;
 		int startPage = Math.max(nowPage - 4, 1);
