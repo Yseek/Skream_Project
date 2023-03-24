@@ -143,15 +143,16 @@
 			</span>
 		</div>
 		<script>
+			//보고 있는 게시물 리스트에서 강조
 			const selectedSeq = document.getElementById("selectedSeq").value;
-			let listSeq = [, , ,];
-				alert(document.getElementsByClassName("listSeq")[1].value);
-				
-			
-				
-			if (selectedSeq === listSeq) {
-				document.getElementById(selectedSeq).style.backgroundColor = "red";
+			let listSeq = document.getElementsByClassName("listSeq");
+			for (let i = 0; i < listSeq.length; i++) {
+				if (selectedSeq === document.getElementsByClassName("listSeq")[i].value) {
+					document.getElementById(selectedSeq).style.backgroundColor = "green"
+					document.getElementById(selectedSeq).style.opacity = "0.5";
+				}
 			}
+
 			const modal = document.querySelector('.modal');
 			const movePage = document.querySelector('.movePage');
 			const modal_button = document.querySelector('.modal_button');
