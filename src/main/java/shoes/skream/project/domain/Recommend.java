@@ -1,5 +1,6 @@
 package shoes.skream.project.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -15,7 +16,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Recommend {
 	@Id
-	private long recommend_id;
+	@Column(name = "recommend_id")
+	private long recommendId;
 	@ManyToOne
 	@JoinColumn(name = "email")
 	private Member member;

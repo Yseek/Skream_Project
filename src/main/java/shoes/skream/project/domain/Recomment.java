@@ -1,5 +1,6 @@
 package shoes.skream.project.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -18,10 +19,12 @@ import lombok.NoArgsConstructor;
 public class Recomment extends RUDate{
 
 	@Id
-	private long recomment_id;
-	private String reco_content;
+	@Column(name = "recomment_id")
+	private long recommentId;
+	@Column(name = "reco_content")
+	private String recoContent;
 	@ManyToOne
-	@JoinColumn(name = "email")
+	@JoinColumn(name = "MEMBER_EMAIL")
 	private Member member;
 	@ManyToOne
 	@JoinColumn(name = "comment_id")
