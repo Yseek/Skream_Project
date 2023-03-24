@@ -67,11 +67,12 @@
                                                 style="text-decoration-line:none; float: right; color:#ffffff">X</a>
                                         </div>
                                         <h2 style="font-size: 30px; color:white; margin-bottom:37%">로그인</h2>
-                                        <input class="login_text" type="text" placeholder="이메일">
-                                        <input class="login_text" type="password" placeholder="비밀번호">
-                                        <input class="login_button" type="submit" value="로그인">
-                                        <input class="login_button" type="button" value="취소"
-                                            onclick="location.href=document.referrer">
+                                            <form name="f" action="login.do" method="post"></form>
+                                                <input name = "email" class="login_text" type="text" placeholder="이메일">
+                                                <input name = "pwd" class="login_text" type="password" placeholder="비밀번호">
+                                                <input class="login_button" type="submit" value="로그인">
+                                                <input class="login_button" type="button" value="취소"
+                                                    onclick="location.href=document.referrer">
                                     </div>
                                 </div>
 
@@ -178,7 +179,7 @@
                                 <h4 class="ir_su col_tit">메인 이미지</h4>
                                 <p class="col_desc"><span class="ir_su">메인 이미지<br /></span>
                                 </p>
-                                <img th:src="@{/img/main_banner.png}">
+                                <img src="/img/main_banner.png">
                             </article>
                             <article class="column col2">
                                 <!-- 게시판  -->
@@ -277,11 +278,11 @@
                                     <h5 class="ir_su">Notice1</h5>
                                     <h5>광고 삽입 1</h5>
                                     <ul>
-                                        <li><a href="#"><img th:src="@{http://placehold.it/200x100}" alt="" />이것은 치킨인가 마약인가
+                                        <li><a href="#"><img src="http://placehold.it/200x100" alt="" />이것은 치킨인가 마약인가
                                                 안녕하세요 수원 왕갈비 통닭입니다.</a></li>
                                     </ul>
                                     <ul>
-                                        <li><a href="#"><img th:src="@{http://placehold.it/200x100}" alt="" />롤 진짜 하고 싶다. 안되겠다
+                                        <li><a href="#"><img src="http://placehold.it/200x100" alt="" />롤 진짜 하고 싶다. 안되겠다
                                                 다들 칼바람 들어와 깔끔하게 3판 하자</a></li>
                                     </ul>
                                     <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
@@ -292,11 +293,11 @@
                                     <h5 class="ir_su">Notice1</h5>
                                     <h5>광고 삽입 2</h5>
                                     <ul>
-                                        <li><a href="#"><img th:src="@{http://placehold.it/200x100}" alt="" />이번 챔스 우승은 뭔가 레알
+                                        <li><a href="#"><img src="http://placehold.it/200x100" alt="" />이번 챔스 우승은 뭔가 레알
                                                 아니면 뮌헨 삘 아 오케이 맨시티도 있지</a></li>
                                     </ul>
                                     <ul>
-                                        <li><a href="#"><img th:src="@{http://placehold.it/200x100}" alt="" />광고 문구 테스트 광고 문구
+                                        <li><a href="#"><img src="http://placehold.it/200x100" alt="" />광고 문구 테스트 광고 문구
                                                 테스트 광고 문구 테스트 광고 문구 테스트 광고 문구 테스트</a></li>
                                     </ul>
                                     <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
@@ -309,17 +310,17 @@
                                 <h5 class="ir_su">Notice1</h5>
                                 <h5>브랜드 홍보관</h5>
                                 <ul>
-                                    <li><a href="#"><img th:src="@{http://placehold.it/200x400}" width="200" alt="" /></a>
+                                    <li><a href="#"><img src="http://placehold.it/200x400" width="200" alt="" /></a>
                                     </li>
                                 </ul>
                                 <ul>
-                                    <li><a href="#"><img th:src="@{http://placehold.it/200x400}" alt="" /></a></li>
+                                    <li><a href="#"><img src="http://placehold.it/200x400" alt="" /></a></li>
                                 </ul>
                                 <ul>
-                                    <li><a href="#"><img th:src="@{http://placehold.it/200x400}" alt="" /></a></li>
+                                    <li><a href="#"><img src="http://placehold.it/200x400" alt="" /></a></li>
                                 </ul>
                                 <ul>
-                                    <li><a href="#"><img th:src="@{http://placehold.it/200x400}" alt="" /></a></li>
+                                    <li><a href="#"><img src="http://placehold.it/200x400" alt="" /></a></li>
                                 </ul>
                                 <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
                             </div>
@@ -332,20 +333,20 @@
             <footer id="footer">
                 <div class="container">
                     <ul>
-                        <li><a th:href="@{http://naver.com}">전윤식</a></li>
+                        <li><a href="http://naver.com">전윤식</a></li>
                         <li>|</li>
-                        <li><a th:href="@{http://naver.com}">이대원</a></li>
+                        <li><a href="http://naver.com">이대원</a></li>
                         <li>|</li>
-                        <li><a th:href="@{http://naver.com}">김종호</a></li>
+                        <li><a href="http://naver.com">김종호</a></li>
                         <li>|</li>
-                        <li><a th:href="@{http://naver.com}">김태현</a></li>
+                        <li><a href="http://naver.com">김태현</a></li>
                     </ul>
                     <div class="sns_link">
-                        <a th:href="@{http://naver.com"><img src="../static/img/mail.PNG" /></a>
-                        <a th:href="@{https://section.blog.naver.com/BlogHome.naver?directoryNo=0&currentPage=1&groupId=0}"><img
-                                src="@{/img/blog.png" /></a>
-                        <a th:href="@{https://www.facebook.com}"><img th:src="@{/img/FACEBOOK.png}" /></a>
-                        <a th:href="@{https://www.youtube.com/}"><img th:src="@{/img/youtube.png}" /></a>
+                        <a href="http://naver.com"><img src="img/mail.PNG" /></a>
+                        <a href="https://section.blog.naver.com/BlogHome.naver?directoryNo=0&currentPage=1&groupId=0"><img
+                                src="/img/blog.png" /></a>
+                        <a href="https://www.facebook.com"><img src="@img/FACEBOOK.png" /></a>
+                        <a href="https://www.youtube.com/"><img src="/img/youtube.png" /></a>
                     </div>
                     <i class="copyright">COPYRIGHTⓒ 2023 Spring Project Team 3. ALL RIGHT RESERVED.</i>
                 </div>
