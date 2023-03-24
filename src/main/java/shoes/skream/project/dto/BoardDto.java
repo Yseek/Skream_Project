@@ -1,6 +1,8 @@
 package shoes.skream.project.dto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +16,7 @@ import shoes.skream.project.mapper.yun.BoardDtoMapper;
 public class BoardDto {
 
 	private final long seq;
-	private final Fileup fileUp;
+	private final List<Fileup> fileUp;
 	private final String subject;
 	private final String writer;
 	private final LocalDateTime rdate;
@@ -24,8 +26,11 @@ public class BoardDto {
 	private final String cgname;
 
 	public static BoardDto from(Board board,BoardDtoMapper boardDtoMapper){
-		Boardfile file = boardDtoMapper.selectBoardFile(board.getBoardId());
-		Fileup fileup = boardDtoMapper.selectFileup(file.getFileupFileId());
+		List<Boardfile> files = boardDtoMapper.selectBoardFile(board.getBoardId());
+		List<Fileup> fileup = new ArrayList<>();
+		for(Boardfile fileContent : files){
+			fileup.add(boardDtoMapper.selectFileup(fileContent.getFileupFileId()));
+		}
 		return BoardDto.builder()
 		.seq(board.getBoardId())
 		.fileUp(fileup)

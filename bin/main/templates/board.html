@@ -12,21 +12,27 @@
 <body>
 	<article th:fragment="boardFragment">
 		<div style="float: left;">
-			<button>전체글</button>
+			<button onclick="wholeList()">전체글</button>
 			<button>공지</button>
 			<div class="dropdown">
 				<span class="dropbtn">브랜드별</span>
 				<div class="dropdown-content">
-					<a href="#">나이키</a>
-					<a href="#">아디다스</a>
-					<a href="#">뉴발란스</a>
+					<a th:if="${orderby == ''}" th:href="@{board?(page=${nowPage},cate=1)}">나이키</a>
+					<a th:if="${orderby != ''}" th:href="@{board?(page=${nowPage},orderby=${orderby},cate=1)}">나이키</a>
+					<a th:if="${orderby == ''}" th:href="@{board?(page=${nowPage},cate=2)}">아디다스</a>
+					<a th:if="${orderby != ''}" th:href="@{board?(page=${nowPage},orderby=${orderby},cate=2)}">아디다스</a>
+					<a th:if="${orderby == ''}" th:href="@{board?(page=${nowPage},cate=3)}">뉴발란스</a>
+					<a th:if="${orderby != ''}" th:href="@{board?(page=${nowPage},orderby=${orderby},cate=3)}">뉴발란스</a>
 				</div>
 			</div>
 		</div>
 		<div style="float: right;">
-			<a href="">최신순</a> |
-			<a href="">조회순</a> |
-			<a href="">추천순</a> |
+			<a th:if="${categoryId == 0}" th:href="@{board?(page=${nowPage})}">최신순</a> 
+			<a th:if="${categoryId != 0}" th:href="@{board?(page=${nowPage},cate=${categoryId})}">최신순</a> |
+			<a th:if="${categoryId == 0}" th:href="@{board?(page=${nowPage},orderby=hits)}">조회순</a>
+			<a th:if="${categoryId != 0}" th:href="@{board?(page=${nowPage},orderby=hits,cate=${categoryId})}">조회순</a> |
+			<a th:if="${categoryId == 0}" th:href="@{board?(page=${nowPage},orderby=recom)}">추천순</a>
+			<a th:if="${categoryId != 0}" th:href="@{board?(page=${nowPage},orderby=recom,cate=${categoryId})}">추천순</a> |
 			<a href="">글쓰기</a>
 		</div>
 		<br>
@@ -52,7 +58,10 @@
 					<td id="subject">
 						<span style="float: left;">
 							<span>[<strong th:text="${list.cgname}"></strong>]</span>
-							<span><a th:href="@{content?(page=${nowPage},seq=${list.seq})}"
+							<span><a th:if="${orderby == ''}" th:href="@{content?(page=${nowPage},seq=${list.seq})}"
+									id="content_link">제목링크</a></span>
+							<span><a th:if="${orderby != ''}"
+									th:href="@{content?(page=${nowPage},seq=${list.seq},orderby=${orderby})}"
 									id="content_link">제목링크</a></span>
 						</span>
 					</td>
@@ -61,11 +70,10 @@
 					<td th:text="${list.hits}">조회</td>
 					<td th:text="${list.recom}">추천</td>
 				</tr>
-				</tr>
 			</tbody>
 		</table>
 		<div style="float: left;">
-			<button>전체글</button>
+			<button onclick="wholeList()">전체글</button>
 			<button>글쓰기</button>
 		</div>
 		<br>
@@ -77,26 +85,45 @@
 			</div>
 			<span id="paging">
 				<span class="firstPageCheck">
-					<a th:if="${!list.isFirst}" th:href="@{board?(page=1)}">처음페이지</a>
+					<a th:if="${!list.isFirst} and ${orderby == ''} and ${categoryId == 0}" th:href="@{board?(page=1)}">처음페이지</a>
+					<a th:if="${!list.isFirst} and ${orderby != ''} and ${categoryId == 0}" th:href="@{board?(page=1,orderby=${orderby})}">처음페이지</a>
+					<a th:if="${!list.isFirst} and ${orderby == ''} and ${categoryId != 0}" th:href="@{board?(page=1,cate=${categoryId})}">처음페이지</a>
+					<a th:if="${!list.isFirst} and ${orderby != ''} and ${categoryId != 0}" th:href="@{board?(page=1,orderby=${orderby},cate=${categoryId})}">처음페이지</a>
 					<strong th:if="${list.isFirst}">처음페이지</strong>
 				</span>
 				<span class="downPageCursor">
-					<a th:if="${!list.isFirst}" th:href="@{board?(page=${nowPage-1})}">&lt;&lt;</a>
+					<a th:if="${!list.isFirst} and ${orderby == ''} and ${categoryId == 0}" th:href="@{board?(page=${nowPage-1})}">&lt;&lt;</a>
+					<a th:if="${!list.isFirst} and ${orderby != ''} and ${categoryId == 0}" th:href="@{board?(page=${nowPage-1},orderby=${orderby})}">&lt;&lt;</a>
+					<a th:if="${!list.isFirst} and ${orderby == ''} and ${categoryId != 0}" th:href="@{board?(page=${nowPage-1},cate=${categoryId})}">&lt;&lt;</a>
+					<a th:if="${!list.isFirst} and ${orderby != ''} and ${categoryId != 0}" th:href="@{board?(page=${nowPage-1},orderby=${orderby},cate=${categoryId})}">&lt;&lt;</a>
 					<strong th:if="${list.isFirst}">&lt;&lt;</strong>
 				</span>
 				<span class="pageNUm">
 					<span th:each="page:${#numbers.sequence(startPage, endPage)}"
 						th:classappend="${page == nowPage} ? 'active'">
-						<a th:if="${page != nowPage}" th:href="@{board?(page=${page})}" th:text="${page}"></a>
+						<a th:if="${page != nowPage} and ${orderby == ''} and ${categoryId == 0}"
+							th:href="@{board?(page=${page})}" th:text="${page}"></a>
+						<a th:if="${page != nowPage} and ${orderby == ''} and ${categoryId != 0}"
+							th:href="@{board?(page=${page},cate=${categoryId})}" th:text="${page}"></a>
+						<a th:if="${page != nowPage} and ${orderby != ''} and ${categoryId == 0}"
+							th:href="@{board?(page=${page},orderby=${orderby})}" th:text="${page}"></a>
+						<a th:if="${page != nowPage} and ${orderby != ''} and ${categoryId != 0}"
+							th:href="@{board?(page=${page},orderby=${orderby},,cate=${categoryId})}" th:text="${page}"></a>
 						<strong th:if="${page == nowPage}" th:text="${page}" style="color: red;"></strong>
 					</span>
 				</span>
 				<span class="upPageCursor">
-					<a th:if="${!list.isLast}" th:href="@{board?(page=${nowPage+1})}">&gt;&gt;</a>
+					<a th:if="${!list.isLast} and ${orderby == ''} and ${categoryId == 0}" th:href="@{board?(page=${nowPage+1})}">&gt;&gt;</a>
+					<a th:if="${!list.isLast} and ${orderby != ''} and ${categoryId == 0}" th:href="@{board?(page=${nowPage+1},orderby=${orderby})}">&gt;&gt;</a>
+					<a th:if="${!list.isLast} and ${orderby == ''} and ${categoryId != 0}" th:href="@{board?(page=${nowPage+1},cate=${categoryId})}">&gt;&gt;</a>
+					<a th:if="${!list.isLast} and ${orderby != ''} and ${categoryId != 0}" th:href="@{board?(page=${nowPage+1},orderby=${orderby},cate=${categoryId})}">&gt;&gt;</a>
 					<strong th:if="${list.isLast}">&gt;&gt;</strong>
 				</span>
 				<span class="finalPageCheck">
-					<a th:if="${!list.isLast}" th:href="@{board?(page=${total})}">마지막페이지</a>
+					<a th:if="${!list.isLast} and ${orderby == ''} and ${categoryId == 0}" th:href="@{board?(page=${total})}">마지막페이지</a>
+					<a th:if="${!list.isLast} and ${orderby != ''} and ${categoryId == 0}" th:href="@{board?(page=${total},orderby=${orderby})}">마지막페이지</a>
+					<a th:if="${!list.isLast} and ${orderby == ''} and ${categoryId != 0}" th:href="@{board?(page=${total},cate=${categoryId})}">마지막페이지</a>
+					<a th:if="${!list.isLast} and ${orderby != ''} and ${categoryId != 0}" th:href="@{board?(page=${total},orderby=${orderby},cate=${categoryId})}">마지막페이지</a>
 					<strong th:if="${list.isLast}">마지막페이지</strong>
 				</span>
 			</span>
@@ -106,7 +133,8 @@
 						<span>( 게시글숫자: </span>
 						<span th:text="${list.totalElements}"></span>
 						<span>)</span>
-						<a href="#" class="movePage">페이지이동</a>
+						<a id="pageMove" onclick="document.getElementById('pageMove').focus()" class="movePage"
+							style="cursor: pointer;">페이지이동</a>
 					</div>
 					<div class="modal">
 						<div class="moveset">
@@ -142,6 +170,7 @@
 				<button>검색</button>
 			</span>
 		</div>
+		<input type="hidden" id="orderby" th:value="${orderby}">
 		<script>
 			//보고 있는 게시물 리스트에서 강조
 			const selectedSeq = document.getElementById("selectedSeq").value;
@@ -165,11 +194,21 @@
 			function movepage() {
 				const page = document.getElementById("typePage").value;
 				const maxPage = document.getElementById("total").value;
+				const orderby = document.getElementById("orderby").value;
 				if (page > maxPage || page < 1) {
 					alert("해당 페이지가 없습니다.");
 					return false;
 				}
-				location.href = "board?page=" + page;
+				if (!orderby) {
+					location.href = "board?page=" + page;
+				} else {
+					location.href = "board?page=" + page + "&orderby=" + orderby;
+				}
+
+			}
+
+			function wholeList() {
+				location.href = "board?page=" + 1;
 			}
 		</script>
 	</article>
