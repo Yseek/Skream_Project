@@ -23,16 +23,14 @@
 				</div>
 			</div>
 		</div>
-		<div style="float: right; padding-right: 2%;">
-			<select name="" id="" onchange="f(this.options[this.selectedIndex].text, this.value)">
-				<option value="" selected disabled hidden></option>
-				<option>1</option>
-				<option>5</option>
-				<option>10</option>
-			</select>
+		<div style="float: right;">
+			<a href="">최신순</a> |
+			<a href="">조회순</a> |
+			<a href="">추천순</a> |
 			<a href="">글쓰기</a>
 		</div>
 		<br>
+		<hr>
 		<table class="board_table" style="width: 100%;">
 			<thead>
 				<tr>
@@ -46,16 +44,38 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="list:${list}">
-					<td th:text="${list.seq}">1</td>
-					<td th:text="${list.file_up}">이미지</td>
+				<tr>
+					<td>3</td>
+					<td><img src="/images/shoes.png"></td>
 					<td id="subject">
 						<a href="content" id="content_link" style="float: left;" th:text="${list.subject}">제목링크</a>
 					</td>
-					<td th:text="${list.writer}">봇</td>
-					<td th:text="${list.udate}">23/03/16</td>
-					<td th:text="${list.hits}">조회</td>
-					<td th:text="${list.recom}">추천</td>
+					<td>깃</td>
+					<td>23/03/16</td>
+					<td>조회</td>
+					<td>추천</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td><img src="/images/user_ico.png"></td>
+					<td id="subject">
+						<a href="content.html" id="content_link" style="float: left;">제목링크</a>
+					</td>
+					<td>태</td>
+					<td>23/03/16</td>
+					<td>조회</td>
+					<td>추천</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td><img src="/images/upload_time.png"></td>
+					<td id="subject">
+						<a href="content.html" id="content_link" style="float: left;">제목링크</a>
+					</td>
+					<td>식</td>
+					<td>23/03/16</td>
+					<td>조회</td>
+					<td>추천</td>
 				</tr>
 			</tbody>
 		</table>
@@ -64,7 +84,8 @@
 			<button>글쓰기</button>
 		</div>
 		<br>
-		<div style="width: 100%; margin-top: 1%; border: 1px solid red;">
+		<hr>
+		<div style="width: 100%; margin-top: 1%;">
 			<div style="float: left;">
 				<div>총페이지: list.total</div>
 			</div>
@@ -86,36 +107,24 @@
 						<span>( TOTAL: </span>
 						<span>30</span>
 						<span>)</span>
+						<a href="#" class="movePage">페이지이동</a>
 					</div>
 					<div class="modal">
-						<div style="border-bottom: 1px solid black; width: 100%;">
-							<div>페이지이동</div>
-							<div class="modal_button"><button>x</button></div>
-						</div>
-						<div>이동할 페이지 번호를 입력하세요.</div>
 						<div class="moveset">
-							<span>페이지</span>
+							<span>page</span>
 							<span><input type="text" style="width: 10%;"></span>
 							<span>/</span>
 							<span>1000</span>
 							<span>
-								<button>이동</button>
+								<button>move</button><button class="modal_button">x</button>
 							</span>
 						</div>
 					</div>
 				</div>
-				<div>
-					<a href="#" class="movePage">페이지이동</a>
-				</div>
 			</div>
 		</div>
-		<br>
-		<div style="width: 100%; margin-top: 1%; border: 1px solid red;">
-			<span style="float: left;">
-				<a href="">최신순</a>
-				<a href="">조회순</a>
-				<a href="">추천순</a>
-			</span>
+		<hr>
+		<div style="width: 100%; margin-top: 1%;">
 			<span style="float: right; margin-right: 1%;">
 				<select name="" id="">
 					<option value="">전체</option>
