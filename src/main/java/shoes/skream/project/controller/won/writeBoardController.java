@@ -20,7 +20,7 @@ public class writeBoardController {
     }
 
     @ResponseBody
-    @PostMapping("write")
+    @PostMapping("writeBoard")
     public String writeBoardTest(HttpServletRequest request, @RequestParam("file") List<MultipartFile> files){
         //입력한 텍스트 넘어오는지 체크
         Enumeration<String> list = request.getParameterNames();
@@ -33,5 +33,10 @@ public class writeBoardController {
             System.out.println("multipartFile:" + multipartFile);
         }      
         return "test page";
+    }
+
+    @GetMapping("updateBoard")
+    public String updateBoard(){
+        return "updateBoard";
     }
 }

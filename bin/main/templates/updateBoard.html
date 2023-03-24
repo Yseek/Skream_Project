@@ -16,27 +16,27 @@
            <hr width="600" size="2" color="gray" noshade>
         </center>
     
-        <form name="input" method="post" action="writeBoard" enctype="multipart/form-data">
+        <form name="input" method="post" action="updateBoard" enctype="multipart/form-data">
            <table border="0" width="600" align="center"  cellpadding="3" cellspacing="1" bordercolor="gray">
               <tr>
                  <td><input type="hidden" name="writer" size="60"></td>
               </tr>
               <tr>
                   <td align="center">SUBJECT</td>
-                  <td><input type="text" name="subject" size="60"></td>
+                  <td><input type="text" name="subject" value="수정할 글의 제목" size="60"></td>
                 </tr>
             <tr>
                 <td align="center">IMAGE</td>
                 <td>
                     <div id="preview">
-                        <p id="emptyImage">이미지 없음</p>
+                        <p id="emptyImage">수정할 글에 첨부한 이미지(없으면 '이미지 없음')</p>
                         <ol id="imageList"></ol>
                     </div>
                 </td>
             </tr>
               <tr>
                  <td align="center">CONTENT</td>
-                 <td><textarea  name="content" rows="15" cols="70"></textarea></td>
+                 <td><textarea  name="content" rows="15" cols="70">수정할 글의 내용</textarea></td>
               </tr>
               <tr>
                  <td colspan="2" align="center">

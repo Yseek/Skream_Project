@@ -1,18 +1,8 @@
 function check(){
-    /* for(var i=0; i<document.input.elements.length; i++){
-        console.log("빈 칸 체크 name: ",document.input.elements[i].name);
-        console.log(`${i}번째`)
-       if(!document.input.elements[i].value){ //  == ""
-            if(document.input.elements[i].name == "file"){
-                continue;
-            }
-            alert("모든 값을 입력 하셔야 합니다. ");
-            return false;
-       }
-    } */
     let theForm = document.input
-    if(theForm.subject.value == ""){
-        console.log("제목에 입력된 값",theForm.subject.value);    
+    let content = document.getElementsByName("content")[0].value;
+    if(theForm.subject.value == "" || content == ""){
+        alert("모든 값을 입력 하셔야 합니다. ");
         return false;
     }
     document.input.submit();
@@ -30,7 +20,7 @@ function updateImageDisplay() {
      
      const imageLimit = 10;
      
-     const input = document.getElementById("file");
+     const input = document.getElementsByName("file")[0];
      const curFiles = input.files;
      
      if(curFiles.length === 0) {
@@ -43,8 +33,6 @@ function updateImageDisplay() {
          preview.appendChild(para);
          return;
      }else{
-         // 태그 가져오는 걸로 수정
-         //const list = document.createElement('ol');
          const list = document.getElementById("imageList");
 
          preview.appendChild(list);
@@ -79,9 +67,9 @@ function updateImageDisplay() {
                  for(let i=0; i<curFiles.length; i++){
                      dataTransfer.items.add(curFiles[i])
                  }
-                 document.getElementById("file").files = dataTransfer.files;
+                 document.getElementsByName("file")[0].files = dataTransfer.files;
                  console.log("dataTransfer =>",dataTransfer.files);
-                 console.log("input FIles =>", document.getElementById("file").files);                
+                 console.log("input FIles =>", document.getElementsByName("file")[0].files);                
              }
          const fileButton = document.getElementById("fileButton");
          fileButton.innerHTML = `업로드(${dataTransfer.files.length}/10)`;
@@ -94,7 +82,7 @@ function removeImage(e){
     const removeTargetId = e.target.dataset.index;
     const removeTarget = document.getElementById(removeTargetId);
     // 해당 파일 제거(해당 파일을 제외한 나머지 파일을 새로 filelist에 담는다)
-    const originFiles = document.getElementById("file").files;
+    const originFiles = document.getElementsByName("file")[0].files;
     console.log(`originFiles.length : ${originFiles.length}`);
 
     Array.from(dataTransfer.files)
@@ -105,7 +93,7 @@ function removeImage(e){
             console.log("originFiles =>",originFiles);
     });
 
-    const newFiles = document.getElementById("file").files = dataTransfer.files;
+    const newFiles = document.getElementsByName("file")[0].files = dataTransfer.files;
     
     removeTarget.remove();
     // 업로드할 이미지 갯수 갱신
