@@ -1,4 +1,4 @@
-package shoes.skream.project.controller;
+package shoes.skream.project.controller.won;
 
 import java.util.Enumeration;
 import java.util.List;
