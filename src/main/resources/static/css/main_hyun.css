@@ -127,13 +127,6 @@ td {
   padding-right: 5px !important;
 }
 
-/* ************************************************************************** */
-/* */
-/* 배경 스크롤 속도 조절 */
-/*참고 : https://keithclark.co.uk/articles/pure-css-parallax-websites/demo3/ */
-/* */
-/* ************************************************************************** */
-/*배경 스크롤*/
 html,
 body {
   position: fixed;
@@ -169,7 +162,7 @@ body {
   background-image: url(../img/06.jpg);
   background-size: cover;
   filter: grayscale(100%);
-  opacity: 0.2;
+  opacity: 0.1;
   min-height: 1000px;
   z-index: -3;
 }

@@ -43,15 +43,50 @@
                                     onmouseover="show_post()">캐시충전</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="#" class="header_menu_intro_a privacypolicy">정보수정</a>
 
-                                <!--로그인 전-->
-                                <div class="header_menu_signinbox">
-                                    <a href="#"
-                                        class="header_menu_intro_a header_signinbox_span signin"><span>로그인</span></a>
-                                    <span class="header_menu_intro header_signinbox_span">|</span>
-                                    <a href="#"
-                                        class="header_menu_intro_a header_signinbox_span join"><span>회원가입</span></a>
+                                <button class="btn-open-join">회원가입</button>
+                                <div class="modal_join">
+                                    <div class="modal_body">
+                                        <div class="close-area"><a href="#" onclick="location.href=document.referrer"
+                                                style="text-decoration-line:none; float: right; color:#ffffff">X</a>
+                                        </div>
+                                        <h2 style="font-size: 30px; color:white; margin-bottom:20%">회원가입</h2>
+                                        <input class="join_text" type="text" placeholder="이메일">
+                                        <input class="join_text" type="password" placeholder="비밀번호">
+                                        <input class="join_text" type="password" placeholder="비밀번호 확인">
+                                        <input class="join_text" type="date">
+                                        <input class="join_text" type="text" placeholder="전화번호(010-0000-0000)">
+                                        <input class="join_button" type="submit" value="가입">
+                                        <input class="join_button" type="button" value="취소"
+                                            onclick="location.href=document.referrer">
+                                    </div>
+                                </div>
+                                <button class="btn-open-login">로그인</button>
+                                <div class="modal_login">
+                                    <div class="modal_body">
+                                        <div class="close-area"><a href="#" onclick="location.href=document.referrer"
+                                                style="text-decoration-line:none; float: right; color:#ffffff">X</a>
+                                        </div>
+                                        <h2 style="font-size: 30px; color:white; margin-bottom:37%">로그인</h2>
+                                        <input class="login_text" type="text" placeholder="이메일">
+                                        <input class="login_text" type="password" placeholder="비밀번호">
+                                        <input class="login_button" type="submit" value="로그인">
+                                        <input class="login_button" type="button" value="취소"
+                                            onclick="location.href=document.referrer">
+                                    </div>
                                 </div>
 
+                                <script> //로그인 및 회원가입 모달
+                                    const modal_join = document.querySelector('.modal_join');
+                                    const btnOpenJoin = document.querySelector('.btn-open-join');
+                                    btnOpenJoin.addEventListener('click', () => {
+                                        modal_join.style.display = 'block';
+                                    });
+                                    const modal_login = document.querySelector('.modal_login');
+                                    const btnOpenLogin = document.querySelector('.btn-open-login');
+                                    btnOpenLogin.addEventListener('click', () => {
+                                        modal_login.style.display = 'block';
+                                    });
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -145,7 +180,6 @@
                                 </p>
                                 <img src="../static/img/main_banner.png">
                             </article>
-
                             <article class="column col2">
                                 <!-- 게시판  -->
                                 <div class="notice1 pr5">
