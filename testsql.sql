@@ -1,32 +1,32 @@
 -- MEMBER
 
-insert into MEMBER values('abc1@naver.com', '»ç¿ëÀÚ1', '1990/01/01','010-1111-1111','1234',now(),now());
-insert into MEMBER values('abc2@naver.com', '»ç¿ëÀÚ2', '1991/01/01','010-2222-2222','1234',now(),now());
-insert into MEMBER values('abc3@naver.com', '»ç¿ëÀÚ3', '1992/01/01','010-3333-3333','1234',now(),now());
+insert into MEMBER values('abc1@naver.com', 'ì‚¬ìš©ì1', '1990/01/01','010-1111-1111','1234',now(),now());
+insert into MEMBER values('abc2@naver.com', 'ì‚¬ìš©ì2', '1991/01/01','010-2222-2222','1234',now(),now());
+insert into MEMBER values('abc3@naver.com', 'ì‚¬ìš©ì3', '1992/01/01','010-3333-3333','1234',now(),now()); 
 
 -- CATEGORY
 
-insert into CATEGORY values(1, '³ªÀÌÅ°');
-insert into CATEGORY values(2, '¾Æµğ´Ù½º');
-insert into CATEGORY values(3, '´º¹ß¶õ½º');
+insert into CATEGORY values(1, 'ë‚˜ì´í‚¤');
+insert into CATEGORY values(2, 'ì•„ë””ë‹¤ìŠ¤');
+insert into CATEGORY values(3, 'ë‰´ë°œë€ìŠ¤');
 
 -- BOARD
 
-insert into BOARD values(null,'Á¦¸ñ1','³»¿ë1',now(),now(),1,1,1,'abc1@naver.com');
-insert into BOARD values(null,'Á¦¸ñ2','³»¿ë2',now(),now(),1,1,1,'abc1@naver.com');
-insert into BOARD values(null,'Á¦¸ñ3','³»¿ë3',now(),now(),1,1,2,'abc2@naver.com');
-insert into BOARD values(null,'Á¦¸ñ4','³»¿ë4',now(),now(),1,1,2,'abc2@naver.com');
-insert into BOARD values(null,'Á¦¸ñ5','³»¿ë5',now(),now(),1,1,3,'abc3@naver.com');
-insert into BOARD values(null,'Á¦¸ñ6','³»¿ë6',now(),now(),1,1,3,'abc3@naver.com');
+insert into BOARD values(null,'ì œëª©1','ë‚´ìš©1',now(),now(),1,1,1,'abc1@naver.com');
+insert into BOARD values(null,'ì œëª©2','ë‚´ìš©2',now(),now(),1,1,1,'abc1@naver.com');
+insert into BOARD values(null,'ì œëª©3','ë‚´ìš©3',now(),now(),1,1,2,'abc2@naver.com');
+insert into BOARD values(null,'ì œëª©4','ë‚´ìš©4',now(),now(),1,1,2,'abc2@naver.com');
+insert into BOARD values(null,'ì œëª©5','ë‚´ìš©5',now(),now(),1,1,3,'abc3@naver.com');
+insert into BOARD values(null,'ì œëª©6','ë‚´ìš©6',now(),now(),1,1,3,'abc3@naver.com');
 
 -- FILEUP
 
-insert into FILEUP values(null,'¿øº»ÆÄÀÏ¸í1','ÀúÀåÆÄÀÏ¸í1','ÀúÀå°æ·Î1');
-insert into FILEUP values(null,'¿øº»ÆÄÀÏ¸í2','ÀúÀåÆÄÀÏ¸í2','ÀúÀå°æ·Î2');
-insert into FILEUP values(null,'¿øº»ÆÄÀÏ¸í3','ÀúÀåÆÄÀÏ¸í3','ÀúÀå°æ·Î3');
-insert into FILEUP values(null,'¿øº»ÆÄÀÏ¸í4','ÀúÀåÆÄÀÏ¸í4','ÀúÀå°æ·Î4');
-insert into FILEUP values(null,'¿øº»ÆÄÀÏ¸í5','ÀúÀåÆÄÀÏ¸í5','ÀúÀå°æ·Î5');
-insert into FILEUP values(null,'¿øº»ÆÄÀÏ¸í6','ÀúÀåÆÄÀÏ¸í6','ÀúÀå°æ·Î6');
+insert into FILEUP values(null,'ì›ë³¸íŒŒì¼ëª…1','ì €ì¥íŒŒì¼ëª…1','ì €ì¥ê²½ë¡œ1');
+insert into FILEUP values(null,'ì›ë³¸íŒŒì¼ëª…2','ì €ì¥íŒŒì¼ëª…2','ì €ì¥ê²½ë¡œ2');
+insert into FILEUP values(null,'ì›ë³¸íŒŒì¼ëª…3','ì €ì¥íŒŒì¼ëª…3','ì €ì¥ê²½ë¡œ3');
+insert into FILEUP values(null,'ì›ë³¸íŒŒì¼ëª…4','ì €ì¥íŒŒì¼ëª…4','ì €ì¥ê²½ë¡œ4');
+insert into FILEUP values(null,'ì›ë³¸íŒŒì¼ëª…5','ì €ì¥íŒŒì¼ëª…5','ì €ì¥ê²½ë¡œ5');
+insert into FILEUP values(null,'ì›ë³¸íŒŒì¼ëª…6','ì €ì¥íŒŒì¼ëª…6','ì €ì¥ê²½ë¡œ6');
 
 
 -- BOARDFILE
