@@ -1,13 +1,19 @@
 function check(){
-    for(var i=0; i<document.input.elements.length; i++){
-       if(document.input.elements[i].value == ""){
-        if(document.input.elements[i].name == "file"){
-            continue;
-        }
-        console.log(`빈 칸 체크 name: ${document.input.name}`)
-        alert("모든 값을 입력 하셔야 합니다. ");
-          return false;
+    /* for(var i=0; i<document.input.elements.length; i++){
+        console.log("빈 칸 체크 name: ",document.input.elements[i].name);
+        console.log(`${i}번째`)
+       if(!document.input.elements[i].value){ //  == ""
+            if(document.input.elements[i].name == "file"){
+                continue;
+            }
+            alert("모든 값을 입력 하셔야 합니다. ");
+            return false;
        }
+    } */
+    let theForm = document.input
+    if(theForm.subject.value == ""){
+        console.log("제목에 입력된 값",theForm.subject.value);    
+        return false;
     }
     document.input.submit();
 }
@@ -61,9 +67,9 @@ function updateImageDisplay() {
 
              const image = document.createElement('img');
              image.src = URL.createObjectURL(file);
-             image.style.width = "7em";
-             image.style.height = "7em";
-             image.style.margin = "0 1em";
+             image.style.width = "7rem";
+             image.style.height = "7rem";
+             image.style.margin = "0 1rem";
              listItem.appendChild(image);
              listItem.appendChild(para);
              list.appendChild(listItem);

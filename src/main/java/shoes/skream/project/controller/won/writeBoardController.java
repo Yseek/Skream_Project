@@ -20,14 +20,16 @@ public class writeBoardController {
     }
 
     @ResponseBody
-    @PostMapping("writeBoard")
+    @PostMapping("write")
     public String writeBoardTest(HttpServletRequest request, @RequestParam("file") List<MultipartFile> files){
+        //입력한 텍스트 넘어오는지 체크
         Enumeration<String> list = request.getParameterNames();
         while(list.hasMoreElements()){
             String name = (String) list.nextElement();
             System.out.println("###name: " + name);
         }
-        for (MultipartFile multipartFile : files) { //멀티 파일
+        //멀티 파일 넘어오는지 체크
+        for (MultipartFile multipartFile : files) {
             System.out.println("multipartFile:" + multipartFile);
         }      
         return "test page";
