@@ -12,12 +12,19 @@ function check(){
     document.input.submit();
 }
 
+const dataTransfer = new DataTransfer();
+
 function updateImageDisplay() {
-     let preview = document.getElementById("preview");
-     preview.innerHTML = "";
+     const preview = document.getElementById("preview");
+     // p tag 이미지없음 제거
+     const emptyImage = document.getElementById("emptyImage");
+     if(emptyImage != null){
+        emptyImage.remove();
+     }
+     
      const imageLimit = 10;
      
-     let input = document.getElementById("file");
+     const input = document.getElementById("file");
      const curFiles = input.files;
      
      if(curFiles.length === 0) {
@@ -30,7 +37,10 @@ function updateImageDisplay() {
          preview.appendChild(para);
          return;
      }else{
-         const list = document.createElement('ol');
+         // 태그 가져오는 걸로 수정
+         //const list = document.createElement('ol');
+         const list = document.getElementById("imageList");
+
          preview.appendChild(list);
          let imagecounting = 0;
          
@@ -45,32 +55,8 @@ function updateImageDisplay() {
              const removeButton = document.createElement('button');
              removeButton.textContent = "X";
              removeButton.dataset.index = file.lastModified;
-             // 미리보기 개별 삭제 TODO 함수 따로 분리한다
-             removeButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                // 버튼의 부모의 부모 태그(li)를 제거
-                const removeTargetId = e.target.dataset.index;
-                const removeTarget = document.getElementById(removeTargetId);
-                // 해당 파일 제거(해당 파일을 제외한 나머지 파일을 새로 filelist에 담는다)
-                const originFiles = document.getElementById("file").files;
-                console.log(`originFiles.length : ${originFiles.length}`);
-                const dataTransfer = new DataTransfer();
-
-                Array.from(originFiles)
-                    .filter(file => file.lastModified != removeTargetId)
-                    .forEach(file => {
-                        dataTransfer.items.add(file);
-                        console.log(`dataTransfer.files.length: ${dataTransfer.files.length}`);
-
-                });
-                const newFiles = document.getElementById("file").files = dataTransfer.files;
-                
-                removeTarget.remove();
-                // 업로드할 이미지 갯수 갱신
-                const fileButton = document.getElementById("fileButton");
-                fileButton.innerHTML = `업로드(${newFiles.length}/10)`;
-
-             })
+             // 미리보기 개별 삭제
+             removeButton.addEventListener('click', (e) => removeImage(e));
              para.appendChild(removeButton);
 
              const image = document.createElement('img');
@@ -81,9 +67,50 @@ function updateImageDisplay() {
              listItem.appendChild(image);
              listItem.appendChild(para);
              list.appendChild(listItem);
-         }
+            }
+            // filelist 업데이트
+            if(curFiles != null && curFiles.length>0){
+                 for(let i=0; i<curFiles.length; i++){
+                     dataTransfer.items.add(curFiles[i])
+                 }
+                 document.getElementById("file").files = dataTransfer.files;
+                 console.log("dataTransfer =>",dataTransfer.files);
+                 console.log("input FIles =>", document.getElementById("file").files);                
+             }
          const fileButton = document.getElementById("fileButton");
-         fileButton.innerHTML = `업로드(${imagecounting}/10)`;
+         fileButton.innerHTML = `업로드(${dataTransfer.files.length}/10)`;
      }
 }
 
+function removeImage(e){
+    e.preventDefault();
+    // 버튼의 부모의 부모 태그(li)를 제거
+    const removeTargetId = e.target.dataset.index;
+    const removeTarget = document.getElementById(removeTargetId);
+    // 해당 파일 제거(해당 파일을 제외한 나머지 파일을 새로 filelist에 담는다)
+    const originFiles = document.getElementById("file").files;
+    console.log(`originFiles.length : ${originFiles.length}`);
+
+    Array.from(dataTransfer.files)
+        .filter(file => file.lastModified == removeTargetId)
+        .forEach(file => {
+            dataTransfer.items.remove(file);
+            console.log("dataTransfer =>",dataTransfer.files);
+            console.log("originFiles =>",originFiles);
+    });
+
+    const newFiles = document.getElementById("file").files = dataTransfer.files;
+    
+    removeTarget.remove();
+    // 업로드할 이미지 갯수 갱신
+    const fileButton = document.getElementById("fileButton");
+    fileButton.innerHTML = `업로드(${newFiles.length}/10)`;
+
+    if(newFiles.length == 0){
+        const preview = document.getElementById("preview");
+        const para = document.createElement('p');
+        para.textContent = "이미지 없음";
+        preview.appendChild(para);
+    }
+
+ }
