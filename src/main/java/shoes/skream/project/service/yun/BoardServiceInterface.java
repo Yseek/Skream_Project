@@ -7,4 +7,5 @@ import shoes.skream.project.dto.BoardDto;
 
 public interface BoardServiceInterface {
 	Page<BoardDto> list(Pageable pageable);
+	Page<BoardDto> listByView(Pageable pageable);
 }

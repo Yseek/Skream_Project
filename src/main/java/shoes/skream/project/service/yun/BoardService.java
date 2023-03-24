@@ -26,4 +26,8 @@ public class BoardService implements BoardServiceInterface{
 		return boardRepository.findAll(pageable).map(board-> BoardDto.from(board,boardDtoMapper));
 	}
 
+	@Override
+	public Page<BoardDto> listByView(Pageable pageable) {
+		return boardRepository.findAll(pageable).map(board -> BoardDto.from(board, boardDtoMapper));
+	}
 }

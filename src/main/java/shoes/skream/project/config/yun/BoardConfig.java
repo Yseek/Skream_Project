@@ -12,6 +12,7 @@ import shoes.skream.project.service.yun.BoardServiceInterface;
 
 @Configuration
 public class BoardConfig {
+	
 	@Autowired
 	BoardRepository boardRepository;
 
