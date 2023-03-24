@@ -14,67 +14,78 @@
 <body>
 	<article>
 		<div class="subject_row">
-			<h4 class="subject">
+			<h3 class="subject">
 				<span class="subject_text">
 					<span class="category_text">[나이키]</span>
-					<span class="subject_inner_text">제목</span>
+					<span class="subject_inner_text">아디다스 신발</span>
 					<strong class="reply_count">[12]</strong>
 				</span>
-			</h4>
+			</h3>
 		</div>
-		<br>
-		<div class="user_info">
-			유저정보
-			<br><br><br>
+		<hr>
+		<div class="user_info" >
+			<img src="images/user_ico.png"> <span>깃태식이</span>
+			&nbsp;&nbsp;
+			<img src="images/upload_time.png"> <span>23/03/23 19:50</span>
 		</div>
+		<hr>
 		<div class="board_main_view">
 			<div class="content">
 				내용
-				<br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<button style="color:black;background-color: white;"><img src="images/good.png" style="height:25px">추천</button>
 			</div>
 		</div>
+		<hr>
 		<div class="comment_wrapper">
 			<div class="comment_count_row">
 				<div class="comment_count_row_left">
-					<span>댓글</span>
-					<span>총 12 개</span>
+					<span style="font-size: 14px;">댓글</span> <span style="font-size: 14px;">12개</span>
 				</div>
-				<div class="comment_count_row_center">
-					<span>중앙</span>
-				</div>
-				<div class="comment_count_row_right">
-					<button>댓글작성</button>
-				</div>
+			</div>
+			<div class="comment_count_row">
+				<input type="text" placeholder="댓글을 입력해 주세요">
+				<button >댓글작성</button>
 			</div>
 			<br><br>
 			<div class="comment_view_row">
 				<div class="comment_view_normal">
 					<table class="comment_table">
-						<tbody>
 							<tr class="comment_element_parent">
-								<td class="user">이름</td>
-								<td class="comment">댓글내용</td>
-								<td class="element_info">
-									<span>23/01/01</span>
-									<button>대댓글</button>
+								<td class="user">
+									<strong style="float:left;">태현</strong>
+									<span style="float:right">23/01/01</span><br>
+									<span style="float:left;">깃태식이 발표 잘하네</span><br>
+									<button style="float:left; margin-top:1%; background-color:transparent">답글</button>
+									<button style="float:left; margin-top:1%;">삭제</button>
 								</td>
 							</tr>
 							<tr class="comment_element_child">
-								<td class="user">대댓글단사람이름</td>
-								<td class="comment" colspan="2">내용 23/01/01</td>
+								<td class="user" style="background-color: rgb(242,242,242);">
+									<strong style="float:left; margin-left:5%">대원</strong>
+									<span style="float:right">23/01/01</span><br>
+									<span style="float:left; margin-left:5%">ㄹㅇ 깃태식이 발표 잘하네</span><br>
+									<button style="float:left; margin-left:5%; margin-top:1%;">삭제</button>
+								</td>
 							</tr>
-						</tbody>
 					</table>
 				</div>
 			</div>
+			<hr>
 		</div>
-		<br>
 		<div class="content_bottom_button">
-			<button>목록</button> |
+			<button>목  록</button> |
 			<button>이전글</button> |
 			<button>다음글</button>
 		</div>
-		<br>
+		<hr>
+		<div class="left_ad">
+			<a href="#" class="left_ad_img">
+					<img src="../static/img/ad_img.png">
+			</a>
+		</div>
+		<hr style="border:none">
+		<hr style="margin-bottom:5px">
 	</article>
 	<article th:replace="~{board :: boardFragment}"></article>
 </body>
