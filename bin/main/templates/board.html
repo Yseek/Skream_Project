@@ -44,19 +44,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="list:${list}">
+				<input type="hidden" id="selectedSeq" th:value="${seq}">
+				<tr th:id="${list.seq}" th:each="list:${list}">
 					<td th:text="${list.seq}">3</td>
+					<input type="hidden" class="listSeq" th:value="${list.seq}">
 					<td th:text="${list.fileUp}"><img src="/images/shoes.png"></td>
 					<td id="subject">
 						<span style="float: left;">
 							<span>[<strong th:text="${list.cgname}"></strong>]</span>
-							<span><a href="content" id="content_link">제목링크</a></span>
+							<span><a th:href="@{content?(page=${nowPage},seq=${list.seq})}"
+									id="content_link">제목링크</a></span>
 						</span>
 					</td>
 					<td><a href="#" th:text="${list.writer}">글쓴이</a></td>
 					<td th:text="${#temporals.format(list.udate,'yy/MM/dd')}">작성일</td>
 					<td th:text="${list.hits}">조회</td>
 					<td th:text="${list.recom}">추천</td>
+				</tr>
 				</tr>
 			</tbody>
 		</table>
@@ -106,6 +110,7 @@
 					</div>
 					<div class="modal">
 						<div class="moveset">
+							<input type="hidden" id="total" th:value="${list.totalPages}">
 							<span>page</span>
 							<span><input id="typePage" style="width: 10%;"></span>
 							<span>/</span>
@@ -137,27 +142,35 @@
 				<button>검색</button>
 			</span>
 		</div>
-		<th:block>
-			<script th:inline="javascript">
-				const modal = document.querySelector('.modal');
-				const movePage = document.querySelector('.movePage');
-				const modal_button = document.querySelector('.modal_button');
-				const brand = document.querySelector('.dropbtn');
-				const brand_list = document.querySelector('.dropdown-content');
-				movePage.addEventListener('click', () => modal.classList.toggle('show'));
-				modal_button.addEventListener('click', () => modal.classList.toggle('show'));
-				brand.addEventListener('click', () => brand_list.classList.toggle('show'));
+		<script>
+			const selectedSeq = document.getElementById("selectedSeq").value;
+			let listSeq = [, , ,];
+				alert(document.getElementsByClassName("listSeq")[1].value);
+				
+			
+				
+			if (selectedSeq === listSeq) {
+				document.getElementById(selectedSeq).style.backgroundColor = "red";
+			}
+			const modal = document.querySelector('.modal');
+			const movePage = document.querySelector('.movePage');
+			const modal_button = document.querySelector('.modal_button');
+			const brand = document.querySelector('.dropbtn');
+			const brand_list = document.querySelector('.dropdown-content');
+			movePage.addEventListener('click', () => modal.classList.toggle('show'));
+			modal_button.addEventListener('click', () => modal.classList.toggle('show'));
+			brand.addEventListener('click', () => brand_list.classList.toggle('show'));
 
-				function movepage() {
-					const page = document.getElementById("typePage").value;
-					if(page>[[${list.totalPages}]]||page<1){
-						alert("해당 페이지가 없습니다.");
-						return false;
-					}
-					location.href = "board?page=" + page;
+			function movepage() {
+				const page = document.getElementById("typePage").value;
+				const maxPage = document.getElementById("total").value;
+				if (page > maxPage || page < 1) {
+					alert("해당 페이지가 없습니다.");
+					return false;
 				}
-			</script>
-		</th:block>
+				location.href = "board?page=" + page;
+			}
+		</script>
 	</article>
 </body>
 
