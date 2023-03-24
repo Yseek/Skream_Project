@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>메인 페이지 </title>
     <script src="https://kit.fontawesome.com/69fe52bc75.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="../static/css/main_hyun.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/modal.css">
+    <link rel="stylesheet" th:href="@{/css/main_hyun.css}">
+    <link rel="stylesheet" th:href="@{/css/modal.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-    <script src="../static/js/link_hyun.js" defer></script>
-    <script src="../static/js/main_hyun.js" defer></script>
+    <script th:src="@{/js/link_hyun.js}"></script>
+    <script th:src="@{/js/main_hyun.js}"></script>
     <style></style>
     <script>
     </script>
@@ -177,7 +177,7 @@
                                 <h4 class="ir_su col_tit">메인 이미지</h4>
                                 <p class="col_desc"><span class="ir_su">메인 이미지<br /></span>
                                 </p>
-                                <img src="../static/img/main_banner.png">
+                                <img th:src="@{/img/main_banner.png}">
                             </article>
                             <article class="column col2">
                                 <!-- 게시판  -->
