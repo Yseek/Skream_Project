@@ -1,5 +1,6 @@
 package shoes.skream.project.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Category {
 	@Id
-	private int category_id;
+	@Column(name = "category_id")
+	private int categoryId;
 	private String cgname;
 }

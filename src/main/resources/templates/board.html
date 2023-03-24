@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet"  th:href="@{/css/board.css}">
+	<link rel="stylesheet" th:href="@{/css/board.css}">
 	<title>Document</title>
 </head>
 
@@ -44,38 +44,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>3</td>
-					<td><img src="/images/shoes.png"></td>
+				<input type="hidden" id="selectedSeq" th:value="${seq}">
+				<tr th:id="${list.seq}" th:each="list:${list}">
+					<td th:text="${list.seq}">3</td>
+					<input type="hidden" class="listSeq" th:value="${list.seq}">
+					<td th:text="${list.fileUp}"><img src="/images/shoes.png"></td>
 					<td id="subject">
-						<a href="content.html" id="content_link" style="float: left;">제목링크</a>
+						<span style="float: left;">
+							<span>[<strong th:text="${list.cgname}"></strong>]</span>
+							<span><a th:href="@{content?(page=${nowPage},seq=${list.seq})}"
+									id="content_link">제목링크</a></span>
+						</span>
 					</td>
-					<td>깃</td>
-					<td>23/03/16</td>
-					<td>조회</td>
-					<td>추천</td>
+					<td><a href="#" th:text="${list.writer}">글쓴이</a></td>
+					<td th:text="${#temporals.format(list.udate,'yy/MM/dd')}">작성일</td>
+					<td th:text="${list.hits}">조회</td>
+					<td th:text="${list.recom}">추천</td>
 				</tr>
-				<tr>
-					<td>2</td>
-					<td><img src="/images/user_ico.png"></td>
-					<td id="subject">
-						<a href="content.html" id="content_link" style="float: left;">제목링크</a>
-					</td>
-					<td>태</td>
-					<td>23/03/16</td>
-					<td>조회</td>
-					<td>추천</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td><img src="/images/upload_time.png"></td>
-					<td id="subject">
-						<a href="content.html" id="content_link" style="float: left;">제목링크</a>
-					</td>
-					<td>식</td>
-					<td>23/03/16</td>
-					<td>조회</td>
-					<td>추천</td>
 				</tr>
 			</tbody>
 		</table>
@@ -87,36 +72,51 @@
 		<hr>
 		<div style="width: 100%; margin-top: 1%;">
 			<div style="float: left;">
-				<div>총페이지: list.total</div>
+				<span>총페이지: </span>
+				<span th:text="${list.totalPages}"></span>
 			</div>
 			<span id="paging">
-				<a>처음페이지</a>
-				<a>&lt;&lt;</a>
-				<strong>&lt;&lt;</strong>
-				<span>
-					<a>1</a>
-					<strong style="color: red;"></strong>
+				<span class="firstPageCheck">
+					<a th:if="${!list.isFirst}" th:href="@{board?(page=1)}">처음페이지</a>
+					<strong th:if="${list.isFirst}">처음페이지</strong>
 				</span>
-				<a>&gt;&gt;</a>
-				<strong>&gt;&gt;</strong>
-				<a>마지막페이지</a>
+				<span class="downPageCursor">
+					<a th:if="${!list.isFirst}" th:href="@{board?(page=${nowPage-1})}">&lt;&lt;</a>
+					<strong th:if="${list.isFirst}">&lt;&lt;</strong>
+				</span>
+				<span class="pageNUm">
+					<span th:each="page:${#numbers.sequence(startPage, endPage)}"
+						th:classappend="${page == nowPage} ? 'active'">
+						<a th:if="${page != nowPage}" th:href="@{board?(page=${page})}" th:text="${page}"></a>
+						<strong th:if="${page == nowPage}" th:text="${page}" style="color: red;"></strong>
+					</span>
+				</span>
+				<span class="upPageCursor">
+					<a th:if="${!list.isLast}" th:href="@{board?(page=${nowPage+1})}">&gt;&gt;</a>
+					<strong th:if="${list.isLast}">&gt;&gt;</strong>
+				</span>
+				<span class="finalPageCheck">
+					<a th:if="${!list.isLast}" th:href="@{board?(page=${total})}">마지막페이지</a>
+					<strong th:if="${list.isLast}">마지막페이지</strong>
+				</span>
 			</span>
 			<div class="modalz" style="float: right; margin-right: 2%;">
 				<div>
 					<div>
-						<span>( TOTAL: </span>
-						<span>30</span>
+						<span>( 게시글숫자: </span>
+						<span th:text="${list.totalElements}"></span>
 						<span>)</span>
 						<a href="#" class="movePage">페이지이동</a>
 					</div>
 					<div class="modal">
 						<div class="moveset">
+							<input type="hidden" id="total" th:value="${list.totalPages}">
 							<span>page</span>
-							<span><input type="text" style="width: 10%;"></span>
+							<span><input id="typePage" style="width: 10%;"></span>
 							<span>/</span>
-							<span>1000</span>
+							<span th:text="${list.totalElements}"></span>
 							<span>
-								<button>move</button><button class="modal_button">x</button>
+								<button onclick="movepage()">move</button><button class="modal_button">x</button>
 							</span>
 						</div>
 					</div>
@@ -143,6 +143,15 @@
 			</span>
 		</div>
 		<script>
+			const selectedSeq = document.getElementById("selectedSeq").value;
+			let listSeq = [, , ,];
+				alert(document.getElementsByClassName("listSeq")[1].value);
+				
+			
+				
+			if (selectedSeq === listSeq) {
+				document.getElementById(selectedSeq).style.backgroundColor = "red";
+			}
 			const modal = document.querySelector('.modal');
 			const movePage = document.querySelector('.movePage');
 			const modal_button = document.querySelector('.modal_button');
@@ -151,6 +160,16 @@
 			movePage.addEventListener('click', () => modal.classList.toggle('show'));
 			modal_button.addEventListener('click', () => modal.classList.toggle('show'));
 			brand.addEventListener('click', () => brand_list.classList.toggle('show'));
+
+			function movepage() {
+				const page = document.getElementById("typePage").value;
+				const maxPage = document.getElementById("total").value;
+				if (page > maxPage || page < 1) {
+					alert("해당 페이지가 없습니다.");
+					return false;
+				}
+				location.href = "board?page=" + page;
+			}
 		</script>
 	</article>
 </body>

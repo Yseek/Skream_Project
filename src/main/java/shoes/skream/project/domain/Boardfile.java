@@ -1,9 +1,8 @@
 package shoes.skream.project.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,11 +14,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Boardfile {
 	@Id
-	private long boardfile_id;
-	@ManyToOne
-	@JoinColumn(name = "file_id")
-	private Fileup fileup;
-	@ManyToOne
-	@JoinColumn(name="board_id")
-	private Board board;
+	@Column(name = "boardfile_id")
+	private long boardfileId;
+	@Column(name = "fileup_file_id")
+	private long fileupFileId;
+	@Column(name = "board_id")
+	private long boardId;
 }
