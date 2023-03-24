@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>메인 페이지 </title>
     <script src="https://kit.fontawesome.com/69fe52bc75.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="../static/css/main_hyun.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/modal.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-    <script src="../static/js/link_hyun.js" defer></script>
-    <script src="../static/js/main_hyun.js" defer></script>
+    <link rel="stylesheet" th:href="@{/css/main_hyun.css}">
+    <link rel="stylesheet" th:href="@{/css/modal.css}">
+    <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
+    <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
+    <link th:href="@{https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap}" rel="stylesheet">
+    <script th:src="@{/js/link_hyun.js}" defer></script>
+    <script th:src="@{/js/main_hyun.js}" defer></script>
     <style></style>
     <script>
     </script>
@@ -101,23 +101,23 @@
                                 <h3><i class="fas fa-university">&nbsp;</i>브랜드관</h3>
                                 <ol>
                                     </li>
-                                    <li><a href="https://www.nbkorea.com/index.action"><span>뉴발란스</span></a></li>
-                                    <li><a href="https://www.nike.com/kr/"><span>나이키</span></a></li>
-                                    <li><a href="https://www.adidas.co.kr/"><span>아디다스</span></a></li>
-                                    <li><a href="https://salomon.co.kr/"><span>살로몬</span></a></li>
-                                    <li><a href="https://www.balenciaga.com/ko-kr"><span>발렌시아가</span></a></li>
-                                    <li><a href="https://www.vans.co.kr/"><span>반스</span></a></li>
+                                    <li><a th:href="@{https://www.nbkorea.com/index.action}"><span>뉴발란스</span></a></li>
+                                    <li><a th:href="@{https://www.nike.com/kr/}"><span>나이키</span></a></li>
+                                    <li><a th:href="@{https://www.adidas.co.kr/}"><span>아디다스</span></a></li>
+                                    <li><a th:href="@{https://salomon.co.kr/}"><span>살로몬</span></a></li>
+                                    <li><a th:href="@{https://www.balenciaga.com/ko-kr}"><span>발렌시아가</span></a></li>
+                                    <li><a th:href="@{https://www.vans.co.kr/}"><span>반스</span></a></li>
                                 </ol>
                             </div>
                             <div>
                                 <h3><i class="fas fa-university">&nbsp;</i>구매처</h3>
                                 <ol>
-                                    <li><a href="https://web.joongna.com/"><span>중고나라</span></a></li>
-                                    <li><a href="https://m.bunjang.co.kr/"><span>번개장터</span></a></li>
-                                    <li><a href="https://kream.co.kr/"><span>크림</span></a></li>
-                                    <li><a href="https://balaan.co.kr/shop/main/index.php"><span>발란</span></a></li>
-                                    <li><a href="https://stockx.com/"><span>Stock X</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/"><span>ABC마트</span></a></li>
+                                    <li><a th:href="@{https://web.joongna.com/}"><span>중고나라</span></a></li>
+                                    <li><a th:href="@{https://m.bunjang.co.kr/}"><span>번개장터</span></a></li>
+                                    <li><a th:href="@{https://kream.co.kr/}"><span>크림</span></a></li>
+                                    <li><a th:href="@{https://balaan.co.kr/shop/main/index.php}"><span>발란</span></a></li>
+                                    <li><a th:href="@{https://stockx.com/}"><span>Stock X</span></a></li>
+                                    <li><a th:href="@{https://abcmart.a-rt.com/}"><span>ABC마트</span></a></li>
                                 </ol>
                             </div>
                             <div>
@@ -178,7 +178,7 @@
                                 <h4 class="ir_su col_tit">메인 이미지</h4>
                                 <p class="col_desc"><span class="ir_su">메인 이미지<br /></span>
                                 </p>
-                                <img src="../static/img/main_banner.png">
+                                <img th:src="@{/img/main_banner.png}">
                             </article>
                             <article class="column col2">
                                 <!-- 게시판  -->
@@ -277,11 +277,11 @@
                                     <h5 class="ir_su">Notice1</h5>
                                     <h5>광고 삽입 1</h5>
                                     <ul>
-                                        <li><a href="#"><img src="http://placehold.it/200x100" alt="" />이것은 치킨인가 마약인가
+                                        <li><a href="#"><img th:src="@{http://placehold.it/200x100}" alt="" />이것은 치킨인가 마약인가
                                                 안녕하세요 수원 왕갈비 통닭입니다.</a></li>
                                     </ul>
                                     <ul>
-                                        <li><a href="#"><img src="http://placehold.it/200x100" alt="" />롤 진짜 하고 싶다. 안되겠다
+                                        <li><a href="#"><img th:src="@{http://placehold.it/200x100}" alt="" />롤 진짜 하고 싶다. 안되겠다
                                                 다들 칼바람 들어와 깔끔하게 3판 하자</a></li>
                                     </ul>
                                     <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
@@ -292,11 +292,11 @@
                                     <h5 class="ir_su">Notice1</h5>
                                     <h5>광고 삽입 2</h5>
                                     <ul>
-                                        <li><a href="#"><img src="http://placehold.it/200x100" alt="" />이번 챔스 우승은 뭔가 레알
+                                        <li><a href="#"><img th:src="@{http://placehold.it/200x100}" alt="" />이번 챔스 우승은 뭔가 레알
                                                 아니면 뮌헨 삘 아 오케이 맨시티도 있지</a></li>
                                     </ul>
                                     <ul>
-                                        <li><a href="#"><img src="http://placehold.it/200x100" alt="" />광고 문구 테스트 광고 문구
+                                        <li><a href="#"><img th:src="@{http://placehold.it/200x100}" alt="" />광고 문구 테스트 광고 문구
                                                 테스트 광고 문구 테스트 광고 문구 테스트 광고 문구 테스트</a></li>
                                     </ul>
                                     <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
@@ -309,17 +309,17 @@
                                 <h5 class="ir_su">Notice1</h5>
                                 <h5>브랜드 홍보관</h5>
                                 <ul>
-                                    <li><a href="#"><img src="http://placehold.it/200x400" width="200" alt="" /></a>
+                                    <li><a href="#"><img th:src="@{http://placehold.it/200x400}" width="200" alt="" /></a>
                                     </li>
                                 </ul>
                                 <ul>
-                                    <li><a href="#"><img src="http://placehold.it/200x400" alt="" /></a></li>
+                                    <li><a href="#"><img th:src="@{http://placehold.it/200x400}" alt="" /></a></li>
                                 </ul>
                                 <ul>
-                                    <li><a href="#"><img src="http://placehold.it/200x400" alt="" /></a></li>
+                                    <li><a href="#"><img th:src="@{http://placehold.it/200x400}" alt="" /></a></li>
                                 </ul>
                                 <ul>
-                                    <li><a href="#"><img src="http://placehold.it/200x400" alt="" /></a></li>
+                                    <li><a href="#"><img th:src="@{http://placehold.it/200x400}" alt="" /></a></li>
                                 </ul>
                                 <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
                             </div>
@@ -332,20 +332,20 @@
             <footer id="footer">
                 <div class="container">
                     <ul>
-                        <li><a href="http://naver.com">전윤식</a></li>
+                        <li><a th:href="@{http://naver.com}">전윤식</a></li>
                         <li>|</li>
-                        <li><a href="http://naver.com">이대원</a></li>
+                        <li><a th:href="@{http://naver.com}">이대원</a></li>
                         <li>|</li>
-                        <li><a href="http://naver.com">김종호</a></li>
+                        <li><a th:href="@{http://naver.com}">김종호</a></li>
                         <li>|</li>
-                        <li><a href="http://naver.com">김태현</a></li>
+                        <li><a th:href="@{http://naver.com}">김태현</a></li>
                     </ul>
                     <div class="sns_link">
-                        <a href="http://naver.com"><img src="../static/img/mail.PNG" /></a>
-                        <a href="https://section.blog.naver.com/BlogHome.naver?directoryNo=0&currentPage=1&groupId=0"><img
-                                src="../static/img/blog.png" /></a>
-                        <a href="https://www.facebook.com"><img src="../static/img/FACEBOOK.png" /></a>
-                        <a href="https://www.youtube.com/"><img src="../static/img/youtube.png" /></a>
+                        <a th:href="@{http://naver.com"><img src="../static/img/mail.PNG" /></a>
+                        <a th:href="@{https://section.blog.naver.com/BlogHome.naver?directoryNo=0&currentPage=1&groupId=0}"><img
+                                src="@{/img/blog.png" /></a>
+                        <a th:href="@{https://www.facebook.com}"><img th:src="@{/img/FACEBOOK.png}" /></a>
+                        <a th:href="@{https://www.youtube.com/}"><img th:src="@{/img/youtube.png}" /></a>
                     </div>
                     <i class="copyright">COPYRIGHTⓒ 2023 Spring Project Team 3. ALL RIGHT RESERVED.</i>
                 </div>
