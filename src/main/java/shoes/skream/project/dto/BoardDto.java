@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import shoes.skream.project.domain.Board;
 import shoes.skream.project.domain.Boardfile;
+import shoes.skream.project.domain.Category;
 import shoes.skream.project.domain.Fileup;
 import shoes.skream.project.mapper.yun.BoardDtoMapper;
 
@@ -23,7 +24,7 @@ public class BoardDto {
 	private final LocalDateTime udate;
 	private final int hits;
 	private final int recom;
-	private final String cgname;
+	private final Category cg;
 
 	public static BoardDto from(Board board,BoardDtoMapper boardDtoMapper){
 		List<Boardfile> files = boardDtoMapper.selectBoardFile(board.getBoardId());
@@ -40,7 +41,7 @@ public class BoardDto {
 		.udate(board.getUdate())
 		.hits(board.getHits())
 		.recom(board.getRecom())
-		.cgname(board.getCategory().getCgname())
+		.cg(board.getCategory())
 		.build();
 	}
 }

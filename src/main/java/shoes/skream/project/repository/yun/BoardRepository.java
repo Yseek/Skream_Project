@@ -13,4 +13,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	Page<Board> findAllByCategory (Category category , Pageable pageable);
 	Page<Board> findAllByCategoryOrderByHitsDesc (Category category , Pageable pageable);
 	Page<Board> findAllByCategoryOrderByRecomDesc (Category category , Pageable pageable);
+	Page<Board> findAllBySubjectContainingIgnoreCase(String keyword, Pageable pageable);
+	Page<Board> findAllByContentContainingIgnoreCase(String keyword, Pageable pageable);
+	Page<Board> findByContentContainingIgnoreCaseOrSubjectContainingIgnoreCase(String keyword,String keyword2, Pageable pageable);
 }

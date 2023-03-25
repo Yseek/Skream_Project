@@ -23,6 +23,8 @@ public class BoardConfig {
 	@Autowired
 	BoardDtoMapper boardDtoMapper;
 
+
+
 	@Bean
 	public BoardServiceInterface boardServiceInterface(){
 		return new BoardService(boardRepository, boardDtoMapper,categoryRepository);
