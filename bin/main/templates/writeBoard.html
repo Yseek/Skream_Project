@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <title>Spring Board</title>
@@ -19,7 +19,17 @@
         <form name="input" method="post" action="writeBoard" enctype="multipart/form-data">
            <table border="0" width="600" align="center"  cellpadding="3" cellspacing="1" bordercolor="gray">
               <tr>
-                 <td><input type="hidden" name="writer" size="60"></td>
+                 <td><input type="hidden" name="writer" th:value=${email} size="60"></td>
+              </tr>
+              <tr>
+                  <td align="center">CATEGORY</td>
+                 <td>
+                     <select name="category">
+                        <option value="1" selected>나이키</option>
+                        <option value="2">아디다스</option>
+                        <option value="3">뉴발란스</option>
+                     </select>
+                  </td>
               </tr>
               <tr>
                   <td align="center">SUBJECT</td>
