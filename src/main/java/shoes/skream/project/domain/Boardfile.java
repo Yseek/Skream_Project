@@ -2,6 +2,7 @@ package shoes.skream.project.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,10 +23,10 @@ public class Boardfile {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long boardfileId;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fileup_file_id")
 	private Fileup fileup;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "board_id")
 	private Board board;
 }
