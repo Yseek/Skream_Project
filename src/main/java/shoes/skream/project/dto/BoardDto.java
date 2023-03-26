@@ -25,7 +25,7 @@ public class BoardDto {
 
 	public static BoardDto from(Board board,BoardDtoMapper boardDtoMapper){
 		Boardfile file = boardDtoMapper.selectBoardFile(board.getBoardId());
-		Fileup fileup = boardDtoMapper.selectFileup(file.getFileupFileId());
+		Fileup fileup = boardDtoMapper.selectFileup(file.getFileup().getFileId());
 		return BoardDto.builder()
 		.seq(board.getBoardId())
 		.fileUp(fileup)
