@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -9,12 +9,11 @@
     <script src="https://kit.fontawesome.com/69fe52bc75.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" th:href="@{/css/main_hyun.css}">
     <link rel="stylesheet" th:href="@{/css/modal.css}">
-    <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
-    <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
-    <link th:href="@{https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <script th:src="@{/js/link_hyun.js}" defer></script>
     <script th:src="@{/js/main_hyun.js}" defer></script>
-    <style></style>
     <script>
     </script>
 </head>
@@ -42,25 +41,26 @@
                                 <a href="#" class="header_menu_intro_a mypost"
                                     onmouseover="show_post()">캐시충전</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="#" class="header_menu_intro_a privacypolicy">정보수정</a>
-
                                 <button class="btn-open-join">회원가입</button>
                                 <div class="modal_join">
+                                    <form action="join.do" method="post">
                                     <div class="modal_body">
                                         <div class="close-area"><a href="#" onclick="location.href=document.referrer"
                                                 style="text-decoration-line:none; float: right; color:#ffffff">X</a>
                                         </div>
-                                        <form method="post" action="join.do"></form>
                                         <h2 style="font-size: 30px; color:white; margin-bottom:20%">회원가입</h2>
-                                        <input style="margin-bottom:0" class="join_text" type="text" name="email" id="email" placeholder="이메일"><br>
-                                        <div id ="emailError" style="color:white; margin-bottom: 5%; margin-top: 0px;"></div>
-                                        <input class="join_text" type="password" name="pwd" placeholder="비밀번호">
-                                        <input class="join_text" type="password" name="checkPwd" placeholder="비밀번호 확인">
-                                        <input class="join_text" type="date" name="birth" >
-                                        <input class="join_text" type="text" name="phone" placeholder="전화번호(010-0000-0000)">
-                                        <input class="join_button" type="submit" onclick="location.href='main'" value="가입">
-                                        <input class="join_button" type="button" value="취소">
+                                            <input style="margin-bottom:0" class="join_text" type="text" name="email" id="email" placeholder="이메일"><br>
+                                            <div id ="emailError" style="color:white; margin-bottom: 5%; margin-top: 0px;"></div>
+                                            <input class="join_text" type="password" name="pwd" placeholder="비밀번호">
+                                            <input class="join_text" type="password" name="checkPwd" placeholder="비밀번호 확인">
+                                            <input class="join_text" type="text" name="name" placeholder="닉네임">
+                                            <input class="join_text" type="date" name="birth">
+                                            <input class="join_text" type="text" name="phone" placeholder="전화번호(010-0000-0000)">
+                                            <input class="join_button" type="submit" value="가입">
+                                            <input class="join_button" type="button" value="취소"
                                             onclick="location.href=document.referrer">
                                     </div>
+                                    </form>
                                 </div>
                                 <button class="btn-open-login">로그인</button>
                                 <div class="modal_login">
@@ -69,12 +69,11 @@
                                                 style="text-decoration-line:none; float: right; color:#ffffff">X</a>
                                         </div>
                                         <h2 style="font-size: 30px; color:white; margin-bottom:37%">로그인</h2>
-                                            <form name="f" action="login.do" method="post"></form>
-                                                <input name = "email" class="login_text" type="text" placeholder="이메일">
-                                                <input name = "pwd" class="login_text" type="password" placeholder="비밀번호">
-                                                <input class="login_button" type="submit" value="로그인">
-                                                <input class="login_button" type="button" value="취소"
-                                                    onclick="location.href=document.referrer">
+                                        <input class="login_text" type="text" placeholder="이메일">
+                                        <input class="login_text" type="password" placeholder="비밀번호">
+                                        <input class="login_button" type="submit" value="로그인">
+                                        <input class="login_button" type="button" value="취소"
+                                            onclick="location.href=document.referrer">
                                     </div>
                                 </div>
                             </div>
@@ -91,23 +90,23 @@
                                 <h3><i class="fas fa-university">&nbsp;</i>브랜드관</h3>
                                 <ol>
                                     </li>
-                                    <li><a th:href="@{https://www.nbkorea.com/index.action}"><span>뉴발란스</span></a></li>
-                                    <li><a th:href="@{https://www.nike.com/kr/}"><span>나이키</span></a></li>
-                                    <li><a th:href="@{https://www.adidas.co.kr/}"><span>아디다스</span></a></li>
-                                    <li><a th:href="@{https://salomon.co.kr/}"><span>살로몬</span></a></li>
-                                    <li><a th:href="@{https://www.balenciaga.com/ko-kr}"><span>발렌시아가</span></a></li>
-                                    <li><a th:href="@{https://www.vans.co.kr/}"><span>반스</span></a></li>
+                                    <li><a href="https://www.nbkorea.com/index.action"><span>뉴발란스</span></a></li>
+                                    <li><a href="https://www.nike.com/kr/"><span>나이키</span></a></li>
+                                    <li><a href="https://www.adidas.co.kr/"><span>아디다스</span></a></li>
+                                    <li><a href="https://salomon.co.kr/"><span>살로몬</span></a></li>
+                                    <li><a href="https://www.balenciaga.com/ko-kr"><span>발렌시아가</span></a></li>
+                                    <li><a href="https://www.vans.co.kr/"><span>반스</span></a></li>
                                 </ol>
                             </div>
                             <div>
                                 <h3><i class="fas fa-university">&nbsp;</i>구매처</h3>
                                 <ol>
-                                    <li><a th:href="@{https://web.joongna.com/}"><span>중고나라</span></a></li>
-                                    <li><a th:href="@{https://m.bunjang.co.kr/}"><span>번개장터</span></a></li>
-                                    <li><a th:href="@{https://kream.co.kr/}"><span>크림</span></a></li>
-                                    <li><a th:href="@{https://balaan.co.kr/shop/main/index.php}"><span>발란</span></a></li>
-                                    <li><a th:href="@{https://stockx.com/}"><span>Stock X</span></a></li>
-                                    <li><a th:href="@{https://abcmart.a-rt.com/}"><span>ABC마트</span></a></li>
+                                    <li><a href="https://web.joongna.com/"><span>중고나라</span></a></li>
+                                    <li><a href="https://m.bunjang.co.kr/"><span>번개장터</span></a></li>
+                                    <li><a href="https://kream.co.kr/"><span>크림</span></a></li>
+                                    <li><a href="https://balaan.co.kr/shop/main/index.php"><span>발란</span></a></li>
+                                    <li><a href="https://stockx.com/"><span>Stock X</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/"><span>ABC마트</span></a></li>
                                 </ol>
                             </div>
                             <div>
@@ -331,10 +330,10 @@
                         <li><a href="http://naver.com">김태현</a></li>
                     </ul>
                     <div class="sns_link">
-                        <a href="http://naver.com"><img src="img/mail.PNG" /></a>
+                        <a href="http://naver.com"><img src="/img/mail.PNG" /></a>
                         <a href="https://section.blog.naver.com/BlogHome.naver?directoryNo=0&currentPage=1&groupId=0"><img
                                 src="/img/blog.png" /></a>
-                        <a href="https://www.facebook.com"><img src="@img/FACEBOOK.png" /></a>
+                        <a href="https://www.facebook.com"><img src="/img/FACEBOOK.png" /></a>
                         <a href="https://www.youtube.com/"><img src="/img/youtube.png" /></a>
                     </div>
                     <i class="copyright">COPYRIGHTⓒ 2023 Spring Project Team 3. ALL RIGHT RESERVED.</i>
