@@ -18,6 +18,16 @@
   background-color: rgba(104, 104, 104, 0.4);
 }
 
+.modal_update {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(104, 104, 104, 0.4);
+}
+
 .modal.show {
   display: block;
 }
@@ -55,6 +65,19 @@
 }
 
 .login_button {
+  width: 25%;
+  height: 6%;
+  margin: 7%;
+  margin-top: 30%;
+}
+
+.update_text {
+  width: 75%;
+  height: 7%;
+  margin-bottom: 10%;
+}
+
+.update_button {
   width: 25%;
   height: 6%;
   margin: 7%;
