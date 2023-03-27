@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -12,8 +12,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-    <script th:src="@{/js/link_hyun.js}" defer></script>
-    <script th:src="@{/js/main_hyun.js}" defer></script>
+    <script th:src="@{/js/link_hyun.js}"></script>
+    <script th:src="@{/js/main_hyun.js}"></script>
+    <style></style>
     <script>
     </script>
 </head>
@@ -43,7 +44,6 @@
                                 <button class="btn-open-join" th:unless="${session.loginEmail}">회원가입</button>&nbsp;&nbsp;
                                 <button class="btn-open-update" th:if="${session.loginEmail}">정보수정</button>&nbsp;&nbsp;
                                 <div class="modal_join">
-                                    <form action="join.do" method="post">
                                     <div class="modal_body">
                                         <div class="close-area"><a href="#" onclick="location.href=document.referrer"
                                                 style="text-decoration-line:none; float: right; color:#ffffff">X</a>
@@ -59,7 +59,6 @@
                                         <input class="join_button" type="submit" value="가입" th:unless="${session.loginEmail}">
                                         <input class="join_button" type="button" value="취소" onclick="location.href=document.referrer" th:unless="${session.loginEmail}">
                                     </div>
-                                    </form>
                                 </div>
 
                                 <button class="btn-open-login" th:unless="${session.loginEmail}">로그인</button>
@@ -93,7 +92,7 @@
                                 <h3><i class="fas fa-university">&nbsp;</i>브랜드관</h3>
                                 <ol>
                                     </li>
-                                    <li><a href="https://www.nbkorea.com/index.action"><span>뉴발란스</span></a></li>
+                                    <li><a href="hhttps://www.musinsa.com/brands/newbalance"><span>뉴발란스</span></a></li>
                                     <li><a href="https://www.nike.com/kr/"><span>나이키</span></a></li>
                                     <li><a href="https://www.adidas.co.kr/"><span>아디다스</span></a></li>
                                     <li><a href="https://salomon.co.kr/"><span>살로몬</span></a></li>
@@ -113,36 +112,36 @@
                                 </ol>
                             </div>
                             <div>
-                                <h3><i class="fas fa-university">&nbsp;</i>뭐하지?</h3>
+                                <h3><i class="fas fa-university">&nbsp;</i>MEN</h3>
                                 <ol>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000245&page=1"><span>운동화</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000249"><span>스포츠</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000254"><span>구두</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000260&page=1"><span>샌들</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000410&page=1"><span>캐주얼</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000266&page=1"><span>부츠</span></a></li>
                                 </ol>
                             </div>
                             <div>
-                                <h3><i class="fas fa-university">&nbsp;</i>뭐하지?</h3>
+                                <h3><i class="fas fa-university">&nbsp;</i>WOMEN</h3>
                                 <ol>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000245&page=1"><span>운동화</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000249&page=1"><span>스포츠</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000254&page=1"><span>구두</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000260&page=1"><span>샌들</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000410&page=1"><span>캐주얼</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000266&page=1"><span>부츠</span></a></li>
                                 </ol>
                             </div>
                             <div>
-                                <h3><i class="fas fa-university">&nbsp;</i>뭐하지?</h3>
+                                <h3><i class="fas fa-university">&nbsp;</i>KIDS</h3>
                                 <ol>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
-                                    <li><a href="#"><span></span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000245&page=1"><span>운동화</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000249&page=1"><span>스포츠</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000254&page=1"><span>구두</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000260&page=1"><span>샌들</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000410&page=1"><span>캐주얼</span></a></li>
+                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000266&page=1"><span>부츠</span></a></li>
                                 </ol>
                             </div>
                         </div>
@@ -170,7 +169,7 @@
                                 <h4 class="ir_su col_tit">메인 이미지</h4>
                                 <p class="col_desc"><span class="ir_su">메인 이미지<br /></span>
                                 </p>
-                                <img src="/img/main_banner.png">
+                                <img th:src="@{/img/main_banner.png}">
                             </article>
                             <article class="column col2">
                                 <!-- 게시판  -->
@@ -178,11 +177,11 @@
                                     <h5 class="ir_su">Notice1</h5>
                                     <h5>최근 게시물</h5>
                                     <ul>
-                                        <li><a href="#">이줄은 한줄효과입니다.이줄과입니다.[1]</a></li>
-                                        <li><a href="#">이줄은 한줄효과입니다이줄은 한줄효과입니다.[3]</a></li>
-                                        <li><a href="#">이줄은 한줄효과입입이줄은 한줄효과입니다.</a></li>
-                                        <li><a href="#">이줄은 한입니다.한줄효과입니다.[1]</a></li>
-                                        <li><a href="#">이줄은 한줄효과입입이줄은 한줄효과입니다.</a></li>
+                                        <li><a href="#">제목 [10]</a></li>
+                                        <li><a href="#">제목 [9]</a></li>
+                                        <li><a href="#">제목 [5]</a></li>
+                                        <li><a href="#">제목 [8]</a></li>
+                                        <li><a href="#">제목 [11]</a></li>
                                     </ul>
                                     <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
                                 </div>
@@ -192,11 +191,11 @@
                                     <h5 class="ir_su">Notice1</h5>
                                     <h5>인기(추천) 게시물</h5>
                                     <ul>
-                                        <li><a href="#">이줄은 한줄효과입니다.이줄과입니다.[1]</a></li>
-                                        <li><a href="#">이줄은 한줄효과입니다이줄은 한줄효과입니다.[3]</a></li>
-                                        <li><a href="#">이줄은 한줄효과입입이줄은 한줄효과입니다.</a></li>
-                                        <li><a href="#">이줄은 한입니다.한줄효과입니다.[1]</a></li>
-                                        <li><a href="#">이줄은 한줄효과입입이줄은 한줄효과입니다.</a></li>
+                                        <li><a href="#">제목 [10]</a></li>
+                                        <li><a href="#">제목 [9]</a></li>
+                                        <li><a href="#">제목 [5]</a></li>
+                                        <li><a href="#">제목 [8]</a></li>
+                                        <li><a href="#">제목 [11]</a></li>
                                     </ul>
                                     <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
                                 </div>
@@ -205,11 +204,11 @@
                                     <h5 class="ir_su">Notice1</h5>
                                     <h5>베스트 조회 수</h5>
                                     <ul>
-                                        <li><a href="#">이줄은 한줄효과입니다.이줄과입니다.[1]</a></li>
-                                        <li><a href="#">이줄은 한줄효과입니다이줄은 한줄효과입니다.[3]</a></li>
-                                        <li><a href="#">이줄은 한줄효과입입이줄은 한줄효과입니다.</a></li>
-                                        <li><a href="#">이줄은 한입니다.한줄효과입니다.[1]</a></li>
-                                        <li><a href="#">이줄은 한줄효과입입이줄은 한줄효과입니다.</a></li>
+                                        <li><a href="#">제목 [10]</a></li>
+                                        <li><a href="#">제목 [10]</a></li>
+                                        <li><a href="#">제목 [10]</a></li>
+                                        <li><a href="#">제목 [10]</a></li>
+                                        <li><a href="#">제목 [10]</a></li>
                                     </ul>
                                     <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
                                 </div>
@@ -220,42 +219,42 @@
                                 <p class="ir_su col_desc">설명부분</p>
                                 <div class="notice4 pr5">
                                     <h5 class="ir_su">Notice1</h5>
-                                    <h5>게시판 이름 1</h5>
+                                    <h5>루리웹 게시판</h5>
                                     <ul>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글[1]</a></li>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글[3]</a></li>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글</a></li>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글[1]</a></li>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글</a></li>
+                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372270?">다음주에 간만에 큰거오는군요 [6]</a></li>
+                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372268?">신발 착샷 및 소장품들 ㅎㅎ2 [4]</a></li>
+                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372264?">나이키 조던1ko 로우 X 유니온!! [9]</a></li>
+                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372192?page=3">늘어나는 고무줄 운동화끈 아세요? [7]</a></li>
+                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372258?page=2">뉴발란스 580 아틀란티스 [3]</a></li>
                                     </ul>
-                                    <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
+                                    <a href="https://bbs.ruliweb.com/hobby/board/320046" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
                                 </div>
 
                                 <!-- 게시판  -->
                                 <div class="notice5 pr5">
                                     <h5 class="ir_su">Notice1</h5>
-                                    <h5>게시판 이름 2</h5>
+                                    <h5>디시인사이드 게시판</h5>
                                     <ul>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글[1]</a></li>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글[3]</a></li>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글</a></li>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글[1]</a></li>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글</a></li>
+                                        <li><a href="https://gall.dcinside.com/board/view/?id=footwear&no=1672919&page=1">금강제화는 무조건 상품권으로 사는게 맞음?? [9]</a></li>
+                                        <li><a href="https://gall.dcinside.com/board/view/?id=footwear&no=1672930&page=1">애들아 발길이 235인데 신발은 255신는데 [5]</a></li>
+                                        <li><a href="https://gall.dcinside.com/board/view/?id=footwear&no=1672899&page=1">이거 이름 뭐야? [2]</a></li>
+                                        <li><a href="https://gall.dcinside.com/board/view/?id=footwear&no=1667737&exception_mode=recommend&page=2">이삐다 이뻐 [22]</a></li>
+                                        <li><a href="https://gall.dcinside.com/board/view/?id=footwear&no=1668178&exception_mode=recommend&page=2">조던1 폴른 샀습니다 [10]</a></li>
                                     </ul>
-                                    <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
+                                    <a href="https://gall.dcinside.com/board/lists/?id=footwear" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
                                 </div>
 
                                 <div class="notice6">
                                     <h5 class="ir_su">Notice1</h5>
-                                    <h5>게시판 이름 3</h5>
+                                    <h5>풋셀 게시판</h5>
                                     <ul>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글[1]</a></li>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글[3]</a></li>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글</a></li>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글[1]</a></li>
-                                        <li><a href="#">게시판 이름 댓글 게시판 이름 댓글</a></li>
+                                        <li><a href="https://footsell.com/g2/bbs/board.php?bo_table=m35&wr_id=1533795">당근 가품 판매 [17]</a></li>
+                                        <li><a href="https://footsell.com/g2/bbs/board.php?bo_table=sneakertalk&wr_id=827016">뉴발란스 574 레거시 2종 선착 앱 발매 (11시)</a></li>
+                                        <li><a href="https://footsell.com/g2/bbs/board.php?bo_table=sneakertalk&wr_id=826611&page=6">[ABC마트] 덩크 로우 범고래 2종 선착 발매 (10시)</a></li>
+                                        <li><a href="https://footsell.com/g2/bbs/board.php?bo_table=sneakertalk&wr_id=826974&page=2">혹시 인천쪽에 아울렛 좋은 곳 있나요?? [1]</a></li>
+                                        <li><a href="https://footsell.com/g2/bbs/board.php?bo_table=sneakertalk&wr_id=826989&page=2">티파니 x 에어 포스1 로우 1837 [3]</a></li>
                                     </ul>
-                                    <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
+                                    <a href="https://footsell.com/g2/bbs/board.php?bo_table=m35" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
                                 </div>
                             </article>
 
@@ -267,77 +266,83 @@
                                 <!-- 게시판  -->
                                 <div class="notice7 photo7 pr5">
                                     <h5 class="ir_su">Notice1</h5>
-                                    <h5>광고 삽입 1</h5>
+                                    <h5>오늘의 영상</h5>
                                     <ul>
-                                        <li><a href="#"><img src="http://placehold.it/200x100" alt="" />이것은 치킨인가 마약인가
-                                                안녕하세요 수원 왕갈비 통닭입니다.</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=1z4NjPc4_i0"><img th:src="@{/img/clip1.jpg}" alt="" />
+                                            유투브 채널 숏박스 '장기연애 - 벚꽃놀이 편'</a></li>
                                     </ul>
                                     <ul>
-                                        <li><a href="#"><img src="http://placehold.it/200x100" alt="" />롤 진짜 하고 싶다. 안되겠다
-                                                다들 칼바람 들어와 깔끔하게 3판 하자</a></li>
+                                        <li><a href="https://tv.naver.com/v/34349823"><img th:src="@{/img/clip2.png}" alt="" />
+                                            '몸무게가 57KG?' 주우재, 몸무게 논란 해명♨</a></li>
                                     </ul>
-                                    <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
+                                    <a href="https://www.youtube.com/feed/trending?bp=6gQJRkVleHBsb3Jl" class="more" title="인기급상승">More <i class="fa fa-plus-circle"></i></a>
                                 </div>
 
                                 <!-- 게시판  -->
                                 <div class="notice8 photo8 pr5">
-                                    <h5 class="ir_su">Notice1</h5>
-                                    <h5>광고 삽입 2</h5>
+                                    <h5 class="ir_su">Notice2</h5>
+                                    <h5>오늘의 기사</h5>
                                     <ul>
-                                        <li><a href="#"><img src="http://placehold.it/200x100" alt="" />이번 챔스 우승은 뭔가 레알
-                                                아니면 뮌헨 삘 아 오케이 맨시티도 있지</a></li>
+                                        <li><a href="https://n.news.naver.com/article/277/0005236406?ntype=RANKING"><img th:src="@{/img/bmw.png}" alt="" />
+                                            BMW, X1 완전변경 모델 출시 “5770만원부터”</a></li>
                                     </ul>
                                     <ul>
-                                        <li><a href="#"><img src="http://placehold.it/200x100" alt="" />광고 문구 테스트 광고 문구
-                                                테스트 광고 문구 테스트 광고 문구 테스트 광고 문구 테스트</a></li>
+                                        <li><a href="https://economist.co.kr/article/view/ecn202303250019"><img th:src="@{/img/chat_gpt.png}" alt="" />
+                                            챗GPT 4개월, 달라진 세상…빅테크부터 스타트업까지 '생성 AI' 봇물</a></li>
                                     </ul>
-                                    <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
+                                    <a href="https://news.naver.com/" class="more" title="기사">More <i class="fa fa-plus-circle"></i></a>
                                 </div>
 
                             </article>
                             </article>
-                            <!-- 게시판  -->
-                            <div class="notice17 photo8 pr5">
-                                <h5 class="ir_su">Notice1</h5>
-                                <h5>브랜드 홍보관</h5>
-                                <ul>
-                                    <li><a href="#"><img src="http://placehold.it/200x400" width="200" alt="" /></a>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#"><img src="http://placehold.it/200x400" alt="" /></a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#"><img src="http://placehold.it/200x400" alt="" /></a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#"><img src="http://placehold.it/200x400" alt="" /></a></li>
-                                </ul>
-                                <a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
-                            </div>
                             </article>
                         </section>
+                        <article class="column col11">
+                            <h4 class="ir_su col_tit"></h4>
+                            <p class="ir_su col_desc"></p>
+                            <h4 class="ir_su col_tit"></h4>
+                            <p class="col_desc"><a href="https://www.nike.com/kr/">
+                            <img th:src="@{/img/banner.png}" class="cont_right_img"></a>
+                        </article>
+                        <article class="column col11">
+                            <h4 class="ir_su col_tit"></h4>
+                            <p class="ir_su col_desc"></p>
+                            <h4 class="ir_su col_tit"></h4>
+                            <p class="col_desc"><a href="https://www.nike.com/kr/">
+                                <img th:src="@{/img/banner2.gif}" class="cont_right_img2"></a>
+                        </article>
+                        <article class="column col11">
+                            <h4 class="ir_su col_tit"></h4>
+                            <p class="ir_su col_desc"></p>
+                            <h4 class="ir_su col_tit"></h4>
+                            <p class="col_desc"><a href="https://halincode.com/dealstore/%EB%82%98%EC%9D%B4%ED%82%A4/">
+                                <img th:src="@{/img/banner3.gif}" class="cont_right_img3"></a>
+                        </article>
                     </div>
-
                 </section>
             </main>
             <footer id="footer">
                 <div class="container">
                     <ul>
-                        <li><a href="http://naver.com">전윤식</a></li>
+                        <li>전윤식</a></li>
                         <li>|</li>
-                        <li><a href="http://naver.com">이대원</a></li>
+                        <li>이대원</a></li>
                         <li>|</li>
-                        <li><a href="http://naver.com">김종호</a></li>
+                        <li>김종호</a></li>
                         <li>|</li>
-                        <li><a href="http://naver.com">김태현</a></li>
+                        <li>김태현</a></li>
+                        <li>|</li>
+                        <li>박정환</a></li>
                     </ul>
                     <div class="sns_link">
-                        <a href="http://naver.com"><img src="/img/mail.PNG" /></a>
-                        <a href="https://section.blog.naver.com/BlogHome.naver?directoryNo=0&currentPage=1&groupId=0"><img
-                                src="/img/blog.png" /></a>
-                        <a href="https://www.facebook.com"><img src="/img/FACEBOOK.png" /></a>
-                        <a href="https://www.youtube.com/"><img src="/img/youtube.png" /></a>
+                        <a href="http://naver.com">
+                            <img th:src="@{/img/mail.png}" /></a>
+                        <a href="https://section.blog.naver.com/BlogHome.naver?directoryNo=0&currentPage=1&groupId=0">
+                            <img th:src="@{/img/blog.png}" /></a>
+                        <a href="https://www.facebook.com">
+                            <img th:src="@{/img/FACEBOOK.png}" /></a>
+                        <a href="https://www.youtube.com/">
+                            <img th:src="@{/img/youtube.png}" /></a>
                     </div>
                     <i class="copyright">COPYRIGHTⓒ 2023 Spring Project Team 3. ALL RIGHT RESERVED.</i>
                 </div>
@@ -381,14 +386,5 @@
     const emailInput = document.getElementById("email");
     const emailError = document.getElementById("emailError");
 
-    emailInput.addEventListener("blur", () => {
-        checkEmailExists(emailInput.value)
-            .then(() => {
-                emailError.textContent = "";
-            })
-            .catch(error => {
-                emailError.textContent = error;
-            });
-    });
 </script>
 </html>

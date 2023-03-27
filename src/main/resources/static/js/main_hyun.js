@@ -30,3 +30,7 @@ document.querySelector('.parallax_page').addEventListener('scroll', function () 
     }
     console.log(scrollLocation);
 });
+
+// 이미지 슬라이드 효과
+
+
