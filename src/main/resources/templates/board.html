@@ -35,7 +35,7 @@
 			<a th:if="${categoryId == 0}" th:href="@{board?(page=${nowPage},orderby=recom)}">추천순</a>
 			<a th:if="${categoryId != 0}" th:href="@{board?(page=${nowPage},orderby=recom,cate=${categoryId})}">추천순</a>
 			|
-			<a href="">글쓰기</a>
+			<a href="writeBoard">글쓰기</a>
 		</div>
 		<br>
 		<hr>
