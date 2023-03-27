@@ -23,10 +23,10 @@ public class Boardfile {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long boardfileId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "fileup_file_id")
 	private Fileup fileup;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "board_id")
 	private Board board;
 }

@@ -32,7 +32,7 @@ public class WriteBoardController {
         return "writeBoard";
     }
 
-    //@Transactional
+    @Transactional
     @PostMapping("writeBoard")
     public String writeBoardTest(WriteBoardDto boardDto, @RequestParam("file") List<MultipartFile> files)
                 throws IOException{
