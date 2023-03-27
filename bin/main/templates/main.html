@@ -49,14 +49,16 @@
                                         <div class="close-area"><a href="#" onclick="location.href=document.referrer"
                                                 style="text-decoration-line:none; float: right; color:#ffffff">X</a>
                                         </div>
+                                        <form method="post" action="join.do"></form>
                                         <h2 style="font-size: 30px; color:white; margin-bottom:20%">회원가입</h2>
-                                        <input class="join_text" type="text" placeholder="이메일">
-                                        <input class="join_text" type="password" placeholder="비밀번호">
-                                        <input class="join_text" type="password" placeholder="비밀번호 확인">
-                                        <input class="join_text" type="date">
-                                        <input class="join_text" type="text" placeholder="전화번호(010-0000-0000)">
-                                        <input class="join_button" type="submit" value="가입">
-                                        <input class="join_button" type="button" value="취소"
+                                        <input style="margin-bottom:0" class="join_text" type="text" name="email" id="email" placeholder="이메일"><br>
+                                        <div id ="emailError" style="color:white; margin-bottom: 5%; margin-top: 0px;"></div>
+                                        <input class="join_text" type="password" name="pwd" placeholder="비밀번호">
+                                        <input class="join_text" type="password" name="checkPwd" placeholder="비밀번호 확인">
+                                        <input class="join_text" type="date" name="birth" >
+                                        <input class="join_text" type="text" name="phone" placeholder="전화번호(010-0000-0000)">
+                                        <input class="join_button" type="submit" onclick="location.href='main'" value="가입">
+                                        <input class="join_button" type="button" value="취소">
                                             onclick="location.href=document.referrer">
                                     </div>
                                 </div>
@@ -75,19 +77,6 @@
                                                     onclick="location.href=document.referrer">
                                     </div>
                                 </div>
-
-                                <script> //로그인 및 회원가입 모달
-                                    const modal_join = document.querySelector('.modal_join');
-                                    const btnOpenJoin = document.querySelector('.btn-open-join');
-                                    btnOpenJoin.addEventListener('click', () => {
-                                        modal_join.style.display = 'block';
-                                    });
-                                    const modal_login = document.querySelector('.modal_login');
-                                    const btnOpenLogin = document.querySelector('.btn-open-login');
-                                    btnOpenLogin.addEventListener('click', () => {
-                                        modal_login.style.display = 'block';
-                                    });
-                                </script>
                             </div>
                         </div>
                     </div>
@@ -171,7 +160,7 @@
 
             <main>
                 <section id="contents">
-                    <div class="container" class="parallax_base_layer">
+                    <div class="container parallax_base_layer">
                         <h2 class="ir_su">main img</h2>
                         <section id="cont_center">
                             <h3 class="ir_su">main img</h3>
@@ -356,5 +345,40 @@
         <div class="parallax_back_layer"></div>
     </div>
 </body>
+<script> //로그인 및 회원가입 모달
+    const modal_join = document.querySelector('.modal_join');
+    const btnOpenJoin = document.querySelector('.btn-open-join');
+    btnOpenJoin.addEventListener('click', () => {
+        modal_join.style.display = 'block';
+    });
+    const modal_login = document.querySelector('.modal_login');
+    const btnOpenLogin = document.querySelector('.btn-open-login');
+    btnOpenLogin.addEventListener('click', () => {
+        modal_login.style.display = 'block';
+    });
+</script>
+<script> //이메일 중복 체크
+    function checkEmailExists(email) {
+    return fetch(`/api/user/checkEmail?email=${email}`)
+        .then(response => {
+            if (response.ok) {
+                return Promise.resolve();
+            } else {
+                return Promise.reject("이미 사용중인 이메일입니다");
+            }
+        });
+    }
+    const emailInput = document.getElementById("email");
+    const emailError = document.getElementById("emailError");
 
+    emailInput.addEventListener("blur", () => {
+        checkEmailExists(emailInput.value)
+            .then(() => {
+                emailError.textContent = "";
+            })
+            .catch(error => {
+                emailError.textContent = error;
+            });
+    });
+</script>
 </html>

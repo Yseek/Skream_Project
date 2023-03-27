@@ -1,6 +1,9 @@
 package shoes.skream.project.repository.hoya;
 
-public class MemberRepository extends JpaRepository<Member, varchar>{
-  Member findByEmail(String email);
-  
+import org.springframework.data.jpa.repository.JpaRepository;
+import shoes.skream.project.domain.Member;
+
+public interface MemberRepository extends JpaRepository<Member, Long>{
+  boolean existsByEmail(String email);
 }
+
