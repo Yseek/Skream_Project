@@ -23,10 +23,14 @@ public class Boardfile {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long boardfileId;
 
-	@ManyToOne
+	@Column(name = "fileup_file_id")
+	private long fileupFileId;
+	@Column(name = "board_id")
+	private long boardId;
+/* 	@ManyToOne
 	@JoinColumn(name = "fileup_file_id")
 	private Fileup fileup;
 	@ManyToOne
 	@JoinColumn(name = "board_id")
-	private Board board;
+	private Board board; */
 }

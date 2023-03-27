@@ -41,7 +41,7 @@ public class WriteBoardServiceImpl implements WriteBoardService{
     }
 
     @Override
-    public Board writeBoard(WriteBoardDto boardDto) {
+    public long writeBoard(WriteBoardDto boardDto) {
         Board board = new Board();
         board.setSubject(boardDto.getSubject());
         board.setContent(boardDto.getContent());
@@ -51,13 +51,13 @@ public class WriteBoardServiceImpl implements WriteBoardService{
         Category category = categoryRepositoryWon.findById(Integer.parseInt(boardDto.getCategory()))
                                                     .orElseThrow(IllegalArgumentException::new);
         board.setCategory(category);      
-        return boardRepositoryWon.save(board);
+        return boardRepositoryWon.save(board).getBoardId();
     }
 
     @Override
-    public Fileup saveFile(MultipartFile file) throws IOException{
+    public long saveFile(MultipartFile file) throws IOException{
         if (file.isEmpty()) {
-            return null;
+            return -1;
         }
         String origName = file.getOriginalFilename(); // 원래 파일 이름 추출
         String uuid = UUID.randomUUID().toString(); // 파일 이름으로 쓸 uuid 생성
@@ -71,15 +71,15 @@ public class WriteBoardServiceImpl implements WriteBoardService{
                 .savedpath(savedPath)
                 .build();
         file.transferTo(new File(savedPath)); // 실제로 로컬에 uuid를 파일명으로 저장
-        return fileupRepositoryWon.save(fileup); // 데이터베이스에 파일 정보 저장
+        return fileupRepositoryWon.save(fileup).getFileId(); // 데이터베이스에 파일 정보 저장
     }
 
     @Override
-    public void saveBoardfile(Board board, Fileup fileup) {
+    public void saveBoardfile(long boardId, long fileupId) {
         // TODO Auto-generated method stub
         Boardfile boardfile = new Boardfile();
-        boardfile.setBoard(board);
-        boardfile.setFileup(fileup);
+        boardfile.setBoardId(boardId);
+        boardfile.setFileupFileId(fileupId);
         boardfileRepositoryWon.save(boardfile);
     }
     

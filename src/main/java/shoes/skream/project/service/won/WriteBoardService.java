@@ -9,7 +9,8 @@ import shoes.skream.project.domain.Fileup;
 import shoes.skream.project.dto.WriteBoardDto;
 
 public interface WriteBoardService {
-    Board writeBoard(WriteBoardDto board);
-    Fileup saveFile(MultipartFile multipartFile) throws IOException;
-    void saveBoardfile(Board board, Fileup fileup);
+    //getLogin()
+    long writeBoard(WriteBoardDto board);
+    long saveFile(MultipartFile multipartFile) throws IOException;
+    void saveBoardfile(long boardId, long fileupId);
 }

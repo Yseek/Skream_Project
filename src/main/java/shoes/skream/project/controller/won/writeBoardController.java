@@ -1,7 +1,10 @@
 package shoes.skream.project.controller.won;
 
 import java.io.IOException;
+import java.lang.reflect.Member;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,10 +28,13 @@ public class WriteBoardController {
     WriteBoardService writeBoardService;
 
     @GetMapping("writeBoard")
-    public String writeBoard(Model model){
-        // TODO: 로그인한 멤버의 email를 인자로 받아서 넘기도록 수정한다
+    public String writeBoard(Model model, HttpSession session){
         String email = "abc1@naver.com";
         model.addAttribute("email", email);
+        // TODO: 로그인한 멤버의 email를 인자로 받아서 넘기도록 수정한다
+
+        //Member loginUser = writeBoardService.getLogin("abc1@naver.com");
+        session.setAttribute("loginUser", "loginUser");
         return "writeBoard";
     }
 
@@ -37,7 +43,7 @@ public class WriteBoardController {
     public String writeBoardTest(WriteBoardDto boardDto, @RequestParam("file") List<MultipartFile> files)
                 throws IOException{
         // BOARD insert
-        Board board = writeBoardService.writeBoard(boardDto);
+        long boardId = writeBoardService.writeBoard(boardDto);
         //Fileup fileup = new Fileup();
 
         // Fileup table insert
@@ -46,14 +52,14 @@ public class WriteBoardController {
                 log.info("$$$$$ file.isEmpty() in log");
                 break;
             }
-            Fileup fileup = writeBoardService.saveFile(file);
-            log.info("$$$$$ Board: {}, Fileup: {}", board, fileup);
+            long fileupId = writeBoardService.saveFile(file);
+            log.info("$$$$$ boardId: {}, fileupId: {}", boardId, fileupId);
             // Boardfile insert
             // board.save 와 fileup.save 의 return 값을 이용해 boardfile.save
-            writeBoardService.saveBoardfile(board, fileup);
+            writeBoardService.saveBoardfile(boardId, fileupId);
         }
 
-        return "redirect:board";
+        return "redirect:boardlist";
     }
 
     @GetMapping("updateBoard")
