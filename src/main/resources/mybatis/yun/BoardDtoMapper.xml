@@ -16,4 +16,35 @@
 			SAVEDPATH
 		from Fileup where FILE_ID=#{fileId}
     </select>
+	<select id="selectComments" resultType="Comment">
+		select 
+			BOARD_ID as boardId, 
+			MEMBER_EMAIL as email, 
+			RDATE, 
+			UDATE, 
+			COMMENT_ID as commentId, 
+			CO_CONTENT as coContent
+		from Comment where BOARD_ID=#{boardId}
+	</select>
+	<select id="selectMember" resultType="Member">
+		select 
+			EMAIL,
+			NAME, 
+			BIRTH, 
+			PHONE, 
+			PWD, 
+			RDATE, 
+			UDATE
+		from Member where EMAIL=#{email}
+	</select>
+	<select id="listRecommnet" resultType="Recomment">
+		select 
+			COMMENT_COMMENT_ID as commentId, 
+			MEMBER_EMAIL as email, 
+			RECO_CONTENT as recoContent, 
+			RDATE, 
+			UDATE, 
+			RECOMMENT_ID as recommentId
+		from Recomment where COMMENT_COMMENT_ID=#{commentId}
+	</select>
 </mapper>

@@ -52,6 +52,11 @@
 				</tr>
 			</thead>
 			<tbody>
+				<th:block th:if="${list.isEmpty}">
+					<tr>
+						<td colspan="7">검색된 결과가 없습니다.</td>
+					</tr>
+				</th:block>
 				<input type="hidden" id="selectedSeq" th:value="${seq}">
 				<tr th:id="${list.seq}" th:each="list:${list}">
 					<td th:text="${list.seq}">3</td>
@@ -60,9 +65,9 @@
 					<td id="subject">
 						<span style="float: left;">
 							<span>[<strong th:text="${list.cg.cgname}"></strong>]</span>
-							<span><a th:if="${orderby == ''} and ${categoryId == 0}"
-									th:href="@{content?(page=${nowPage},seq=${list.seq})}"
-									id="content_link" th:text="${list.subject}">제목링크</a></span>
+							<span><a th:if="${orderby == ''} and ${categoryId == 0} and ${#strings.isEmpty(searchForWhatVal)}"
+									th:href="@{content?(page=${nowPage},seq=${list.seq})}" id="content_link"
+									th:text="${list.subject}">제목링크</a></span>
 							<span><a th:if="${orderby == ''} and ${categoryId != 0}"
 									th:href="@{content?(page=${nowPage},cate=${categoryId},seq=${list.seq})}"
 									id="content_link" th:text="${list.subject}">제목링크</a></span>
@@ -71,6 +76,9 @@
 									id="content_link" th:text="${list.subject}">제목링크</a></span>
 							<span><a th:if="${orderby != ''} and ${categoryId == 0}"
 									th:href="@{content?(page=${nowPage},orderby=${orderby},seq=${list.seq})}"
+									id="content_link" th:text="${list.subject}">제목링크</a></span>
+							<span><a th:if="${orderby == ''} and ${categoryId == 0} and ${searchForWhatVal}"
+									th:href="@{content?(page=${nowPage},seq=${list.seq},search=${searchForWhatVal},keyword=${keyword})}"
 									id="content_link" th:text="${list.subject}">제목링크</a></span>
 						</span>
 					</td>
@@ -94,7 +102,7 @@
 			</div>
 			<span id="paging">
 				<span class="firstPageCheck">
-					<a th:if="${!list.isFirst} and ${orderby == ''} and ${categoryId == 0}"
+					<a th:if="${!list.isFirst} and ${orderby == ''} and ${categoryId == 0} and ${#strings.isEmpty(searchForWhatVal)}"
 						th:href="@{board?(page=1)}">처음페이지</a>
 					<a th:if="${!list.isFirst} and ${orderby != ''} and ${categoryId == 0}"
 						th:href="@{board?(page=1,orderby=${orderby})}">처음페이지</a>
@@ -102,10 +110,12 @@
 						th:href="@{board?(page=1,cate=${categoryId})}">처음페이지</a>
 					<a th:if="${!list.isFirst} and ${orderby != ''} and ${categoryId != 0}"
 						th:href="@{board?(page=1,orderby=${orderby},cate=${categoryId})}">처음페이지</a>
+					<a th:if="${!list.isFirst} and ${orderby == ''} and ${categoryId == 0} and ${searchForWhatVal}"
+						th:href="@{boardlist?(page=1,search=${searchForWhatVal},keyword=${keyword})}">처음페이지</a>
 					<strong th:if="${list.isFirst}">처음페이지</strong>
 				</span>
 				<span class="downPageCursor">
-					<a th:if="${!list.isFirst} and ${orderby == ''} and ${categoryId == 0}"
+					<a th:if="${!list.isFirst} and ${orderby == ''} and ${categoryId == 0} and ${#strings.isEmpty(searchForWhatVal)}"
 						th:href="@{board?(page=${nowPage-1})}">&lt;&lt;</a>
 					<a th:if="${!list.isFirst} and ${orderby != ''} and ${categoryId == 0}"
 						th:href="@{board?(page=${nowPage-1},orderby=${orderby})}">&lt;&lt;</a>
@@ -113,25 +123,32 @@
 						th:href="@{board?(page=${nowPage-1},cate=${categoryId})}">&lt;&lt;</a>
 					<a th:if="${!list.isFirst} and ${orderby != ''} and ${categoryId != 0}"
 						th:href="@{board?(page=${nowPage-1},orderby=${orderby},cate=${categoryId})}">&lt;&lt;</a>
+					<a th:if="${!list.isFirst} and ${orderby == ''} and ${categoryId == 0} and ${searchForWhatVal}"
+						th:href="@{boardlist?(page=${nowPage-1},search=${searchForWhatVal},keyword=${keyword})}">&lt;&lt;</a>
 					<strong th:if="${list.isFirst}">&lt;&lt;</strong>
 				</span>
 				<span class="pageNUm">
 					<span th:each="page:${#numbers.sequence(startPage, endPage)}"
 						th:classappend="${page == nowPage} ? 'active'">
-						<a th:if="${page != nowPage} and ${orderby == ''} and ${categoryId == 0}"
-							th:href="@{board?(page=${page})}" th:text="${page}"></a>
-						<a th:if="${page != nowPage} and ${orderby == ''} and ${categoryId != 0}"
-							th:href="@{board?(page=${page},cate=${categoryId})}" th:text="${page}"></a>
-						<a th:if="${page != nowPage} and ${orderby != ''} and ${categoryId == 0}"
-							th:href="@{board?(page=${page},orderby=${orderby})}" th:text="${page}"></a>
-						<a th:if="${page != nowPage} and ${orderby != ''} and ${categoryId != 0}"
-							th:href="@{board?(page=${page},orderby=${orderby},,cate=${categoryId})}"
-							th:text="${page}"></a>
-						<strong th:if="${page == nowPage}" th:text="${page}" style="color: red;"></strong>
+						<th:block th:if="${page != 0}">
+							<a th:if="${page != nowPage} and ${orderby == ''} and ${categoryId == 0} and ${#strings.isEmpty(searchForWhatVal)}"
+								th:href="@{board?(page=${page})}" th:text="${page}"></a>
+							<a th:if="${page != nowPage} and ${orderby == ''} and ${categoryId != 0}"
+								th:href="@{board?(page=${page},cate=${categoryId})}" th:text="${page}"></a>
+							<a th:if="${page != nowPage} and ${orderby != ''} and ${categoryId == 0}"
+								th:href="@{board?(page=${page},orderby=${orderby})}" th:text="${page}"></a>
+							<a th:if="${page != nowPage} and ${orderby != ''} and ${categoryId != 0}"
+								th:href="@{board?(page=${page},orderby=${orderby},cate=${categoryId})}"
+								th:text="${page}"></a>
+							<a th:if="${page != nowPage} and ${orderby == ''} and ${categoryId == 0} and ${searchForWhatVal}"
+								th:href="@{boardlist?(page=${page},search=${searchForWhatVal},keyword=${keyword})}"
+								th:text="${page}"></a>
+							<strong th:if="${page == nowPage}" th:text="${page}" style="color: red;"></strong>
+						</th:block>
 					</span>
 				</span>
 				<span class="upPageCursor">
-					<a th:if="${!list.isLast} and ${orderby == ''} and ${categoryId == 0}"
+					<a th:if="${!list.isLast} and ${orderby == ''} and ${categoryId == 0} and ${#strings.isEmpty(searchForWhatVal)}"
 						th:href="@{board?(page=${nowPage+1})}">&gt;&gt;</a>
 					<a th:if="${!list.isLast} and ${orderby != ''} and ${categoryId == 0}"
 						th:href="@{board?(page=${nowPage+1},orderby=${orderby})}">&gt;&gt;</a>
@@ -139,10 +156,12 @@
 						th:href="@{board?(page=${nowPage+1},cate=${categoryId})}">&gt;&gt;</a>
 					<a th:if="${!list.isLast} and ${orderby != ''} and ${categoryId != 0}"
 						th:href="@{board?(page=${nowPage+1},orderby=${orderby},cate=${categoryId})}">&gt;&gt;</a>
+					<a th:if="${!list.isLast} and ${orderby == ''} and ${categoryId == 0} and ${searchForWhatVal}"
+						th:href="@{boardlist?(page=${nowPage+1},search=${searchForWhatVal},keyword=${keyword})}">&gt;&gt;</a>
 					<strong th:if="${list.isLast}">&gt;&gt;</strong>
 				</span>
 				<span class="finalPageCheck">
-					<a th:if="${!list.isLast} and ${orderby == ''} and ${categoryId == 0}"
+					<a th:if="${!list.isLast} and ${orderby == ''} and ${categoryId == 0} and ${#strings.isEmpty(searchForWhatVal)}"
 						th:href="@{board?(page=${total})}">마지막페이지</a>
 					<a th:if="${!list.isLast} and ${orderby != ''} and ${categoryId == 0}"
 						th:href="@{board?(page=${total},orderby=${orderby})}">마지막페이지</a>
@@ -150,6 +169,8 @@
 						th:href="@{board?(page=${total},cate=${categoryId})}">마지막페이지</a>
 					<a th:if="${!list.isLast} and ${orderby != ''} and ${categoryId != 0}"
 						th:href="@{board?(page=${total},orderby=${orderby},cate=${categoryId})}">마지막페이지</a>
+					<a th:if="${!list.isLast} and ${orderby == ''} and ${categoryId == 0} and ${searchForWhatVal}"
+						th:href="@{boardlist?(page=${total},search=${searchForWhatVal},keyword=${keyword})}">마지막페이지</a>
 					<strong th:if="${list.isLast}">마지막페이지</strong>
 				</span>
 			</span>
@@ -181,20 +202,24 @@
 		<div style="width: 100%; margin-top: 1%;">
 			<span style="float: right; margin-right: 1%;">
 				<form action="search.do" method="get">
-					<select name="" id="">
+					<!-- <select name="" id="">   // 추후 시간이 남으면 구현예정
 						<option value="">전체</option>
 						<option value="">나이키</option>
 						<option value="">아디다스</option>
 						<option value="">뉴발란스</option>
-					</select>
+					</select> -->
 					<select name="searchForWhatbox" id="searchForWhatSelect" onchange="f(this)">
-						<option value="" selected hidden th:text="${searchForWhat}"></option>
+						<option value="" selected hidden th:text="${#strings.defaultString(searchForWhat,'제목')} ">
+						</option>
 						<option value="subject">제목</option>
 						<option value="content">내용</option>
 						<option value="subjectAndContent">제목+내용</option>
 						<option value="writer">작성자</option>
 					</select>
-					<input id="searchForWhatId" type="hidden" name="searchForWhat" th:value="${searchForWhatVal}">
+					<input th:if="${#strings.isEmpty(searchForWhatVal)}" id="searchForWhatId" type="hidden"
+						name="searchForWhat" th:value="subject">
+					<input th:unless="${#strings.isEmpty(searchForWhatVal)}" id="searchForWhatId" type="hidden"
+						name="searchForWhat" th:value="${searchForWhatVal}">
 					<input type="search" name="keyword">
 					<button type="submit">검색</button>
 				</form>
@@ -202,9 +227,10 @@
 		</div>
 		<input type="hidden" id="orderby" th:value="${orderby}">
 		<input type="hidden" id="categoryId" th:value="${categoryId}">
+		<input type="hidden" id="keyword" th:value="${keyword}">
 		<script>
 
-			function f(select){
+			function f(select) {
 				const search = select.value;
 				document.getElementById("searchForWhatId").value = search;
 			}
@@ -214,8 +240,8 @@
 			let listSeq = document.getElementsByClassName("listSeq");
 			for (let i = 0; i < listSeq.length; i++) {
 				if (selectedSeq === document.getElementsByClassName("listSeq")[i].value) {
-					document.getElementById(selectedSeq).style.borderColor="gray"
-					document.getElementById(selectedSeq).style.fontWeight="bolder"
+					document.getElementById(selectedSeq).style.borderColor = "gray"
+					document.getElementById(selectedSeq).style.fontWeight = "bolder"
 				}
 			}
 
@@ -233,21 +259,22 @@
 				const maxPage = document.getElementById("total").value;
 				const orderby = document.getElementById("orderby").value;
 				const categoryId = document.getElementById("categoryId").value;
+				const keyword = document.getElementById("keyword").value;
+				const searchForWhatVal = document.getElementById("searchForWhatId").value;
 				if (Number(page) > Number(maxPage) || Number(page) < 1) {
 					alert("해당 페이지가 없습니다.");
 					return false;
 				}
-				if (!orderby && categoryId == 0) {
+				if (!orderby && categoryId == 0 && !keyword) {
 					location.href = "board?&page=" + page;
-
 				} else if (orderby && categoryId == 0) {
 					location.href = "board?&page=" + page + "&orderby=" + orderby;
-				}
-				else if (!orderby && categoryId != 0) {
+				} else if (!orderby && categoryId != 0) {
 					location.href = "board?&page=" + page + "&cate=" + categoryId;
-				}
-				else if (orderby && categoryId != 0) {
+				} else if (orderby && categoryId != 0) {
 					location.href = "board?&page=" + page + "&orderby=" + orderby + "&cate=" + categoryId;
+				} else if (keyword) {
+					location.href = "boardlist?&page=" + page + "&search=" + searchForWhatVal + "&keyword=" + keyword;
 				}
 
 			}
