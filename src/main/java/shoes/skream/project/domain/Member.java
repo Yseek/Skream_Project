@@ -29,14 +29,4 @@ public class Member extends RUDate{
 		member.setPhone(memberDTO.getPhone());
 		return member;
 	}
-
-		public static Member toUpdateMember(MemberDTO memberDTO){
-		Member member = new Member();
-		member.setEmail(memberDTO.getEmail());
-		member.setPwd(memberDTO.getPwd());
-		member.setName(memberDTO.getName());
-		member.setBirth(memberDTO.getBirth());
-		member.setPhone(memberDTO.getPhone());
-		return member;
-	}
 }

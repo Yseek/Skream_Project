@@ -30,17 +30,5 @@ public class MemberService {
         }else{
           return null;
         }
-
-    }
-    public MemberDTO memberUpdate(String myEmail) {
-      Optional<Member> optionalMember=memberRepository.findByEmail(myEmail);
-      if(optionalMember.isPresent()){
-        return MemberDTO.toMemberDTO(optionalMember.get());
-      }else{
-        return null;
-      }
-    }
-    public void update(MemberDTO memberDTO) {
-      memberRepository.save(Member.toUpdateMember(memberDTO));
     }
 }

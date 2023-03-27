@@ -37,16 +37,4 @@ public class MemberController {
     session.invalidate();
     return "redirect:/main";
   }
-  @GetMapping("memberUpdate.do")
-  public String memberUpdate(HttpSession session, Model model){
-    String myEmail = (String)session.getAttribute("loginEmail");
-    MemberDTO memberDTO = memberService.memberUpdate(myEmail);
-    model.addAttribute("updateMember", memberDTO);
-    return "memberupdate";
-  }
-  @PostMapping("memberUpdate.do")
-  public String memberUpdate(@ModelAttribute MemberDTO memberDTO){
-    memberService.update(memberDTO);
-    return "redirect:/"+memberDTO.getEmail();
-  }
 }
