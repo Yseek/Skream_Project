@@ -5,16 +5,13 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import shoes.skream.project.dto.hoya.MemberDTO;
 
-@Data
-@EqualsAndHashCode(callSuper=false)
+@Getter
+@Setter
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 public class Member extends RUDate{
 	@Id
 	private String email;
@@ -22,4 +19,14 @@ public class Member extends RUDate{
 	private Date birth;
 	private String phone;
 	private String pwd;
+
+	public static Member toMember(MemberDTO memberDTO){
+		Member member = new Member();
+		member.setEmail(memberDTO.getEmail());
+		member.setPwd(memberDTO.getPwd());
+		member.setName(memberDTO.getName());
+		member.setBirth(memberDTO.getBirth());
+		member.setPhone(memberDTO.getPhone());
+		return member;
+	}
 }
