@@ -8,6 +8,7 @@ import org.springframework.data.web.config.PageableHandlerMethodArgumentResolver
 import shoes.skream.project.mapper.yun.BoardDtoMapper;
 import shoes.skream.project.repository.yun.BoardRepository;
 import shoes.skream.project.repository.yun.CategoryRepository;
+import shoes.skream.project.repository.yun.MemberRepository;
 import shoes.skream.project.service.yun.BoardService;
 import shoes.skream.project.service.yun.BoardServiceInterface;
 
@@ -23,11 +24,12 @@ public class BoardConfig {
 	@Autowired
 	BoardDtoMapper boardDtoMapper;
 
-
+	@Autowired
+	MemberRepository memberRepository;
 
 	@Bean
 	public BoardServiceInterface boardServiceInterface(){
-		return new BoardService(boardRepository, boardDtoMapper,categoryRepository);
+		return new BoardService(boardRepository, boardDtoMapper,categoryRepository,memberRepository);
 	}
 
 	@Bean

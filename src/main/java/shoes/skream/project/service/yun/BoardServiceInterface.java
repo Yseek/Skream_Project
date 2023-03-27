@@ -23,4 +23,5 @@ public interface BoardServiceInterface {
 	Page<BoardDto> listBySubject(String keyword, Pageable pageable);
 	Page<BoardDto> listByContent(String keyword, Pageable pageable);
 	Page<BoardDto> listByContentAndSubject(String keyword, String keyword2,Pageable pageable);
+	Page<BoardDto> listByWirter(String keyword, Pageable pageable);
 }

@@ -261,7 +261,30 @@ public class BoardController {
 				model.addAttribute("total", list.getTotalPages());
 				return "board";
 			} else if (searchForWhat.equals("writer")) {
-
+				Page<BoardDto> list = boardServiceInterface.listByWirter(keyword, pageable);
+				int nowPage = list.getPageable().getPageNumber() + 1;
+				int startPage = Math.max(nowPage - 4, 1);
+				int endPage = Math.min(nowPage + 4, list.getTotalPages());
+				if (endPage < 10) {
+					endPage = Math.min(10, list.getTotalPages());
+				}
+				if (endPage - startPage < 10) {
+					startPage = Math.max(endPage - 9, 1);
+				}
+				int size = list.getPageable().getPageSize();
+				model.addAttribute("searchForWhatVal", searchForWhat);
+				searchForWhat = "";
+				model.addAttribute("searchForWhat", searchForWhat);
+				model.addAttribute("categories", categories);
+				model.addAttribute("categoryId", categoryId);
+				model.addAttribute("orderby", orderby);
+				model.addAttribute("list", list);
+				model.addAttribute("nowPage", nowPage);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				model.addAttribute("size", size);
+				model.addAttribute("total", list.getTotalPages());
+				return "board";
 			}
 
 		}

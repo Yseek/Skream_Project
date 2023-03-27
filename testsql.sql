@@ -3,6 +3,7 @@ insert into MEMBER values('abc1@naver.com', '사용자1', '1990/01/01','010-1111
 insert into MEMBER values('abc2@naver.com', '사용자2', '1991/01/01','010-2222-2222','1234',now(),now());
 insert into MEMBER values('abc3@naver.com', '사용자3', '1992/01/01','010-3333-3333','1234',now(),now()); 
 
+
 insert into CATEGORY values(1, '나이키');
 insert into CATEGORY values(2, '아디다스');
 insert into CATEGORY values(3, '뉴발란스');
