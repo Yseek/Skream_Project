@@ -1,13 +1,8 @@
 package shoes.skream.project.dto;
 
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import shoes.skream.project.domain.Board;
-import shoes.skream.project.domain.Category;
 
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class WriteBoardDto {
     private final String subject;
@@ -22,12 +17,5 @@ public class WriteBoardDto {
         this.category = category;
         this.member = member;
     }
-    /* public Board toEntity(){
-        Board board = Board.Builder()
-        .subject(subject)
-        .content(content)
-        .category(Category.get)
-        return board;
-    } */
 }
 

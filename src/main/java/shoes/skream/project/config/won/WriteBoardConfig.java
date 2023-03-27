@@ -15,7 +15,7 @@ import shoes.skream.project.service.won.WriteBoardServiceImpl;
 @Configuration
 public class WriteBoardConfig {
     @Autowired
-    BoardRepositoryWon boardRepositoryWon;;
+    BoardRepositoryWon boardRepositoryWon;
     @Autowired
     MemberRepositoryWon memberRepositoryWon;
     @Autowired

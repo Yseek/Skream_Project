@@ -56,21 +56,34 @@ public class WriteBoardServiceImpl implements WriteBoardService{
 
     @Override
     public long saveFile(MultipartFile file) throws IOException{
+        String origName = "";
+        String uuid = "";
+        String extension = ""; 
+        String savedName = "";
+        String savedPath = "";
         if (file.isEmpty()) {
-            return -1;
+            // 업로드할 이미지 선택 안할 경우 디폴트 이미지 업로드
+            File defaultFile = new File("images/noImage.png");
+            origName = defaultFile.getName();
+            savedName = origName;
+            savedPath = "images/noImage.png";
+        }else{
+            origName = file.getOriginalFilename(); // 원래 파일 이름 추출
+            uuid = UUID.randomUUID().toString(); // 파일 이름으로 쓸 uuid 생성
+            extension = origName.substring(origName.lastIndexOf(".")); // 확장자 추출(ex : .png)
+            savedName = uuid + extension; // uuid와 확장자 결합
+            savedPath = fileDir + savedName; // 파일을 불러올 때 사용할 파일 경로
         }
-        String origName = file.getOriginalFilename(); // 원래 파일 이름 추출
-        String uuid = UUID.randomUUID().toString(); // 파일 이름으로 쓸 uuid 생성
-        String extension = origName.substring(origName.lastIndexOf(".")); // 확장자 추출(ex : .png)
-        String savedName = uuid + extension; // uuid와 확장자 결합
-        String savedPath = fileDir + "/" + savedName; // 파일을 불러올 때 사용할 파일 경로
 
         Fileup fileup = Fileup.builder()
                 .orgnm(origName)
                 .savednm(savedName)
                 .savedpath(savedPath)
                 .build();
-        file.transferTo(new File(savedPath)); // 실제로 로컬에 uuid를 파일명으로 저장
+        
+        if (!file.isEmpty()) {
+            file.transferTo(new File(savedPath)); // 실제로 로컬에 uuid를 파일명으로 저장
+        }
         return fileupRepositoryWon.save(fileup).getFileId(); // 데이터베이스에 파일 정보 저장
     }
 
@@ -81,6 +94,13 @@ public class WriteBoardServiceImpl implements WriteBoardService{
         boardfile.setBoardId(boardId);
         boardfile.setFileupFileId(fileupId);
         boardfileRepositoryWon.save(boardfile);
+    }
+
+    @Override
+    public Member getMember(String email) {
+        // TODO Auto-generated method stub
+        Member member = memberRepositoryWon.findById(email).get();
+        return member;
     }
     
     

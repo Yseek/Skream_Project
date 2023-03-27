@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <title>Spring Board</title>
@@ -23,7 +23,7 @@
               </tr>
               <tr>
                   <td align="center">SUBJECT</td>
-                  <td><input type="text" name="subject" value="수정할 글의 제목" size="60"></td>
+                  <td><input type="text" name="subject" th:value=${boardDto.subject} size="60"></td>
                 </tr>
             <tr>
                 <td align="center">IMAGE</td>

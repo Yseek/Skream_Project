@@ -1,7 +1,6 @@
 package shoes.skream.project.controller.won;
 
 import java.io.IOException;
-import java.lang.reflect.Member;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,15 +8,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.slf4j.Slf4j;
-import shoes.skream.project.domain.Board;
-import shoes.skream.project.domain.Fileup;
 import shoes.skream.project.dto.WriteBoardDto;
 import shoes.skream.project.service.won.WriteBoardService;
 
@@ -28,13 +24,10 @@ public class WriteBoardController {
     WriteBoardService writeBoardService;
 
     @GetMapping("writeBoard")
-    public String writeBoard(Model model, HttpSession session){
-        String email = "abc1@naver.com";
-        model.addAttribute("email", email);
-        // TODO: 로그인한 멤버의 email를 인자로 받아서 넘기도록 수정한다
-
-        //Member loginUser = writeBoardService.getLogin("abc1@naver.com");
-        session.setAttribute("loginUser", "loginUser");
+    public String writeBoard(HttpSession session){
+        String loginUser = writeBoardService.getMember("abc1@naver.com").getEmail();
+        log.info("#### loginUser: {}", loginUser);
+        session.setAttribute("loginUser", loginUser);
         return "writeBoard";
     }
 
@@ -42,28 +35,12 @@ public class WriteBoardController {
     @PostMapping("writeBoard")
     public String writeBoardTest(WriteBoardDto boardDto, @RequestParam("file") List<MultipartFile> files)
                 throws IOException{
-        // BOARD insert
         long boardId = writeBoardService.writeBoard(boardDto);
-        //Fileup fileup = new Fileup();
 
-        // Fileup table insert
         for (MultipartFile file : files) {
-            if(file.isEmpty()){
-                log.info("$$$$$ file.isEmpty() in log");
-                break;
-            }
             long fileupId = writeBoardService.saveFile(file);
-            log.info("$$$$$ boardId: {}, fileupId: {}", boardId, fileupId);
-            // Boardfile insert
-            // board.save 와 fileup.save 의 return 값을 이용해 boardfile.save
             writeBoardService.saveBoardfile(boardId, fileupId);
         }
-
         return "redirect:boardlist";
-    }
-
-    @GetMapping("updateBoard")
-    public String updateBoard(){
-        return "updateBoard";
     }
 }
