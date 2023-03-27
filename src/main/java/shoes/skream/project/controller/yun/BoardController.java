@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import shoes.skream.project.domain.Category;
 import shoes.skream.project.dto.BoardDto;
+import shoes.skream.project.dto.CommentDTO;
 import shoes.skream.project.service.yun.BoardServiceInterface;
 
 @Controller
@@ -27,12 +28,16 @@ public class BoardController {
 	@GetMapping("content")
 	public String content(Model model, long seq, @RequestParam(required = false, defaultValue = "") String orderby,
 			@RequestParam(value = "cate", required = false, defaultValue = "0") Integer categoryId,
+			@RequestParam(required = false, defaultValue = "") String keyword,
+			@RequestParam(value = "search", required = false, defaultValue = "") String searchForWhat,
 			@PageableDefault(page = 0, size = 3, sort = "boardId", direction = Sort.Direction.DESC) Pageable pageable) {
 		boardServiceInterface.hitsCountUp(seq); // 조회수 증가
 		List<Category> categories = boardServiceInterface.listCategories();
-		if (categoryId == 0) {
-			if (orderby.equals("hits")) {
-				Page<BoardDto> list = boardServiceInterface.listByView(pageable);
+		if (keyword.length() != 0) {
+			if (searchForWhat.equals("subject")) {
+				BoardDto contents = boardServiceInterface.showContentById(seq);
+				Page<BoardDto> list = boardServiceInterface.listBySubject(keyword, pageable);
+				List<CommentDTO> comments = boardServiceInterface.listComment(seq);
 				int nowPage = list.getPageable().getPageNumber() + 1;
 				int startPage = Math.max(nowPage - 4, 1);
 				int endPage = Math.min(nowPage + 4, list.getTotalPages());
@@ -43,8 +48,138 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
-				model.addAttribute("categories", categories);
+				model.addAttribute("contents", contents);
+				model.addAttribute("comments", comments);
+				model.addAttribute("keyword", keyword);
 				model.addAttribute("seq", seq);
+				model.addAttribute("searchForWhatVal", searchForWhat);
+				searchForWhat = "제목";
+				model.addAttribute("searchForWhat", searchForWhat);
+				model.addAttribute("categories", categories);
+				model.addAttribute("categoryId", categoryId);
+				model.addAttribute("orderby", orderby);
+				model.addAttribute("list", list);
+				model.addAttribute("nowPage", nowPage);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				model.addAttribute("size", size);
+				model.addAttribute("total", list.getTotalPages());
+				return "content";
+			} else if (searchForWhat.equals("content")) {
+				BoardDto contents = boardServiceInterface.showContentById(seq);
+				Page<BoardDto> list = boardServiceInterface.listByContent(keyword, pageable);
+				List<CommentDTO> comments = boardServiceInterface.listComment(seq);
+				int nowPage = list.getPageable().getPageNumber() + 1;
+				int startPage = Math.max(nowPage - 4, 1);
+				int endPage = Math.min(nowPage + 4, list.getTotalPages());
+				if (endPage < 10) {
+					endPage = Math.min(10, list.getTotalPages());
+				}
+				if (endPage - startPage < 10) {
+					startPage = Math.max(endPage - 9, 1);
+				}
+				int size = list.getPageable().getPageSize();
+				model.addAttribute("contents", contents);
+				model.addAttribute("comments", comments);
+				model.addAttribute("keyword", keyword);
+				model.addAttribute("seq", seq);
+				model.addAttribute("searchForWhatVal", searchForWhat);
+				searchForWhat = "내용";
+				model.addAttribute("searchForWhat", searchForWhat);
+				model.addAttribute("categories", categories);
+				model.addAttribute("categoryId", categoryId);
+				model.addAttribute("orderby", orderby);
+				model.addAttribute("list", list);
+				model.addAttribute("nowPage", nowPage);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				model.addAttribute("size", size);
+				model.addAttribute("total", list.getTotalPages());
+				return "content";
+			} else if (searchForWhat.equals("subjectAndContent")) {
+				BoardDto contents = boardServiceInterface.showContentById(seq);
+				Page<BoardDto> list = boardServiceInterface.listByContentAndSubject(keyword, keyword, pageable);
+				List<CommentDTO> comments = boardServiceInterface.listComment(seq);
+				int nowPage = list.getPageable().getPageNumber() + 1;
+				int startPage = Math.max(nowPage - 4, 1);
+				int endPage = Math.min(nowPage + 4, list.getTotalPages());
+				if (endPage < 10) {
+					endPage = Math.min(10, list.getTotalPages());
+				}
+				if (endPage - startPage < 10) {
+					startPage = Math.max(endPage - 9, 1);
+				}
+				int size = list.getPageable().getPageSize();
+				model.addAttribute("contents", contents);
+				model.addAttribute("comments", comments);
+				model.addAttribute("keyword", keyword);
+				model.addAttribute("seq", seq);
+				model.addAttribute("searchForWhatVal", searchForWhat);
+				searchForWhat = "제목+내용";
+				model.addAttribute("searchForWhat", searchForWhat);
+				model.addAttribute("categories", categories);
+				model.addAttribute("categoryId", categoryId);
+				model.addAttribute("orderby", orderby);
+				model.addAttribute("list", list);
+				model.addAttribute("nowPage", nowPage);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				model.addAttribute("size", size);
+				model.addAttribute("total", list.getTotalPages());
+				return "content";
+			} else if (searchForWhat.equals("writer")) {
+				BoardDto contents = boardServiceInterface.showContentById(seq);
+				Page<BoardDto> list = boardServiceInterface.listByWirter(keyword, pageable);
+				List<CommentDTO> comments = boardServiceInterface.listComment(seq);
+				int nowPage = list.getPageable().getPageNumber() + 1;
+				int startPage = Math.max(nowPage - 4, 1);
+				int endPage = Math.min(nowPage + 4, list.getTotalPages());
+				if (endPage < 10) {
+					endPage = Math.min(10, list.getTotalPages());
+				}
+				if (endPage - startPage < 10) {
+					startPage = Math.max(endPage - 9, 1);
+				}
+				int size = list.getPageable().getPageSize();
+				model.addAttribute("contents", contents);
+				model.addAttribute("comments", comments);
+				model.addAttribute("keyword", keyword);
+				model.addAttribute("seq", seq);
+				model.addAttribute("searchForWhatVal", searchForWhat);
+				searchForWhat = "작성자";
+				model.addAttribute("searchForWhat", searchForWhat);
+				model.addAttribute("categories", categories);
+				model.addAttribute("categoryId", categoryId);
+				model.addAttribute("orderby", orderby);
+				model.addAttribute("list", list);
+				model.addAttribute("nowPage", nowPage);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				model.addAttribute("size", size);
+				model.addAttribute("total", list.getTotalPages());
+				return "content";
+			}
+
+		}
+		if (categoryId == 0) {
+			if (orderby.equals("hits")) {
+				BoardDto contents = boardServiceInterface.showContentById(seq);
+				Page<BoardDto> list = boardServiceInterface.listByView(pageable);
+				List<CommentDTO> comments = boardServiceInterface.listComment(seq);
+				int nowPage = list.getPageable().getPageNumber() + 1;
+				int startPage = Math.max(nowPage - 4, 1);
+				int endPage = Math.min(nowPage + 4, list.getTotalPages());
+				if (endPage < 10) {
+					endPage = Math.min(10, list.getTotalPages());
+				}
+				if (endPage - startPage < 10) {
+					startPage = Math.max(endPage - 9, 1);
+				}
+				int size = list.getPageable().getPageSize();
+				model.addAttribute("contents", contents);
+				model.addAttribute("comments", comments);
+				model.addAttribute("seq", seq);
+				model.addAttribute("categories", categories);
 				model.addAttribute("categoryId", categoryId);
 				model.addAttribute("orderby", orderby);
 				model.addAttribute("list", list);
@@ -55,7 +190,9 @@ public class BoardController {
 				model.addAttribute("total", list.getTotalPages());
 				return "content";
 			} else if (orderby.equals("recom")) {
+				BoardDto contents = boardServiceInterface.showContentById(seq);
 				Page<BoardDto> list = boardServiceInterface.listByRecom(pageable);
+				List<CommentDTO> comments = boardServiceInterface.listComment(seq);
 				int nowPage = list.getPageable().getPageNumber() + 1;
 				int startPage = Math.max(nowPage - 4, 1);
 				int endPage = Math.min(nowPage + 4, list.getTotalPages());
@@ -66,8 +203,10 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
-				model.addAttribute("categories", categories);
+				model.addAttribute("contents", contents);
+				model.addAttribute("comments", comments);
 				model.addAttribute("seq", seq);
+				model.addAttribute("categories", categories);
 				model.addAttribute("categoryId", categoryId);
 				model.addAttribute("orderby", orderby);
 				model.addAttribute("list", list);
@@ -78,7 +217,9 @@ public class BoardController {
 				model.addAttribute("total", list.getTotalPages());
 				return "content";
 			} else {
+				BoardDto contents = boardServiceInterface.showContentById(seq);
 				Page<BoardDto> list = boardServiceInterface.list(pageable);
+				List<CommentDTO> comments = boardServiceInterface.listComment(seq);
 				int nowPage = list.getPageable().getPageNumber() + 1;
 				int startPage = Math.max(nowPage - 4, 1);
 				int endPage = Math.min(nowPage + 4, list.getTotalPages());
@@ -89,8 +230,10 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
-				model.addAttribute("categories", categories);
+				model.addAttribute("contents", contents);
+				model.addAttribute("comments", comments);
 				model.addAttribute("seq", seq);
+				model.addAttribute("categories", categories);
 				model.addAttribute("categoryId", categoryId);
 				model.addAttribute("orderby", orderby);
 				model.addAttribute("list", list);
@@ -104,7 +247,9 @@ public class BoardController {
 		} else {
 			Category category = boardServiceInterface.findCategory(categoryId);
 			if (orderby.equals("hits")) {
+				BoardDto contents = boardServiceInterface.showContentById(seq);
 				Page<BoardDto> list = boardServiceInterface.listByCategoryOrderByView(category, pageable);
+				List<CommentDTO> comments = boardServiceInterface.listComment(seq);
 				int nowPage = list.getPageable().getPageNumber() + 1;
 				int startPage = Math.max(nowPage - 4, 1);
 				int endPage = Math.min(nowPage + 4, list.getTotalPages());
@@ -115,8 +260,10 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
-				model.addAttribute("categories", categories);
+				model.addAttribute("contents", contents);
+				model.addAttribute("comments", comments);
 				model.addAttribute("seq", seq);
+				model.addAttribute("categories", categories);
 				model.addAttribute("categoryId", categoryId);
 				model.addAttribute("orderby", orderby);
 				model.addAttribute("list", list);
@@ -127,7 +274,9 @@ public class BoardController {
 				model.addAttribute("total", list.getTotalPages());
 				return "content";
 			} else if (orderby.equals("recom")) {
+				BoardDto contents = boardServiceInterface.showContentById(seq);
 				Page<BoardDto> list = boardServiceInterface.listByCategoryOrderByRecom(category, pageable);
+				List<CommentDTO> comments = boardServiceInterface.listComment(seq);
 				int nowPage = list.getPageable().getPageNumber() + 1;
 				int startPage = Math.max(nowPage - 4, 1);
 				int endPage = Math.min(nowPage + 4, list.getTotalPages());
@@ -138,8 +287,10 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
-				model.addAttribute("categories", categories);
+				model.addAttribute("contents", contents);
+				model.addAttribute("comments", comments);
 				model.addAttribute("seq", seq);
+				model.addAttribute("categories", categories);
 				model.addAttribute("categoryId", categoryId);
 				model.addAttribute("orderby", orderby);
 				model.addAttribute("list", list);
@@ -150,7 +301,9 @@ public class BoardController {
 				model.addAttribute("total", list.getTotalPages());
 				return "content";
 			} else {
+				BoardDto contents = boardServiceInterface.showContentById(seq);
 				Page<BoardDto> list = boardServiceInterface.listByCategory(category, pageable);
+				List<CommentDTO> comments = boardServiceInterface.listComment(seq);
 				int nowPage = list.getPageable().getPageNumber() + 1;
 				int startPage = Math.max(nowPage - 4, 1);
 				int endPage = Math.min(nowPage + 4, list.getTotalPages());
@@ -161,8 +314,10 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
-				model.addAttribute("categories", categories);
+				model.addAttribute("contents", contents);
+				model.addAttribute("comments", comments);
 				model.addAttribute("seq", seq);
+				model.addAttribute("categories", categories);
 				model.addAttribute("categoryId", categoryId);
 				model.addAttribute("orderby", orderby);
 				model.addAttribute("list", list);
@@ -197,6 +352,7 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("keyword", keyword);
 				model.addAttribute("searchForWhatVal", searchForWhat);
 				searchForWhat = "제목";
 				model.addAttribute("searchForWhat", searchForWhat);
@@ -222,6 +378,7 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("keyword", keyword);
 				model.addAttribute("searchForWhatVal", searchForWhat);
 				searchForWhat = "내용";
 				model.addAttribute("searchForWhat", searchForWhat);
@@ -247,6 +404,7 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("keyword", keyword);
 				model.addAttribute("searchForWhatVal", searchForWhat);
 				searchForWhat = "제목+내용";
 				model.addAttribute("searchForWhat", searchForWhat);
@@ -272,8 +430,9 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("keyword", keyword);
 				model.addAttribute("searchForWhatVal", searchForWhat);
-				searchForWhat = "";
+				searchForWhat = "작성자";
 				model.addAttribute("searchForWhat", searchForWhat);
 				model.addAttribute("categories", categories);
 				model.addAttribute("categoryId", categoryId);

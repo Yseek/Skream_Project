@@ -58,3 +58,12 @@ insert into BOARDFILE values(12,12,null);
 insert into BOARDFILE values(13,13,null);
 insert into BOARDFILE values(14,14,null);
 insert into BOARDFILE values(15,14,null);
+
+
+insert into COMMENT values(1,'abc1@naver.com',now(),now(),null,'첫번째 댓글')
+insert into COMMENT values(1,'abc1@naver.com',now(),now(),null,'두번째 댓글')
+
+insert into RECOMMENT values(1,'abc3@naver.com','첫번째 대댓글',now(),now(),null);
+insert into RECOMMENT values(1,'abc2@naver.com','두번째 대댓글',now(),now(),null);
+insert into RECOMMENT values(2,'abc3@naver.com','세번째 대댓글',now(),now(),null);
+insert into RECOMMENT values(2,'abc2@naver.com','네번째 대댓글',now(),now(),null);

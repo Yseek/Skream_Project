@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import shoes.skream.project.domain.Category;
 import shoes.skream.project.dto.BoardDto;
+import shoes.skream.project.dto.CommentDTO;
 
 public interface BoardServiceInterface {
 	Page<BoardDto> list(Pageable pageable);
@@ -24,4 +25,6 @@ public interface BoardServiceInterface {
 	Page<BoardDto> listByContent(String keyword, Pageable pageable);
 	Page<BoardDto> listByContentAndSubject(String keyword, String keyword2,Pageable pageable);
 	Page<BoardDto> listByWirter(String keyword, Pageable pageable);
+	BoardDto showContentById(long seg);
+	List<CommentDTO> listComment(long boardId);
 }
