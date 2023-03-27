@@ -66,7 +66,7 @@
 							<tr class="comment_element_parent">
 								<td class="user">
 									<strong style="float:left;" th:text="${comment.commentwriter}">태현</strong>
-									<span style="float:right" th:text="${comment.rdate}">23/01/01</span><br>
+									<span style="float:right" th:text="${#temporals.format(comment.rdate,'yy/MM/dd HH:mm')}">23/01/01</span><br>
 									<span style="float:left;" th:text="${comment.coContext}">깃태식이 발표 잘하네</span><br>
 									<span></span>
 									<button style="float:left; margin-top:1%; background-color:transparent">답글</button>
@@ -76,7 +76,7 @@
 							<tr class="comment_element_child" th:each="recom:${comment.recomments}">
 								<td class="user" style="background-color: rgb(242,242,242);">
 									<strong style="float:left; margin-left:5%" th:text="${recom.recommentWriter}">대원</strong>
-									<span style="float:right" th:text="${recom.rdate}">23/01/01</span><br>
+									<span style="float:right" th:text="${#temporals.format(recom.rdate,'yy/MM/dd HH:mm')}">23/01/01</span><br>
 									<span style="float:left; margin-left:5%" th:text="${recom.recoContext}">ㄹㅇ 깃태식이 발표 잘하네</span><br>
 									<button style="float:left; margin-left:5%; margin-top:1%;">삭제</button>
 								</td>
