@@ -1,5 +1,6 @@
 package shoes.skream.project.service.yun;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +9,14 @@ import org.springframework.data.domain.Pageable;
 
 import shoes.skream.project.domain.Board;
 import shoes.skream.project.domain.Category;
+import shoes.skream.project.domain.Comment;
 import shoes.skream.project.dto.BoardDto;
+import shoes.skream.project.dto.CommentDTO;
 import shoes.skream.project.mapper.yun.BoardDtoMapper;
+import shoes.skream.project.repository.yun.BoardMemberRepository;
 import shoes.skream.project.repository.yun.BoardRepository;
 import shoes.skream.project.repository.yun.CategoryRepository;
+import shoes.skream.project.repository.yun.CommentRepository;
 
 public class BoardService implements BoardServiceInterface {
 
@@ -24,12 +29,19 @@ public class BoardService implements BoardServiceInterface {
 	@Autowired
 	private final BoardDtoMapper boardDtoMapper;
 
+	@Autowired
+	private final BoardMemberRepository boardMemberRepository;
 
+	@Autowired
+	private final CommentRepository commnRepository;
 
-	public BoardService(BoardRepository boardRepository, BoardDtoMapper boardDtoMapper,CategoryRepository categoryRepository) {
+	public BoardService(BoardRepository boardRepository, BoardDtoMapper boardDtoMapper,
+			CategoryRepository categoryRepository, BoardMemberRepository boardMemberRepository, CommentRepository commnRepository) {
 		this.boardRepository = boardRepository;
 		this.boardDtoMapper = boardDtoMapper;
 		this.categoryRepository = categoryRepository;
+		this.boardMemberRepository = boardMemberRepository;
+		this.commnRepository = commnRepository;
 	}
 
 	@Override
@@ -61,17 +73,19 @@ public class BoardService implements BoardServiceInterface {
 
 	@Override
 	public Page<BoardDto> listByCategory(Category category, Pageable pageable) {
-		return boardRepository.findAllByCategory(category, pageable).map(board-> BoardDto.from(board, boardDtoMapper));
+		return boardRepository.findAllByCategory(category, pageable).map(board -> BoardDto.from(board, boardDtoMapper));
 	}
 
 	@Override
 	public Page<BoardDto> listByCategoryOrderByView(Category category, Pageable pageable) {
-		return boardRepository.findAllByCategoryOrderByHitsDesc(category, pageable).map(board->BoardDto.from(board, boardDtoMapper));
+		return boardRepository.findAllByCategoryOrderByHitsDesc(category, pageable)
+				.map(board -> BoardDto.from(board, boardDtoMapper));
 	}
 
 	@Override
 	public Page<BoardDto> listByCategoryOrderByRecom(Category category, Pageable pageable) {
-		return boardRepository.findAllByCategoryOrderByRecomDesc(category, pageable).map(board->BoardDto.from(board, boardDtoMapper));
+		return boardRepository.findAllByCategoryOrderByRecomDesc(category, pageable)
+				.map(board -> BoardDto.from(board, boardDtoMapper));
 	}
 
 	@Override
@@ -81,16 +95,39 @@ public class BoardService implements BoardServiceInterface {
 
 	@Override
 	public Page<BoardDto> listBySubject(String keyword, Pageable pageable) {
-		return boardRepository.findAllBySubjectContainingIgnoreCase(keyword, pageable).map(board->BoardDto.from(board, boardDtoMapper));
+		return boardRepository.findAllBySubjectContainingIgnoreCase(keyword, pageable)
+				.map(board -> BoardDto.from(board, boardDtoMapper));
 	}
 
 	@Override
 	public Page<BoardDto> listByContent(String keyword, Pageable pageable) {
-		return boardRepository.findAllByContentContainingIgnoreCase(keyword, pageable).map(board->BoardDto.from(board, boardDtoMapper));
+		return boardRepository.findAllByContentContainingIgnoreCase(keyword, pageable)
+				.map(board -> BoardDto.from(board, boardDtoMapper));
 	}
 
 	@Override
 	public Page<BoardDto> listByContentAndSubject(String keyword, String keyword2, Pageable pageable) {
-		return boardRepository.findByContentContainingIgnoreCaseOrSubjectContainingIgnoreCase(keyword, keyword2, pageable).map(board->BoardDto.from(board, boardDtoMapper));
+		return boardRepository
+				.findByContentContainingIgnoreCaseOrSubjectContainingIgnoreCase(keyword, keyword2, pageable)
+				.map(board -> BoardDto.from(board, boardDtoMapper));
+	}
+
+	@Override
+	public Page<BoardDto> listByWirter(String keyword, Pageable pageable) {
+		return boardRepository.findByMember(boardMemberRepository.findByName(keyword), pageable).map(board->BoardDto.from(board, boardDtoMapper));
+	}
+
+	@Override
+	public BoardDto showContentById(long seg) {
+		return BoardDto.from(boardRepository.findByBoardId(seg), boardDtoMapper);
+	}
+
+	@Override
+	public List<CommentDTO> listComment(long boardId) {
+		List<CommentDTO> recom= new ArrayList<>();
+		for(Comment comment :commnRepository.findByBoardId(boardId)){
+			recom.add(CommentDTO.from(comment, boardDtoMapper));
+		}
+		return recom;
 	}
 }

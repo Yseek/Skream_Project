@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import shoes.skream.project.domain.Board;
 import shoes.skream.project.domain.Category;
+import shoes.skream.project.domain.Member;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
 	Page<Board> findAllByOrderByHitsDesc (Pageable pageable);
@@ -15,4 +16,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	Page<Board> findAllBySubjectContainingIgnoreCase(String keyword, Pageable pageable);
 	Page<Board> findAllByContentContainingIgnoreCase(String keyword, Pageable pageable);
 	Page<Board> findByContentContainingIgnoreCaseOrSubjectContainingIgnoreCase(String keyword,String keyword2, Pageable pageable);
+	Page<Board> findByMember(Member member,Pageable pageable);
+	Board findByBoardId(long boardId);
 }

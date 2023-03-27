@@ -3,6 +3,7 @@ insert into MEMBER values('abc1@naver.com', '사용자1', '1990/01/01','010-1111
 insert into MEMBER values('abc2@naver.com', '사용자2', '1991/01/01','010-2222-2222','1234',now(),now());
 insert into MEMBER values('abc3@naver.com', '사용자3', '1992/01/01','010-3333-3333','1234',now(),now()); 
 
+
 insert into CATEGORY values(1, '나이키');
 insert into CATEGORY values(2, '아디다스');
 insert into CATEGORY values(3, '뉴발란스');
@@ -57,3 +58,12 @@ insert into BOARDFILE values(12,12,null);
 insert into BOARDFILE values(13,13,null);
 insert into BOARDFILE values(14,14,null);
 insert into BOARDFILE values(15,14,null);
+
+
+insert into COMMENT values(1,'abc1@naver.com',now(),now(),null,'첫번째 댓글')
+insert into COMMENT values(1,'abc1@naver.com',now(),now(),null,'두번째 댓글')
+
+insert into RECOMMENT values(1,'abc3@naver.com','첫번째 대댓글',now(),now(),null);
+insert into RECOMMENT values(1,'abc2@naver.com','두번째 대댓글',now(),now(),null);
+insert into RECOMMENT values(2,'abc3@naver.com','세번째 대댓글',now(),now(),null);
+insert into RECOMMENT values(2,'abc2@naver.com','네번째 대댓글',now(),now(),null);
