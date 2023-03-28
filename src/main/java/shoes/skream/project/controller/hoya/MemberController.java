@@ -21,6 +21,7 @@ public class MemberController {
     memberService.save(memberDTO);
     return "main";
   }
+
   @PostMapping("login.do")
   public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session){
     MemberDTO loginResult = memberService.login(memberDTO);
@@ -31,6 +32,7 @@ public class MemberController {
       return "main";
     }
   }
+  
   @GetMapping("logout.do")
   public String Logout(HttpSession session){
     session.invalidate();

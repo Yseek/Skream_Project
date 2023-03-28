@@ -11,6 +11,7 @@ import shoes.skream.project.domain.Member;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberDTO {
+  
   private String email;
   private String pwd;
   private String checkPwd;
