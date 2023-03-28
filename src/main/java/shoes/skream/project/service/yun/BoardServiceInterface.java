@@ -27,4 +27,8 @@ public interface BoardServiceInterface {
 	Page<BoardDto> listByWirter(String keyword, Pageable pageable);
 	BoardDto showContentById(long seg);
 	List<CommentDTO> listComment(long boardId);
+	void boardUpdate(long boardId);
+	void boardUnUpdate(long boardId);
+	void recommendCreDo(long boardId, String email);
+	void recommendDelDo(long boardId, String email);
 }

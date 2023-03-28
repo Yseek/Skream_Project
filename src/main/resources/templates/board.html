@@ -13,7 +13,7 @@
 	<article th:fragment="boardFragment">
 		<div style="float: left;">
 			<button onclick="wholeList()">전체글</button>
-			<button>공지</button>
+			<!-- <button>공지</button> -->
 			<div class="dropdown">
 				<span class="dropbtn">브랜드별</span>
 				<div class="dropdown-content">
@@ -61,7 +61,10 @@
 				<tr th:id="${list.seq}" th:each="list:${list}">
 					<td th:text="${list.seq}">3</td>
 					<input type="hidden" class="listSeq" th:value="${list.seq}">
-					<td th:text="${list.fileUp}"><img src="/images/shoes.png"></td>
+					<td>
+						<img th:if="|/contentimages/${list.fileUp.get(0).orgnm}|!='/contentimages/noImage.png'" th:src="|/contentimages/${list.fileUp.get(0).fileId}|">
+						<img th:if="|/contentimages/${list.fileUp.get(0).orgnm}|=='/contentimages/noImage.png'" src="images/noImage.png">
+					</td>
 					<td id="subject">
 						<span style="float: left;">
 							<span>[<strong th:text="${list.cg.cgname}"></strong>]</span>
@@ -81,6 +84,10 @@
 									th:href="@{content?(page=${nowPage},seq=${list.seq},search=${searchForWhatVal},keyword=${keyword})}"
 									id="content_link" th:text="${list.subject}">제목링크</a></span>
 						</span>
+						
+						<span>
+							<a th:if="${list.comments.size>0}" th:text="|[${list.comments.size}]|" style="float: left; color: green; margin-left: 5px;"></a>
+						</span>
 					</td>
 					<td><a href="#" th:text="${list.writer}">글쓴이</a></td>
 					<td th:text="${#temporals.format(list.udate,'yy/MM/dd')}">작성일</td>
@@ -91,7 +98,7 @@
 		</table>
 		<div style="float: left;">
 			<button onclick="wholeList()">전체글</button>
-			<button>글쓰기</button>
+			<a href="writeBoard">글쓰기</a>
 		</div>
 		<br>
 		<hr>
