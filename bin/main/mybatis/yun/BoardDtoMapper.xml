@@ -37,7 +37,7 @@
 			UDATE
 		from Member where EMAIL=#{email}
 	</select>
-	<select id="listRecommnet" resultType="Recomment">
+	<select id="listRecomment" resultType="Recomment">
 		select 
 			COMMENT_COMMENT_ID as commentId, 
 			MEMBER_EMAIL as email, 
@@ -46,5 +46,12 @@
 			UDATE, 
 			RECOMMENT_ID as recommentId
 		from Recomment where COMMENT_COMMENT_ID=#{commentId}
+	</select>
+	<select id="listRecommend" resultType="Recommend">
+		select 
+			MEMBER_EMAIL as email, 
+			BOARD_ID as boardId, 
+			RECOMMEND_ID as recommendId
+		from Recommend where BOARD_ID=#{boardId}
 	</select>
 </mapper>
