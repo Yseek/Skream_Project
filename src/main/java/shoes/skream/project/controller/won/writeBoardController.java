@@ -9,12 +9,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.slf4j.Slf4j;
+import shoes.skream.project.domain.Category;
 import shoes.skream.project.dto.WriteBoardDto;
 import shoes.skream.project.service.won.WriteBoardService;
 
@@ -25,7 +27,9 @@ public class WriteBoardController {
     WriteBoardService writeBoardService;
 
     @GetMapping("writeBoard")
-    public String writeBoard(HttpServletRequest request, HttpSession session){
+    public String writeBoard(HttpServletRequest request, HttpSession session, Model model){
+        List<Category> categoryList = writeBoardService.getCategoryList();
+        model.addAttribute("categoryList", categoryList);
         session = request.getSession();
         log.info("#### session.loginEmail: {}", session.getAttribute("loginEmail"));
         return "writeBoard";
