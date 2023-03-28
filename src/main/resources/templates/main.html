@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>메인 페이지 </title>
+    <title>신</title>
     <script src="https://kit.fontawesome.com/69fe52bc75.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}" />
     <link rel="stylesheet" th:href="@{/css/main_hyun.css}">
     <link rel="stylesheet" th:href="@{/css/modal.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +28,7 @@
                 <div class="container">
                     <div class="header">
                         <div class="header_title">
-                            <a href="#" class="header_title_img">
+                            <a href="http://127.0.0.1:8080/main" class="header_title_img">
                                 <div>신<span>&nbsp; Team 3</span></div>
                             </a>
                         </div>
@@ -37,46 +38,63 @@
                         </div>
                         <div class="header_menu">
                             <div class="header_menu_intro">
-                                <a href="#" class="header_menu_intro_a notice" onmouseover="show_alarm()">알림<span
-                                        class="unread"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span th:text="${session.loginEmail}"></span> <span th:if="${session.loginEmail}">님 환영합니다</span>
+                                <a href="boardlist" class="header_menu_intro_a notice"
+                                    onmouseover="show_alarm()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;게시판 입장!<span
+                                        class="unread"></span>
+                                </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span th:text="${session.loginEmail}"></span> <span th:if="${session.loginEmail}">님
+                                    환영합니다</span>
 
-                                <button class="btn-open-join" th:unless="${session.loginEmail}">회원가입</button>&nbsp;&nbsp;
+                                <button class="btn-open-join"
+                                    th:unless="${session.loginEmail}">회원가입</button>&nbsp;&nbsp;
                                 <button class="btn-open-update" th:if="${session.loginEmail}">정보수정</button>&nbsp;&nbsp;
                                 <div class="modal_join">
+                                    <form action="join.do" method="post" >
                                     <div class="modal_body">
                                         <div class="close-area"><a href="#" onclick="location.href=document.referrer"
                                                 style="text-decoration-line:none; float: right; color:#ffffff">X</a>
                                         </div>
-                                        <h2 style="font-size: 30px; color:white; margin-bottom:20%;" th:unless="${session.loginEmail}">회원가입</h2>
-                                        <input style="margin-bottom:0" class="join_text" type="text" name="email" id="email" th:unless="${session.loginEmail}" placeholder="이메일"><br>
-                                        <div id ="emailError" style="color:white; margin-bottom: 5%; margin-top: 0px;" th:unless="${session.loginEmail}"></div>
-                                        <input class="join_text" type="password" name="pwd" th:unless="${session.loginEmail}" placeholder="비밀번호">
-                                        <input class="join_text" type="password" name="checkPwd" th:unless="${session.loginEmail}" placeholder="비밀번호 확인">
-                                        <input class="join_text" type="text" name="name" th:unless="${session.loginEmail}" placeholder="닉네임">
-                                        <input class="join_text" type="date" name="birth" th:unless="${session.loginEmail}">
-                                        <input class="join_text" type="text" name="phone" th:unless="${session.loginEmail}" placeholder="전화번호(010-0000-0000)">
-                                        <input class="join_button" type="submit" value="가입" th:unless="${session.loginEmail}">
-                                        <input class="join_button" type="button" value="취소" onclick="location.href=document.referrer" th:unless="${session.loginEmail}">
+                                        <h2 style="font-size: 30px; color:white; margin-bottom:20%;"
+                                            th:unless="${session.loginEmail}">회원가입</h2>
+                                        <input style="margin-bottom:0" class="join_text" type="text" name="email"
+                                            id="email" th:unless="${session.loginEmail}" placeholder="이메일"><br>
+                                        <div id="emailError" style="color:white; margin-bottom: 5%; margin-top: 0px;"
+                                            th:unless="${session.loginEmail}"></div>
+                                        <input class="join_text" type="password" name="pwd"
+                                            th:unless="${session.loginEmail}" placeholder="비밀번호">
+                                        <input class="join_text" type="password" name="checkPwd"
+                                            th:unless="${session.loginEmail}" placeholder="비밀번호 확인">
+                                        <input class="join_text" type="text" name="name"
+                                            th:unless="${session.loginEmail}" placeholder="닉네임">
+                                        <input class="join_text" type="date" name="birth"
+                                            th:unless="${session.loginEmail}">
+                                        <input class="join_text" type="text" name="phone"
+                                            th:unless="${session.loginEmail}" placeholder="전화번호(010-0000-0000)">
+                                        <input class="join_button" type="submit" value="가입"
+                                            th:unless="${session.loginEmail}">
+                                        <input class="join_button" type="button" value="취소"
+                                            onclick="location.href=document.referrer" th:unless="${session.loginEmail}">
                                     </div>
+                                    </form>
                                 </div>
 
                                 <button class="btn-open-login" th:unless="${session.loginEmail}">로그인</button>
                                 <button onclick="location.href='logout.do'" th:if="${session.loginEmail}">로그아웃</button>
                                 <div class="modal_login">
                                     <form action="login.do" method="post">
-                                    <div class="modal_body">
-                                        <div class="close-area"><a href="#" onclick="location.href=document.referrer"
-                                                style="text-decoration-line:none; float: right; color:#ffffff">X</a>
+                                        <div class="modal_body">
+                                            <div class="close-area"><a href="#"
+                                                    onclick="location.href=document.referrer"
+                                                    style="text-decoration-line:none; float: right; color:#ffffff">X</a>
+                                            </div>
+                                            <h2 style="font-size: 30px; color:white; margin-bottom:37%">로그인</h2>
+                                            <input class="login_text" type="text" name="email" placeholder="이메일">
+                                            <input class="login_text" type="password" name="pwd" placeholder="비밀번호">
+                                            <input class="login_button" type="submit" value="로그인">
+                                            <input class="login_button" type="button" value="취소"
+                                                onclick="location.href=document.referrer">
                                         </div>
-                                        <h2 style="font-size: 30px; color:white; margin-bottom:37%">로그인</h2>
-                                        <input class="login_text" type="text" name="email" placeholder="이메일">
-                                        <input class="login_text" type="password" name="pwd" placeholder="비밀번호">
-                                        <input class="login_button" type="submit" value="로그인">
-                                        <input class="login_button" type="button" value="취소"
-                                            onclick="location.href=document.referrer">
-                                    </div>
-                                 </form>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -114,51 +132,79 @@
                             <div>
                                 <h3><i class="fas fa-university">&nbsp;</i>MEN</h3>
                                 <ol>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000245&page=1"><span>운동화</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000249"><span>스포츠</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000254"><span>구두</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000260&page=1"><span>샌들</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000410&page=1"><span>캐주얼</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000266&page=1"><span>부츠</span></a></li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000245&page=1"><span>운동화</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000249"><span>스포츠</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000254"><span>구두</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000260&page=1"><span>샌들</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000410&page=1"><span>캐주얼</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000266&page=1"><span>부츠</span></a>
+                                    </li>
                                 </ol>
                             </div>
                             <div>
                                 <h3><i class="fas fa-university">&nbsp;</i>WOMEN</h3>
                                 <ol>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000245&page=1"><span>운동화</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000249&page=1"><span>스포츠</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000254&page=1"><span>구두</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000260&page=1"><span>샌들</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000410&page=1"><span>캐주얼</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000266&page=1"><span>부츠</span></a></li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000245&page=1"><span>운동화</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000249&page=1"><span>스포츠</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000254&page=1"><span>구두</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000260&page=1"><span>샌들</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000410&page=1"><span>캐주얼</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10001&ctgrNo=1000000266&page=1"><span>부츠</span></a>
+                                    </li>
                                 </ol>
                             </div>
                             <div>
                                 <h3><i class="fas fa-university">&nbsp;</i>KIDS</h3>
                                 <ol>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000245&page=1"><span>운동화</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000249&page=1"><span>스포츠</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000254&page=1"><span>구두</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000260&page=1"><span>샌들</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000410&page=1"><span>캐주얼</span></a></li>
-                                    <li><a href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000266&page=1"><span>부츠</span></a></li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000245&page=1"><span>운동화</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000249&page=1"><span>스포츠</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000254&page=1"><span>구두</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000260&page=1"><span>샌들</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10000&ctgrNo=1000000410&page=1"><span>캐주얼</span></a>
+                                    </li>
+                                    <li><a
+                                            href="https://abcmart.a-rt.com/display/category/main?genderGbnCode=10002&ctgrNo=1000000266&page=1"><span>부츠</span></a>
+                                    </li>
                                 </ol>
                             </div>
                         </div>
                     </div>
                     <article id="toggle">
-                        <div class="container">
-                            <div class="toggle">
-                                <span></span>
-                                <a href="#" class="btn" onclick="drop_down_monitor_menu()">
-                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
+                        <div class="container"></div>
                     </article>
                 </div>
             </nav>
-
             <main>
                 <section id="contents">
                     <div class="container parallax_base_layer">
@@ -169,7 +215,30 @@
                                 <h4 class="ir_su col_tit">메인 이미지</h4>
                                 <p class="col_desc"><span class="ir_su">메인 이미지<br /></span>
                                 </p>
-                                <img th:src="@{/img/main_banner.png}">
+                                <img th:src="@{/img/main_banner.png}" class="slides">
+                                <img th:src="@{/img/main_banner2.png}" class="slides">
+                                <img th:src="@{/img/main_banner3.jpg}" class="slides">
+                                <script type="text/javascript">
+                                    var index = 0;   // 이미지 접근 인덱스
+                                    window.onload = function () {
+                                        slideView();
+                                    }
+
+                                    function slideView() {
+                                        var i;
+                                        var x = document.getElementsByClassName("slides");
+                                        for (i = 0; i < x.length; i++) { // slides 갯수
+                                            x[i].style.display = "none";
+                                        }
+                                        index++; // index 1씩 증가
+                                        if (index > x.length) {
+                                            index = 1;  // index가 초과되면 1로 변경
+                                        }
+                                        x[index - 1].style.display = "block";
+
+                                        setTimeout(slideView, 3000); // 사진 속도
+                                    }
+                                </script>
                             </article>
                             <article class="column col2">
                                 <!-- 게시판  -->
@@ -221,13 +290,19 @@
                                     <h5 class="ir_su">Notice1</h5>
                                     <h5>루리웹 게시판</h5>
                                     <ul>
-                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372270?">다음주에 간만에 큰거오는군요 [6]</a></li>
-                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372268?">신발 착샷 및 소장품들 ㅎㅎ2 [4]</a></li>
-                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372264?">나이키 조던1ko 로우 X 유니온!! [9]</a></li>
-                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372192?page=3">늘어나는 고무줄 운동화끈 아세요? [7]</a></li>
-                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372258?page=2">뉴발란스 580 아틀란티스 [3]</a></li>
+                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372270?">다음주에 간만에
+                                                큰거오는군요 [6]</a></li>
+                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372268?">신발 착샷 및
+                                                소장품들 ㅎㅎ2 [4]</a></li>
+                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372264?">나이키 조던1ko
+                                                로우 X 유니온!! [9]</a></li>
+                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372192?page=3">늘어나는
+                                                고무줄 운동화끈 아세요? [7]</a></li>
+                                        <li><a href="https://bbs.ruliweb.com/hobby/board/320046/read/372258?page=2">뉴발란스
+                                                580 아틀란티스 [3]</a></li>
                                     </ul>
-                                    <a href="https://bbs.ruliweb.com/hobby/board/320046" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
+                                    <a href="https://bbs.ruliweb.com/hobby/board/320046" class="more" title="더 보기">More
+                                        <i class="fa fa-plus-circle"></i></a>
                                 </div>
 
                                 <!-- 게시판  -->
@@ -235,26 +310,47 @@
                                     <h5 class="ir_su">Notice1</h5>
                                     <h5>디시인사이드 게시판</h5>
                                     <ul>
-                                        <li><a href="https://gall.dcinside.com/board/view/?id=footwear&no=1672919&page=1">금강제화는 무조건 상품권으로 사는게 맞음?? [9]</a></li>
-                                        <li><a href="https://gall.dcinside.com/board/view/?id=footwear&no=1672930&page=1">애들아 발길이 235인데 신발은 255신는데 [5]</a></li>
-                                        <li><a href="https://gall.dcinside.com/board/view/?id=footwear&no=1672899&page=1">이거 이름 뭐야? [2]</a></li>
-                                        <li><a href="https://gall.dcinside.com/board/view/?id=footwear&no=1667737&exception_mode=recommend&page=2">이삐다 이뻐 [22]</a></li>
-                                        <li><a href="https://gall.dcinside.com/board/view/?id=footwear&no=1668178&exception_mode=recommend&page=2">조던1 폴른 샀습니다 [10]</a></li>
+                                        <li><a
+                                                href="https://gall.dcinside.com/board/view/?id=footwear&no=1672919&page=1">금강제화는
+                                                무조건 상품권으로 사는게 맞음?? [9]</a></li>
+                                        <li><a
+                                                href="https://gall.dcinside.com/board/view/?id=footwear&no=1672930&page=1">애들아
+                                                발길이 235인데 신발은 255신는데 [5]</a></li>
+                                        <li><a
+                                                href="https://gall.dcinside.com/board/view/?id=footwear&no=1672899&page=1">이거
+                                                이름 뭐야? [2]</a></li>
+                                        <li><a
+                                                href="https://gall.dcinside.com/board/view/?id=footwear&no=1667737&exception_mode=recommend&page=2">이삐다
+                                                이뻐 [22]</a></li>
+                                        <li><a
+                                                href="https://gall.dcinside.com/board/view/?id=footwear&no=1668178&exception_mode=recommend&page=2">조던1
+                                                폴른 샀습니다 [10]</a></li>
                                     </ul>
-                                    <a href="https://gall.dcinside.com/board/lists/?id=footwear" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
+                                    <a href="https://gall.dcinside.com/board/lists/?id=footwear" class="more"
+                                        title="더 보기">More <i class="fa fa-plus-circle"></i></a>
                                 </div>
 
                                 <div class="notice6">
                                     <h5 class="ir_su">Notice1</h5>
                                     <h5>풋셀 게시판</h5>
                                     <ul>
-                                        <li><a href="https://footsell.com/g2/bbs/board.php?bo_table=m35&wr_id=1533795">당근 가품 판매 [17]</a></li>
-                                        <li><a href="https://footsell.com/g2/bbs/board.php?bo_table=sneakertalk&wr_id=827016">뉴발란스 574 레거시 2종 선착 앱 발매 (11시)</a></li>
-                                        <li><a href="https://footsell.com/g2/bbs/board.php?bo_table=sneakertalk&wr_id=826611&page=6">[ABC마트] 덩크 로우 범고래 2종 선착 발매 (10시)</a></li>
-                                        <li><a href="https://footsell.com/g2/bbs/board.php?bo_table=sneakertalk&wr_id=826974&page=2">혹시 인천쪽에 아울렛 좋은 곳 있나요?? [1]</a></li>
-                                        <li><a href="https://footsell.com/g2/bbs/board.php?bo_table=sneakertalk&wr_id=826989&page=2">티파니 x 에어 포스1 로우 1837 [3]</a></li>
+                                        <li><a href="https://footsell.com/g2/bbs/board.php?bo_table=m35&wr_id=1533795">당근
+                                                가품 판매 [17]</a></li>
+                                        <li><a
+                                                href="https://footsell.com/g2/bbs/board.php?bo_table=sneakertalk&wr_id=827016">뉴발란스
+                                                574 레거시 2종 선착 앱 발매 (11시)</a></li>
+                                        <li><a
+                                                href="https://footsell.com/g2/bbs/board.php?bo_table=sneakertalk&wr_id=826611&page=6">[ABC마트]
+                                                덩크 로우 범고래 2종 선착 발매 (10시)</a></li>
+                                        <li><a
+                                                href="https://footsell.com/g2/bbs/board.php?bo_table=sneakertalk&wr_id=826974&page=2">혹시
+                                                인천쪽에 아울렛 좋은 곳 있나요?? [1]</a></li>
+                                        <li><a
+                                                href="https://footsell.com/g2/bbs/board.php?bo_table=sneakertalk&wr_id=826989&page=2">티파니
+                                                x 에어 포스1 로우 1837 [3]</a></li>
                                     </ul>
-                                    <a href="https://footsell.com/g2/bbs/board.php?bo_table=m35" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
+                                    <a href="https://footsell.com/g2/bbs/board.php?bo_table=m35" class="more"
+                                        title="더 보기">More <i class="fa fa-plus-circle"></i></a>
                                 </div>
                             </article>
 
@@ -268,14 +364,17 @@
                                     <h5 class="ir_su">Notice1</h5>
                                     <h5>오늘의 영상</h5>
                                     <ul>
-                                        <li><a href="https://www.youtube.com/watch?v=1z4NjPc4_i0"><img th:src="@{/img/clip1.jpg}" alt="" />
-                                            유투브 채널 숏박스 '장기연애 - 벚꽃놀이 편'</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=1z4NjPc4_i0"><img
+                                                    th:src="@{/img/clip1.jpg}" alt="" />
+                                                유투브 채널 숏박스 '장기연애 - 벚꽃놀이 편'</a></li>
                                     </ul>
                                     <ul>
-                                        <li><a href="https://tv.naver.com/v/34349823"><img th:src="@{/img/clip2.png}" alt="" />
-                                            '몸무게가 57KG?' 주우재, 몸무게 논란 해명♨</a></li>
+                                        <li><a href="https://tv.naver.com/v/34349823"><img th:src="@{/img/clip2.png}"
+                                                    alt="" />
+                                                '몸무게가 57KG?' 주우재, 몸무게 논란 해명♨</a></li>
                                     </ul>
-                                    <a href="https://www.youtube.com/feed/trending?bp=6gQJRkVleHBsb3Jl" class="more" title="인기급상승">More <i class="fa fa-plus-circle"></i></a>
+                                    <a href="https://www.youtube.com/feed/trending?bp=6gQJRkVleHBsb3Jl" class="more"
+                                        title="인기급상승">More <i class="fa fa-plus-circle"></i></a>
                                 </div>
 
                                 <!-- 게시판  -->
@@ -283,14 +382,17 @@
                                     <h5 class="ir_su">Notice2</h5>
                                     <h5>오늘의 기사</h5>
                                     <ul>
-                                        <li><a href="https://n.news.naver.com/article/277/0005236406?ntype=RANKING"><img th:src="@{/img/bmw.png}" alt="" />
-                                            BMW, X1 완전변경 모델 출시 “5770만원부터”</a></li>
+                                        <li><a href="https://n.news.naver.com/article/277/0005236406?ntype=RANKING"><img
+                                                    th:src="@{/img/bmw.png}" alt="" />
+                                                BMW, X1 완전변경 모델 출시 “5770만원부터”</a></li>
                                     </ul>
                                     <ul>
-                                        <li><a href="https://economist.co.kr/article/view/ecn202303250019"><img th:src="@{/img/chat_gpt.png}" alt="" />
-                                            챗GPT 4개월, 달라진 세상…빅테크부터 스타트업까지 '생성 AI' 봇물</a></li>
+                                        <li><a href="https://economist.co.kr/article/view/ecn202303250019"><img
+                                                    th:src="@{/img/chat_gpt.png}" alt="" />
+                                                챗GPT 4개월, 달라진 세상…빅테크부터 스타트업까지 '생성 AI' 봇물</a></li>
                                     </ul>
-                                    <a href="https://news.naver.com/" class="more" title="기사">More <i class="fa fa-plus-circle"></i></a>
+                                    <a href="https://news.naver.com/" class="more" title="기사">More <i
+                                            class="fa fa-plus-circle"></i></a>
                                 </div>
 
                             </article>
@@ -302,21 +404,21 @@
                             <p class="ir_su col_desc"></p>
                             <h4 class="ir_su col_tit"></h4>
                             <p class="col_desc"><a href="https://www.nike.com/kr/">
-                            <img th:src="@{/img/banner.png}" class="cont_right_img"></a>
+                                    <img th:src="@{/img/banner.png}" class="cont_right_img"></a>
                         </article>
                         <article class="column col11">
                             <h4 class="ir_su col_tit"></h4>
                             <p class="ir_su col_desc"></p>
                             <h4 class="ir_su col_tit"></h4>
                             <p class="col_desc"><a href="https://www.nike.com/kr/">
-                                <img th:src="@{/img/banner2.gif}" class="cont_right_img2"></a>
+                                    <img th:src="@{/img/banner2.gif}" class="cont_right_img2"></a>
                         </article>
                         <article class="column col11">
                             <h4 class="ir_su col_tit"></h4>
                             <p class="ir_su col_desc"></p>
                             <h4 class="ir_su col_tit"></h4>
                             <p class="col_desc"><a href="https://halincode.com/dealstore/%EB%82%98%EC%9D%B4%ED%82%A4/">
-                                <img th:src="@{/img/banner3.gif}" class="cont_right_img3"></a>
+                                    <img th:src="@{/img/banner3.gif}" class="cont_right_img3"></a>
                         </article>
                     </div>
                 </section>
@@ -386,5 +488,15 @@
     const emailInput = document.getElementById("email");
     const emailError = document.getElementById("emailError");
 
+    emailInput.addEventListener("blur", () => {
+        checkEmailExists(emailInput.value)
+            .then(() => {
+                emailError.textContent = "";
+            })
+            .catch(error => {
+                emailError.textContent = error;
+            });
+    });
 </script>
+
 </html>

@@ -319,7 +319,7 @@ nav {
 .header>.header_search {
   float: left;
   text-align: center;
-  line-height: 60px;
+  line-height: 55px;
   width: 400px;
   height: 50px;
 }
@@ -364,7 +364,7 @@ nav {
 }
 
 .header>.header_menu a:hover {
-  color: black;
+  color: rgb(0, 153, 255);
 }
 
 .header>.header_menu .header_menu_signinbox {
@@ -1255,6 +1255,7 @@ img {
 button {
   border: 0;
   background: none;
+  cursor: pointer;
 }
 
 .slide {
@@ -1427,7 +1428,7 @@ height: 150px;
 
 .cont_right_img3 {
   width: 247px;
-  height: 360px;
+  height: 347px;
   }
 
 .notice25 ol {
