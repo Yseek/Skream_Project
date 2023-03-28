@@ -1,10 +1,12 @@
 package shoes.skream.project.controller.yun;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -12,18 +14,24 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import shoes.skream.project.domain.Category;
 import shoes.skream.project.dto.BoardDto;
 import shoes.skream.project.dto.CommentDTO;
 import shoes.skream.project.service.yun.BoardServiceInterface;
+import shoes.skream.project.service.yun.FileServiceInterface;
 
 @Controller
 public class BoardController {
 
 	@Autowired
 	BoardServiceInterface boardServiceInterface;
+
+	@Autowired
+	FileServiceInterface fileServiceInterface;
 
 	@GetMapping("content")
 	public String content(Model model, long seq, @RequestParam(required = false, defaultValue = "") String orderby,
@@ -657,5 +665,11 @@ public class BoardController {
 			System.out.println(uee);
 		}
 		return "redirect:boardlist?search=" + searchForWhat + "&keyword=" + keyword;
+	}
+
+	@GetMapping("/contentimages/{fileId}")
+	@ResponseBody
+	public Resource downloadImage(@PathVariable("fileId") Long id, Model model) throws IOException {
+		return fileServiceInterface.downloadImage(id);
 	}
 }

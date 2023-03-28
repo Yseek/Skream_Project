@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import shoes.skream.project.domain.Board;
-import shoes.skream.project.domain.Fileup;
 import shoes.skream.project.domain.Member;
 import shoes.skream.project.dto.WriteBoardDto;
 
