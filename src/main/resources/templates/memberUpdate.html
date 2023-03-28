@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>정보수정</title>
+</head>
+<style>
+  .warpper { 
+    border : 1px solid black;
+    text-align: center;
+    width:400px ;
+    height:600px; 
+    position:absolute;
+    top:40%;
+    left:50%;
+    border-radius: 10px;
+    transform:translate(-50%, -50%);
+  }
+  .txt_style {
+    border-radius: 7px;
+    margin: 3%;
+    width: 80%;
+    height: 7%;
+  }
+  .btn_style {
+    margin-top: 5%;
+    margin-right: 5%;
+    margin-left: 5%;
+    width: 30%;
+    height: 7%;
+    font-size: 15px;
+    color: white;
+    border-radius: 5px;
+    background-color: black;
+  }
+  h2{
+    margin : 10%;
+  }
+</style>
+<body>
+  <div class="warpper">
+      <h2>정보 수정</h2>
+      <input class="txt_style" type="text" placeholder="이메일" readonly><br>
+      <input class="txt_style" type="text" placeholder="닉네임"><br>
+      <input class="txt_style" type="password" placeholder="변경 비밀번호"><br>
+      <input class="txt_style" type="password" placeholder="비밀번호 확인"><br>
+      <input class="txt_style" type="text" placeholder="전화번호(010-0000-0000)">
+      <input class="btn_style" type="submit" value="수 정">
+      <input class="btn_style" type="button" value="뒤로가기">
+  </div>
+</body>
+</html>

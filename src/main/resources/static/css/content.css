@@ -107,3 +107,35 @@ tr:last-child td{
 .recommentsWritebox.show{
 	display: block !important; 
 }
+
+.parallax_back_layer {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url(../img/06.jpg);
+	background-size: cover;
+	filter: grayscale(100%);
+	opacity: 0.1;
+	min-height: 1000px;
+	z-index: -3;
+  }
+
+  .parallax_back_layer2 {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: auto;
+	background-image: url(../img/06.jpg);
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	filter: grayscale(100%);
+	opacity: 0.1;
+	min-height: 1000px;
+	z-index: -3;
+  }
