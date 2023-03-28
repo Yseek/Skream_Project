@@ -9,6 +9,8 @@ function check() {
 }
 
 const dataTransfer = new DataTransfer();
+const imageLimit = 10;
+var imagecounting = 0;
 
 function updateImageDisplay() {
 	const preview = document.getElementById("preview");
@@ -18,25 +20,17 @@ function updateImageDisplay() {
 		emptyImage.remove();
 	}
 
-	const imageLimit = 10;
-
 	const input = document.getElementsByName("file")[0];
 	const curFiles = input.files;
 
-	if (curFiles.length === 0) {
-		const para = document.createElement('p');
-		para.textContent = '이미지 없음';
-		preview.appendChild(para);
-	} else if (curFiles.length > imageLimit) {
-		const para = document.createElement('p');
-		para.textContent = `이미지는 ${imageLimit}개 이하로 올려주세요`;
-		preview.appendChild(para);
+	console.log("dataTransfer.files.length: ", dataTransfer.files.length);
+	console.log("curFiles.length: ", curFiles.length);
+
+	if (curFiles.length + dataTransfer.files.length > imageLimit) {
+		alert(`이미지는 ${imageLimit}개 이하로 올려주세요`);
 		return;
 	} else {
 		const list = document.getElementById("imageList");
-
-		//preview.appendChild(list);
-		let imagecounting = 0;
 
 		for (const file of curFiles) {
 			imagecounting += 1;
@@ -55,9 +49,7 @@ function updateImageDisplay() {
 
 			const image = document.createElement('img');
 			image.src = URL.createObjectURL(file);
-			image.style.width = "7rem";
-			image.style.height = "7rem";
-			image.style.margin = "0 1rem";
+			image.classList.add("imagefile");
 			listItem.appendChild(image);
 			listItem.appendChild(para);
 			list.appendChild(listItem);
@@ -103,7 +95,7 @@ function removeImage(e){
 	if (newFiles.length == 0) {
 		const preview = document.getElementById("preview");
 		const para = document.createElement('p');
-		para.textContent = "이미지 없음";
+		para.textContent = "업로드할 이미지를 선택해주세요";
 		preview.appendChild(para);
 	}
 

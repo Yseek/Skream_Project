@@ -6,53 +6,63 @@
    <title>글 수정</title>
    <link rel="stylesheet" th:href="@{/css/writeBoard.css}">
    <script th:inline="javascript">
-      const fileButton = [[${updateboardDto.fileDirList}]];
    </script>
    <script th:src="@{/js/writeBoard.js}"></script>
-   <script th:src="@{/js/updateBoard.js}" th:inline="javascript"></script>
+   <script defer th:src="@{/js/updateBoard.js}" ></script>
 </head>
 <article>
 
-   <body onload="input.content.focus()">
+   <body th:onload="initImagecounting([[${updateBoardDto.fileList}]])">
       <center>
          <hr width="600" size='2' color="gray" noshade>
-         <h3> write front 작업 </h3>
+         <h3> update front 작업 </h3>
          <a href=''>리스트</a>
          <a href=''>인덱스</a>
          <hr width="600" size="2" color="gray" noshade>
       </center>
 
-      <form name="input" method="post" action="updateBoard" enctype="multipart/form-data">
+      <form name="input" method="post" th:action="|../updateBoard/${updateBoardDto.seq}|" enctype="multipart/form-data">
          <table border="0" width="600" align="center" cellpadding="3" cellspacing="1" bordercolor="gray">
             <tr>
-               <td><input type="hidden" name="seq" th:value="${updateboardDto.seq}" size="60"></td>
+               <td><input type="hidden" name="seq" th:value="${updateBoardDto.seq}" size="60"></td>
+            </tr>
+            <tr>
+               <td><input type="hidden" name="removeList" size="60"></td>
             </tr>
             <tr>
                <td align="center">CATEGORY</td>
                <td>
-                  <select name="category">
-                     <option value="1" th:selected="${updateboardDto.category}==1">나이키</option>
-                     <option value="2" th:selected="${updateboardDto.category}==2">아디다스</option>
-                     <option value="3" th:selected="${updateboardDto.category}==3">뉴발란스</option>
-                  </select>
-               </td>
+						<select name="category">
+							<option  th:each="category : ${categoryList}" th:value=${category.categoryId}
+									th:selected="${category.categoryId}==${updateBoardDto.category}">[[${category.cgname}]]</option>
+						</select>
+					</td>
             </tr>
             <tr>
                <td align="center">SUBJECT</td>
-               <td><input type="text" name="subject" th:value=${updateboardDto.subject} size="60"></td>
+               <td><input type="text" name="subject" th:value=${updateBoardDto.subject} size="60"></td>
             </tr>
             <tr>
                <td align="center">IMAGE</td>
                <td>
                   <div id="preview">
-                     <p id="emptyImage">수정할 글에 첨부한 이미지(없으면 '이미지 없음')</p>
-                     <ol id="imageList"></ol>
+                     <p id="emptyImage" th:if="${updateBoardDto.fileList[0].orgnm} == noImage.png">업로드할 이미지를 선택해주세요</p>
+                     <ol id="imageList">
+                        <li th:each="file : ${updateBoardDto.fileList}" th:id="${file.fileId}">
+                           <img th:src="|/uploadedimages/${file.fileId}|" class="imagefile">
+                           <p style="text-align:center;">
+                              <span th:text="${file.orgnm.length lt 10} ? ${file.orgnm}
+                              : ${#strings.substring(file.orgnm, 0, 6)}+'... '"></span>
+                              <button class="removeUploadedImage">X</button>
+                           </p>
+                        </li>
+                     </ol>
                   </div>
                </td>
             </tr>
             <tr>
                <td align="center">CONTENT</td>
-               <td><textarea name="content" rows="15" cols="70">[[${updateboardDto.content}]]</textarea></td>
+               <td><textarea name="content" rows="15" cols="70">[[${updateBoardDto.content}]]</textarea></td>
             </tr>
             <tr>
                <td colspan="2" align="center">

@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import shoes.skream.project.domain.Fileup;
 
 public interface FileupRepositoryWon extends JpaRepository<Fileup, Long>{
-    @Query(value = "SELECT savedpath FROM Fileup as f WHERE f.fileId IN (:fileIdList)")
-    List<String> findByFileId(@Param("fileIdList") List<Long> fileIdList);
+    // @Query(value = "SELECT * FROM Fileup WHERE fileId IN (:fileIdList)", nativeQuery = true)
+    @Query(value = "SELECT * FROM Fileup WHERE file_id IN (:fileIdList)", nativeQuery = true)
+    List<Fileup> findByFileId(@Param("fileIdList") List<Long> fileIdList);
 }
