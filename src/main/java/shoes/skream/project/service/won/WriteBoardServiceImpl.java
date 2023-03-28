@@ -2,6 +2,7 @@ package shoes.skream.project.service.won;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -100,6 +101,10 @@ public class WriteBoardServiceImpl implements WriteBoardService{
         Member member = memberRepositoryWon.findById(email).get();
         return member;
     }
-    
-    
+
+    @Override
+    public List<Category> getCategoryList() {
+        List<Category> categoryList = categoryRepositoryWon.findAll();
+        return categoryList;
+    }
 }
