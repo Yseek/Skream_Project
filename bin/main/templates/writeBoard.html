@@ -27,9 +27,8 @@
 					<td align="center">CATEGORY</td>
 					<td>
 						<select name="category">
-							<option value="1" selected>나이키</option>
-							<option value="2">아디다스</option>
-							<option value="3">뉴발란스</option>
+							<option  th:each="category : ${categoryList}" th:value=${category.categoryId}
+									th:selected="${category.categoryId}==1">[[${category.cgname}]]</option>
 						</select>
 					</td>
 				</tr>
