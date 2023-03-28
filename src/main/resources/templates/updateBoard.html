@@ -2,58 +2,68 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="utf-8">
-	<title>Spring Board</title>
-	<link rel="stylesheet" href="css/writeBoard.css">
-	<script type="text/javascript" src="js/writeBoard.js"></script>
+   <meta charset="utf-8">
+   <title>글 수정</title>
+   <link rel="stylesheet" th:href="@{/css/writeBoard.css}">
+   <script th:src="@{/js/writeBoard.js}"></script>
 </head>
 <article>
 
-	<body onload="input.writer.focus()">
-		<center>
-			<hr width="600" size='2' color="gray" noshade>
-			<h3> write front 작업 </h3>
-			<a href=''>리스트</a>
-			<a href=''>인덱스</a>
-			<hr width="600" size="2" color="gray" noshade>
-		</center>
+   <body onload="input.content.focus()">
+      <center>
+         <hr width="600" size='2' color="gray" noshade>
+         <h3> write front 작업 </h3>
+         <a href=''>리스트</a>
+         <a href=''>인덱스</a>
+         <hr width="600" size="2" color="gray" noshade>
+      </center>
 
-		<form name="input" method="post" action="updateBoard" enctype="multipart/form-data">
-			<table border="0" width="600" align="center" cellpadding="3" cellspacing="1" bordercolor="gray">
-				<tr>
-					<td><input type="hidden" name="writer" size="60"></td>
-				</tr>
-				<tr>
-					<td align="center">SUBJECT</td>
-					<td><input type="text" name="subject" th:value=${boardDto.subject} size="60"></td>
-				</tr>
-				<tr>
-					<td align="center">IMAGE</td>
-					<td>
-						<div id="preview">
-							<p id="emptyImage">수정할 글에 첨부한 이미지(없으면 '이미지 없음')</p>
-							<ol id="imageList"></ol>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td align="center">CONTENT</td>
-					<td><textarea name="content" rows="15" cols="70">수정할 글의 내용</textarea></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type="button" value="전송" onclick="check()">
-						<input type="reset" value="다시입력" onclick="input.writer.focus()">
-						<label id="fileButton" for="file">업로드(최대 10개)</label>
-						<input type="file" name="file" id="file" multiple="multiple" accept="image/*"
-							onchange="updateImageDisplay()">
-					</td>
-				</tr>
-			</table>
-			<hr width="600" size="2" color="gray" noshade>
-		</form>
-		</font>
-	</body>
+      <form name="input" method="post" action="updateBoard" enctype="multipart/form-data">
+         <table border="0" width="600" align="center" cellpadding="3" cellspacing="1" bordercolor="gray">
+            <tr>
+               <td><input type="hidden" name="seq" th:value="${updateboardDto.seq}" size="60"></td>
+            </tr>
+            <tr>
+               <td align="center">CATEGORY</td>
+               <td>
+                  <select name="category">
+                     <option value="1" th:selected="${updateboardDto.category}==1">나이키</option>
+                     <option value="2" th:selected="${updateboardDto.category}==2">아디다스</option>
+                     <option value="3" th:selected="${updateboardDto.category}==3">뉴발란스</option>
+                  </select>
+               </td>
+            </tr>
+            <tr>
+               <td align="center">SUBJECT</td>
+               <td><input type="text" name="subject" th:value=${updateboardDto.subject} size="60"></td>
+            </tr>
+            <tr>
+               <td align="center">IMAGE</td>
+               <td>
+                  <div id="preview">
+                     <p id="emptyImage">수정할 글에 첨부한 이미지(없으면 '이미지 없음')</p>
+                     <ol id="imageList"></ol>
+                  </div>
+               </td>
+            </tr>
+            <tr>
+               <td align="center">CONTENT</td>
+               <td><textarea name="content" rows="15" cols="70">[[${updateboardDto.content}]]</textarea></td>
+            </tr>
+            <tr>
+               <td colspan="2" align="center">
+                  <input type="button" value="전송" onclick="check()">
+                  <input type="reset" value="다시입력" onclick="input.writer.focus()">
+                  <label id="fileButton" for="file">업로드(최대 10개)</label>
+                  <input type="file" name="file" id="file" multiple="multiple" accept="image/*"
+                     onchange="updateImageDisplay()">
+               </td>
+            </tr>
+         </table>
+         <hr width="600" size="2" color="gray" noshade>
+      </form>
+      </font>
+   </body>
 </article>
 
 </html>

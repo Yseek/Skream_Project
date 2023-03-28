@@ -1,29 +1,34 @@
 package shoes.skream.project.service.won;
 
-import shoes.skream.project.domain.Board;
-import shoes.skream.project.dto.BoardDto;
-import shoes.skream.project.mapper.yun.BoardDtoMapper;
-import shoes.skream.project.repository.won.BoardRepositoryWon;
+import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
+import shoes.skream.project.domain.Board;
+import shoes.skream.project.dto.UpdateBoardDto;
+import shoes.skream.project.repository.won.BoardRepositoryWon;
+import shoes.skream.project.repository.won.BoardfileRepositoryWon;
+import shoes.skream.project.repository.won.FileupRepositoryWon;
+
+@Slf4j
 public class UpdateBoardServiceImpl implements UpdateBoardService{
     
     private final BoardRepositoryWon boardRepositoryWon;
-    private final BoardDtoMapper boardDtoMapper;
+    private final BoardfileRepositoryWon boardfileRepositoryWon;
+    private final FileupRepositoryWon fileupRepositoryWon;
 
-
-
-    public UpdateBoardServiceImpl(BoardRepositoryWon boardRepositoryWon, BoardDtoMapper boardDtoMapper) {
+    public UpdateBoardServiceImpl(BoardRepositoryWon boardRepositoryWon, BoardfileRepositoryWon boardfileRepositoryWon
+                                , FileupRepositoryWon fileupRepositoryWon) {
         this.boardRepositoryWon = boardRepositoryWon;
-        this.boardDtoMapper = boardDtoMapper;
+        this.boardfileRepositoryWon = boardfileRepositoryWon;
+        this.fileupRepositoryWon = fileupRepositoryWon;
     }
-
-
 
     @Override
-    public BoardDto getBoard(long id) {
+    public UpdateBoardDto getBoard(long id) {
         Board board = boardRepositoryWon.findById(id).get();
-        BoardDto boardDto = BoardDto.from(board, boardDtoMapper);
-        return boardDto;
+        List<Long> fileIdList = boardfileRepositoryWon.findByBoardId(id);
+        List<String> fileDirList = fileupRepositoryWon.findByFileId(fileIdList);
+        UpdateBoardDto updateboardDto = UpdateBoardDto.from(board, fileDirList);
+        return updateboardDto;
     }
-    
 }

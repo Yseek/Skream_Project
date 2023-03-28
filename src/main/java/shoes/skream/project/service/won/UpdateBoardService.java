@@ -1,7 +1,7 @@
 package shoes.skream.project.service.won;
 
-import shoes.skream.project.dto.BoardDto;
+import shoes.skream.project.dto.UpdateBoardDto;
 
 public interface UpdateBoardService {
-    BoardDto getBoard(long id);
+    UpdateBoardDto getBoard(long id);
 }

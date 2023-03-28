@@ -35,7 +35,7 @@ function updateImageDisplay() {
 	} else {
 		const list = document.getElementById("imageList");
 
-		preview.appendChild(list);
+		//preview.appendChild(list);
 		let imagecounting = 0;
 
 		for (const file of curFiles) {
@@ -76,14 +76,14 @@ function updateImageDisplay() {
 	}
 }
 
-function removeImage(e) {
-	e.preventDefault();
-	// 버튼의 부모의 부모 태그(li)를 제거
-	const removeTargetId = e.target.dataset.index;
-	const removeTarget = document.getElementById(removeTargetId);
-	// 해당 파일 제거(해당 파일을 제외한 나머지 파일을 새로 filelist에 담는다)
-	const originFiles = document.getElementsByName("file")[0].files;
-	console.log(`originFiles.length : ${originFiles.length}`);
+function removeImage(e){
+    e.preventDefault();
+    // 버튼의 부모의 부모 태그(li)를 제거
+    const removeTargetId = e.target.dataset.index;
+    const removeTarget = document.getElementById(removeTargetId);
+    // 해당 파일을 filelist에서 제거
+    const originFiles = document.getElementsByName("file")[0].files;
+    console.log(`originFiles.length : ${originFiles.length}`);
 
 	Array.from(dataTransfer.files)
 		.filter(file => file.lastModified == removeTargetId)
