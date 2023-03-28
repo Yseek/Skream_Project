@@ -2,6 +2,9 @@ package shoes.skream.project.dto.hoya;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +14,7 @@ import shoes.skream.project.domain.Member;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberDTO {
+  
   private String email;
   private String pwd;
   private String checkPwd;

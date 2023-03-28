@@ -23,4 +23,13 @@ public class EmailCheckController {
           return ResponseEntity.ok().build();
       }
   }
+
+  @GetMapping("/user/checkName")
+  public ResponseEntity<?> checkNameExists(@RequestParam String name) {
+      if (memberRepository.existsByName(name)) {
+          return ResponseEntity.badRequest().body("이미 사용중인 닉네임 입니다");
+      } else {
+          return ResponseEntity.ok().build();
+      }
+  }
 }
