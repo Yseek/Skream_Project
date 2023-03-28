@@ -36,7 +36,7 @@
 				<th:block th:each="contents:${contents}">
 					<table>
 						<tr>
-							<td th:each="imgs:${contents.fileUp}" style="border: 1px solid red;">
+							<td th:each="imgs:${contents.fileUp}" style="border: 1px solid green;">
 								<img th:src="|/contentimages/${imgs.fileId}|"></img>
 							</td>
 						</tr>
@@ -84,7 +84,7 @@
 					<table class="comment_table">
 						<th:block th:each="comment:${comments}">
 							<tr class="comment_element_parent">
-								<td class="user">
+								<td class="user" style="background-color: rgb(242,242,242);">
 									<strong style="float:left;" th:text="${comment.commentwriter}">태현</strong>
 									<span style="float:right"
 										th:text="${#temporals.format(comment.rdate,'yy/MM/dd HH:mm')}">23/01/01</span><br>
@@ -105,14 +105,13 @@
 									</div>
 									<form action="deletComment" method="post">
 										<input type="hidden" name="commentId" th:value="${comment.commentId}">
-										<button th:if="${session.loginEmail==comment.email}"
-											style="float:left; margin-top:1%;">삭제</button>
+										<button class="delBtn"th:if="${session.loginEmail==comment.email}">삭제</button>
 									</form>
 
 								</td>
 							</tr>
 							<tr class="comment_element_child" th:each="recom:${comment.recomments}">
-								<td class="user" style="background-color: rgb(242,242,242);">
+								<td class="user" style="background-color:white;">
 									<strong style="float:left; margin-left:5%"
 										th:text="${recom.recommentWriter}">대원</strong>
 									<span style="float:right"
@@ -121,8 +120,7 @@
 										잘하네</span><br>
 									<form action="deletReComment" method="post">
 										<input type="hidden" name="recommentId" th:value="${recom.recommentId}">
-										<button th:if="${session.loginEmail==recom.email}"
-											style="float:left; margin-top:1%;">삭제</button>
+										<button class="delBtn2" th:if="${session.loginEmail==recom.email}">삭제</button>
 									</form>
 
 								</td>
@@ -143,6 +141,7 @@
 		<hr style="margin-bottom:5px">
 	</article>
 	<article th:replace="~{board :: boardFragment}"></article>
+	<div class="parallax_back_layer"></div>
 	<script>
 		const recommentsWritebox = document.querySelectorAll('.recommentsWritebox');
 		const recommentsWriteboxButton = document.querySelectorAll('.recommentsWriteboxButton');
@@ -150,7 +149,5 @@
 			recommentsWriteboxButton[i].addEventListener('click', () => recommentsWritebox[i].classList.toggle('show'));
 		}
 	</script>
-	<div class="parallax_back_layer2"></div>
 </body>
-
 </html>
