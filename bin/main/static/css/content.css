@@ -99,3 +99,11 @@ tr:last-child td{
 	font-weight: bold;
 	object-fit: cover;
 }
+
+.recommentsWritebox{
+	display: none !important; 
+}
+
+.recommentsWritebox.show{
+	display: block !important; 
+}

@@ -11,22 +11,28 @@ article {
 	margin-right: auto;
 	border-collapse: collapse;
 }
-th, td{
-	border-bottom:1px solid lightgrey;
+
+th,
+td {
+	border-bottom: 1px solid lightgrey;
 	border-collapse: collapse;
 }
-td>img{
-	height:100px; 
-	padding:10px;
+
+td>img {
+	height: 100px;
+	padding: 10px;
 }
 
 .thimage {
 	width: 20%;
 }
-.thwriter, .thrdate{
+
+.thwriter,
+.thrdate {
 	width: 10%;
 }
-.thsubject{
+
+.thsubject {
 	width: 45%;
 }
 
@@ -41,7 +47,7 @@ td>img{
 	left: -25px;
 	top: -6px;
 	background-color: lightgrey;
-	border : 1px solid black;
+	border: 1px solid black;
 	width: 210px;
 	height: 30px;
 	display: none;
@@ -61,50 +67,53 @@ td>img{
 	visibility: hidden;
 }
 
-.dropdown{
-  position : relative;
-  display : inline-block;
+.dropdown {
+	position: relative;
+	display: inline-block;
 }
 
-.dropbtn_icon{
-  font-family : 'Material Icons';
+.dropbtn_icon {
+	font-family: 'Material Icons';
 }
-.dropbtn{
-  border : 1px solid rgb(37, 37, 37);
-  border-radius : 3px;
-  background-color:black;
-  font-weight: 400;
-  color : white;
-  padding : 1.6px;
-  width :300px;
-  text-align: center;
-  cursor : pointer;
-  font-size : 12px;
+
+.dropbtn {
+	border: 1px solid rgb(37, 37, 37);
+	border-radius: 3px;
+	background-color: black;
+	font-weight: 400;
+	color: white;
+	padding: 1.6px;
+	width: 300px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 12px;
 }
-.dropdown-content{
-  display : none;
-  position : absolute;
-  z-index : 1; /*다른 요소들보다 앞에 배치*/
-  font-weight: 400;
-  background-color: lightgrey;
-  min-width : 100px;
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	z-index: 1;
+	/*다른 요소들보다 앞에 배치*/
+	font-weight: 400;
+	background-color: lightgrey;
+	min-width: 100px;
 	border-radius: 3px;
 }
 
-.dropdown-content a{
-  display : block;
-  text-decoration : none;
-  color : rgb(37, 37, 37);
-  font-size: 12px;
-  padding : 6px 10px;
+.dropdown-content a {
+	display: block;
+	text-decoration: none;
+	color: rgb(37, 37, 37);
+	font-size: 12px;
+	padding: 6px 10px;
 }
 
-.dropdown-content a:hover{
-  background-color : #ececec
+.dropdown-content a:hover {
+	background-color: #ececec
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+	display: block;
 }
 
 a {
@@ -112,7 +121,7 @@ a {
 	text-decoration: none;
 }
 
-button{
+button {
 	background-color: black;
 	color: white;
 	border-radius: 3px;

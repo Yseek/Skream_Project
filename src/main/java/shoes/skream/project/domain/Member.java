@@ -2,6 +2,7 @@ package shoes.skream.project.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -14,6 +15,7 @@ import shoes.skream.project.dto.hoya.MemberDTO;
 @Entity
 public class Member extends RUDate{
 	@Id
+	@Column(name = "EMAIL")
 	private String email;
 	private String name;
 	private Date birth;
