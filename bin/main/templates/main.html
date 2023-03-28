@@ -42,7 +42,9 @@
                                 <span th:text="${session.loginEmail}"></span> <span th:if="${session.loginEmail}">님
                                     환영합니다</span>
 
-                                <button class="btn-open-join"th:unless="${session.loginEmail}">회원가입</button>&nbsp;&nbsp;
+                                <button class="btn-open-join"
+                                    th:unless="${session.loginEmail}">회원가입</button>&nbsp;&nbsp;
+                                    <button onclick="location.href='memberUpdate'" th:if="${session.loginEmail}">정보수정</button>&nbsp;&nbsp;
                                 <div class="modal_join">
 									<form action="join.do" method="post">
 										<div class="modal_body">
@@ -68,13 +70,16 @@
                                 <div class="modal_login">
                                     <form action="login.do" method="post">
                                         <div class="modal_body">
-                                            <div class="close-area"><a href="#"onclick="location.href=document.referrer"style="text-decoration-line:none; float: right; color:#ffffff">X</a>
+                                            <div class="close-area"><a href="#"
+                                                    onclick="location.href=document.referrer"
+                                                    style="text-decoration-line:none; float: right; color:#ffffff">X</a>
                                             </div>
                                             <h2 style="font-size: 30px; color:white; margin-bottom:37%">로그인</h2>
                                             <input class="login_text" type="text" name="email" placeholder="이메일">
                                             <input class="login_text" type="password" name="pwd" placeholder="비밀번호">
                                             <input class="login_button" type="submit" value="로그인">
-                                            <input class="login_button" type="button" value="취소"onclick="location.href=document.referrer">
+                                            <input class="login_button" type="button" value="취소"
+                                                onclick="location.href='main'">
                                         </div>
                                     </form>
                                 </div>
@@ -182,9 +187,6 @@
                             </div>
                         </div>
                     </div>
-                    <article id="toggle">
-                        <div class="container"></div>
-                    </article>
                 </div>
             </nav>
             <main>
@@ -452,14 +454,14 @@
 </script>
 <script>
     function checkEmailExists(email) {
-    return fetch(`/api/user/checkEmail?email=${email}`)
-        .then(response => {
-        if (response.ok) {
-            return Promise.resolve();
-        } else {
-            return Promise.reject("이미 사용중인 이메일 입니다");
-        }
-        });
+        return fetch(`/api/user/checkEmail?email=${email}`)
+            .then(response => {
+                if (response.ok) {
+                    return Promise.resolve();
+                } else {
+                    return Promise.reject("이미 사용중인 이메일입니다");
+                }
+            });
     }
     const emailInput = document.getElementById("email");
     const emailError = document.getElementById("emailError");
@@ -498,4 +500,5 @@
         });
     });
 </script>
+
 </html>
