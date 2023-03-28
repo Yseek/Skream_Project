@@ -35,7 +35,7 @@ function updateImageDisplay() {
 	} else {
 		const list = document.getElementById("imageList");
 
-		preview.appendChild(list);
+		//preview.appendChild(list);
 		let imagecounting = 0;
 
 		for (const file of curFiles) {

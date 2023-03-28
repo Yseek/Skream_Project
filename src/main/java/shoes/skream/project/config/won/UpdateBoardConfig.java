@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import shoes.skream.project.repository.won.BoardRepositoryWon;
 import shoes.skream.project.repository.won.BoardfileRepositoryWon;
+import shoes.skream.project.repository.won.FileupRepositoryWon;
 import shoes.skream.project.service.won.UpdateBoardService;
 import shoes.skream.project.service.won.UpdateBoardServiceImpl;
 
@@ -15,9 +16,12 @@ public class UpdateBoardConfig {
     BoardRepositoryWon boardRepositoryWon;
     @Autowired
     BoardfileRepositoryWon boardfileRepositoryWon;
+    @Autowired
+    FileupRepositoryWon fileupRepositoryWon;
 
     @Bean
     public UpdateBoardService updateBoardService(){
-        return new UpdateBoardServiceImpl(boardRepositoryWon, boardfileRepositoryWon);
+        return new UpdateBoardServiceImpl(boardRepositoryWon, boardfileRepositoryWon
+                                        , fileupRepositoryWon);
     }
 }
