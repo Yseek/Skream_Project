@@ -11,6 +11,7 @@ import shoes.skream.project.domain.Boardfile;
 import shoes.skream.project.domain.Category;
 import shoes.skream.project.domain.Comment;
 import shoes.skream.project.domain.Fileup;
+import shoes.skream.project.domain.Recommend;
 import shoes.skream.project.domain.Recomment;
 import shoes.skream.project.mapper.yun.BoardDtoMapper;
 
@@ -30,14 +31,21 @@ public class BoardDto {
 	private final Category cg;
 	private final List<Comment> comments;
 	private final List<List<Recomment>> recomlist;
+	private final List<Recommend> recommends;
+	private final List<String> recommendsEmail;
 
 	public static BoardDto from(Board board, BoardDtoMapper boardDtoMapper) {
 		List<Boardfile> files = boardDtoMapper.selectBoardFile(board.getBoardId());
 		List<Fileup> fileup = new ArrayList<>();
 		List<Comment> comments = boardDtoMapper.selectComments(board.getBoardId());
 		List<List<Recomment>> recomlist = new ArrayList<>();
+		List<Recommend> recommends = boardDtoMapper.listRecommend(board.getBoardId());
+		List<String> recommendsEmail = new ArrayList<>();
+		for(Recommend reco :recommends){
+			recommendsEmail.add(reco.getEmail());
+		}
 		for (Comment name : comments) {
-			recomlist.add(boardDtoMapper.listRecommnet(name.getCommentId()));
+			recomlist.add(boardDtoMapper.listRecomment(name.getCommentId()));
 		}
 		for (Boardfile fileContent : files) {
 			fileup.add(boardDtoMapper.selectFileup(fileContent.getFileupFileId()));
@@ -55,6 +63,8 @@ public class BoardDto {
 				.cg(board.getCategory())
 				.comments(comments)
 				.recomlist(recomlist)
+				.recommends(recommends)
+				.recommendsEmail(recommendsEmail)
 				.build();
 	}
 }
