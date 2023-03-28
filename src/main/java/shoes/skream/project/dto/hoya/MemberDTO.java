@@ -2,9 +2,6 @@ package shoes.skream.project.dto.hoya;
 
 import java.sql.Date;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
