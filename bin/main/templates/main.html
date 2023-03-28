@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -15,9 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <script th:src="@{/js/link_hyun.js}"></script>
     <script th:src="@{/js/main_hyun.js}"></script>
-    <style></style>
-    <script>
-    </script>
 </head>
 
 <body>
@@ -59,7 +56,8 @@
 											<div id ="emailError" style="color:white; margin-bottom: 5%; margin-top: 0px;" th:unless="${session.loginEmail}"></div>
 											<input class="join_text" type="password" name="pwd" th:unless="${session.loginEmail}" placeholder="비밀번호">
 											<input class="join_text" type="password" name="checkPwd" th:unless="${session.loginEmail}" placeholder="비밀번호 확인">
-											<input class="join_text" type="text" name="name" th:unless="${session.loginEmail}" placeholder="닉네임">
+											<input style="margin-bottom:0"  class="join_text" type="text" name="name" id="name"  th:unless="${session.loginEmail}" placeholder="닉네임">
+                                            <div id ="nameError" style="color:white; margin-bottom: 5%; margin-top: 0px;" th:unless="${session.loginEmail}"></div>
 											<input class="join_text" type="date" name="birth" th:unless="${session.loginEmail}">
 											<input class="join_text" type="text" name="phone" th:unless="${session.loginEmail}" placeholder="전화번호(010-0000-0000)">
 											<input class="join_button" type="submit" value="가입" th:unless="${session.loginEmail}">
@@ -440,7 +438,8 @@
         <div class="parallax_back_layer"></div>
     </div>
 </body>
-<script> //로그인, 회원가입, 정보수정 모달
+
+<script>
     const modal_join = document.querySelector('.modal_join');
     const btnOpenJoin = document.querySelector('.btn-open-join');
     btnOpenJoin.addEventListener('click', () => {
@@ -452,15 +451,8 @@
     btnOpenLogin.addEventListener('click', () => {
         modal_login.style.display = 'block';
     });
-
-    const modal_update = document.querySelector('.modal_update');
-    const btnOpenUpdate = document.querySelector('.btn-open-update');
-    btnOpenUpdate.addEventListener('click', () => {
-        modal_update.style.display = 'block';
-    });
 </script>
-
-<script> //이메일 중복 체크
+<script>
     function checkEmailExists(email) {
         return fetch(`/api/user/checkEmail?email=${email}`)
             .then(response => {
@@ -475,13 +467,37 @@
     const emailError = document.getElementById("emailError");
 
     emailInput.addEventListener("blur", () => {
-        checkEmailExists(emailInput.value)
-            .then(() => {
-                emailError.textContent = "";
-            })
-            .catch(error => {
-                emailError.textContent = error;
-            });
+    checkEmailExists(emailInput.value)
+        .then(() => {
+        emailError.textContent = "";
+        })
+        .catch(error => {
+        emailError.textContent = error;
+        });
+    });
+</script>
+<script>
+    function checkNameExists(name) {
+    return fetch(`/api/user/checkName?name=${name}`)
+        .then(response => {
+        if (response.ok) {
+            return Promise.resolve();
+        } else {
+            return Promise.reject("이미 사용중인 닉네임 입니다");
+        }
+        });
+    }
+    const nameInput = document.getElementById("name");
+    const nameError = document.getElementById("nameError");
+
+    nameInput.addEventListener("blur", () => {
+    checkNameExists(nameInput.value)
+        .then(() => {
+        nameError.textContent = "";
+        })
+        .catch(error => {
+        nameError.textContent = error;
+        });
     });
 </script>
 
