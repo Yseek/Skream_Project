@@ -9,5 +9,10 @@ public class MainController {
     public String main(){
         return "main";
     }
+
+  @GetMapping("memberUpdate")
+  public String memberUpdate(){
+    return "memberUpdate";
+  }
 }
 
