@@ -89,7 +89,6 @@ public class WriteBoardServiceImpl implements WriteBoardService{
 
     @Override
     public void saveBoardfile(long boardId, long fileupId) {
-        // TODO Auto-generated method stub
         Boardfile boardfile = new Boardfile();
         boardfile.setBoardId(boardId);
         boardfile.setFileupFileId(fileupId);
@@ -98,7 +97,6 @@ public class WriteBoardServiceImpl implements WriteBoardService{
 
     @Override
     public Member getMember(String email) {
-        // TODO Auto-generated method stub
         Member member = memberRepositoryWon.findById(email).get();
         return member;
     }
