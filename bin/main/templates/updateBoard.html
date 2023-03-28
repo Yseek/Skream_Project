@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
-    <title>Spring Board</title>
-    <link rel="stylesheet" href="css/writeBoard.css">
-	<script type="text/javascript" src="js/writeBoard.js"></script>
+    <title>글 수정</title>
+    <link rel="stylesheet" th:href="@{/css/writeBoard.css}">
+	<script th:src="@{/js/writeBoard.js}"></script>
   </head>
   <article>
-      <body onload="input.writer.focus()">
+      <body onload="input.content.focus()">
         <center>
            <hr width="600" size='2' color="gray" noshade>
               <h3> write front 작업 </h3>

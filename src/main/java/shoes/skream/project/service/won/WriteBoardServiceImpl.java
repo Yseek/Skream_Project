@@ -48,7 +48,7 @@ public class WriteBoardServiceImpl implements WriteBoardService{
         Member member = memberRepositoryWon.findById(boardDto.getMember())
                                             .orElseThrow(IllegalArgumentException::new);
         board.setMember(member);
-        Category category = categoryRepositoryWon.findById(Integer.parseInt(boardDto.getCategory()))
+        Category category = categoryRepositoryWon.findById(boardDto.getCategory())
                                                     .orElseThrow(IllegalArgumentException::new);
         board.setCategory(category);      
         return boardRepositoryWon.save(board).getBoardId();

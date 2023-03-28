@@ -3,6 +3,7 @@ package shoes.skream.project.controller.won;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,9 @@ public class WriteBoardController {
     WriteBoardService writeBoardService;
 
     @GetMapping("writeBoard")
-    public String writeBoard(HttpSession session){
-        String loginUser = writeBoardService.getMember("abc1@naver.com").getEmail();
-        log.info("#### loginUser: {}", loginUser);
-        session.setAttribute("loginUser", loginUser);
+    public String writeBoard(HttpServletRequest request, HttpSession session){
+        session = request.getSession();
+        log.info("#### session.loginEmail: {}", session.getAttribute("loginEmail"));
         return "writeBoard";
     }
 
