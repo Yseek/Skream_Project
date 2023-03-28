@@ -1,4 +1,5 @@
 // pdateboardDto.fileDirList 가 0개가 아니라면 uploadedImageSetting() 호출
+alert("update.js 임포트 확인" + [[${updateboardDto.seq}]]);
 
 // 업로드했던 이미지 미리보기에 추가
 function uploadedImageSetting() {

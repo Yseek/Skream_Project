@@ -5,7 +5,11 @@
    <meta charset="utf-8">
    <title>글 수정</title>
    <link rel="stylesheet" th:href="@{/css/writeBoard.css}">
+   <script th:inline="javascript">
+      const fileButton = [[${updateboardDto.fileDirList}]];
+   </script>
    <script th:src="@{/js/writeBoard.js}"></script>
+   <script th:src="@{/js/updateBoard.js}" th:inline="javascript"></script>
 </head>
 <article>
 
