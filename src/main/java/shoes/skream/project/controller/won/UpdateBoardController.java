@@ -20,7 +20,6 @@ public class UpdateBoardController {
     public String updateBoard(@PathVariable Long id, Model model){
         UpdateBoardDto updateboardDto = updateBoardService.getBoard(id);
         model.addAttribute("updateboardDto", updateboardDto);
-        log.info("$$$$ updateboardDto: {}", updateboardDto);
         log.info("$$$$ supdateboardDto.getSubject(): {}", updateboardDto.getSubject());
         return "updateBoard";
     }

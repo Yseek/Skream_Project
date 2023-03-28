@@ -25,16 +25,9 @@ public class WriteBoardController {
     WriteBoardService writeBoardService;
 
     @GetMapping("writeBoard")
-<<<<<<< HEAD
     public String writeBoard(HttpServletRequest request, HttpSession session){
         session = request.getSession();
         log.info("#### session.loginEmail: {}", session.getAttribute("loginEmail"));
-=======
-    public String writeBoard(HttpSession session){
-        String loginUser = writeBoardService.getMember("yun@naver.com").getEmail();
-        log.info("#### loginUser: {}", loginUser);
-        session.setAttribute("loginUser", loginUser);
->>>>>>> 0a858a24755f3fdf696f274d1c29216aacac3d00
         return "writeBoard";
     }
 

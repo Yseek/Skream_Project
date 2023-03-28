@@ -11,7 +11,7 @@ function uploadedImageSetting() {
     
     const preview = document.getElementById("preview");
 	// const curFiles = input.files;
-    const fileDirList; //updateboardDto.fileDirList 대입
+    // const fileDirList; updateboardDto.fileDirList 대입
 
     const list = document.getElementById("imageList");
 
