@@ -17,24 +17,24 @@ public class MemberController {
   private final MemberService memberService;
 
   @PostMapping("join.do")
-  public String save(@ModelAttribute MemberDTO memberDTO){
+  public String save(@ModelAttribute MemberDTO memberDTO) {
     memberService.save(memberDTO);
     return "main";
   }
 
   @PostMapping("login.do")
-  public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session){
+  public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
     MemberDTO loginResult = memberService.login(memberDTO);
-    if(loginResult != null){
+    if (loginResult != null) {
       session.setAttribute("loginEmail", loginResult.getEmail());
       return "main";
-    }else{
+    } else {
       return "main";
     }
   }
-  
+
   @GetMapping("logout.do")
-  public String Logout(HttpSession session){
+  public String Logout(HttpSession session) {
     session.invalidate();
     return "redirect:/main";
   }
