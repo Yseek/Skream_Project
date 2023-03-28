@@ -107,6 +107,4 @@ public class WriteBoardServiceImpl implements WriteBoardService{
         List<Category> categoryList = categoryRepositoryWon.findAll();
         return categoryList;
     }
-    
-    
 }
