@@ -21,7 +21,6 @@ public class UpdateBoardServiceImpl implements UpdateBoardService{
 
     @Override
     public BoardDto getBoard(long id) {
-        // TODO Auto-generated method stub
         Board board = boardRepositoryWon.findById(id).get();
         BoardDto boardDto = BoardDto.from(board, boardDtoMapper);
         return boardDto;

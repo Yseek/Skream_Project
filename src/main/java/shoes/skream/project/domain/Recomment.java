@@ -23,6 +23,6 @@ public class Recomment extends RUDate{
 	private String recoContent;
 	@Column(name = "MEMBER_EMAIL")
 	private String email;
-	@Column(name = "comment_id")
+	@Column(name = "COMMENT_COMMENT_ID")
 	private long commentId;
 }
