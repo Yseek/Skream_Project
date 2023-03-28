@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import shoes.skream.project.domain.Board;
 import shoes.skream.project.domain.Category;
 import shoes.skream.project.domain.Comment;
+import shoes.skream.project.domain.Recommend;
 import shoes.skream.project.dto.BoardDto;
 import shoes.skream.project.dto.CommentDTO;
 import shoes.skream.project.mapper.yun.BoardDtoMapper;
@@ -17,6 +18,7 @@ import shoes.skream.project.repository.yun.BoardMemberRepository;
 import shoes.skream.project.repository.yun.BoardRepository;
 import shoes.skream.project.repository.yun.CategoryRepository;
 import shoes.skream.project.repository.yun.CommentRepository;
+import shoes.skream.project.repository.yun.RecommendRepository;
 
 public class BoardService implements BoardServiceInterface {
 
@@ -35,13 +37,17 @@ public class BoardService implements BoardServiceInterface {
 	@Autowired
 	private final CommentRepository commnRepository;
 
+	@Autowired
+	private final RecommendRepository recommendRepository;
+
 	public BoardService(BoardRepository boardRepository, BoardDtoMapper boardDtoMapper,
-			CategoryRepository categoryRepository, BoardMemberRepository boardMemberRepository, CommentRepository commnRepository) {
+			CategoryRepository categoryRepository, BoardMemberRepository boardMemberRepository, CommentRepository commnRepository,RecommendRepository recommendRepository) {
 		this.boardRepository = boardRepository;
 		this.boardDtoMapper = boardDtoMapper;
 		this.categoryRepository = categoryRepository;
 		this.boardMemberRepository = boardMemberRepository;
 		this.commnRepository = commnRepository;
+		this.recommendRepository = recommendRepository;
 	}
 
 	@Override
@@ -129,5 +135,34 @@ public class BoardService implements BoardServiceInterface {
 			recom.add(CommentDTO.from(comment, boardDtoMapper));
 		}
 		return recom;
+	}
+
+	@Override
+	public void boardUpdate(long boardId) {
+		Board board = boardRepository.findByBoardId(boardId);
+		board.setRecom(board.getRecom()+1);
+		boardRepository.save(board);
+	}
+
+	@Override
+	public void boardUnUpdate(long boardId) {
+		Board board = boardRepository.findByBoardId(boardId);
+		board.setRecom(board.getRecom()-1);
+		boardRepository.save(board);
+	}
+
+
+	@Override
+	public void recommendCreDo(long boardId, String email) {
+		Recommend recommend = new Recommend();
+		recommend.setBoardId(boardId);
+		recommend.setEmail(email);
+		recommend.setRecommendId(0);
+		recommendRepository.save(recommend);
+	}
+
+	@Override
+	public void recommendDelDo(long boardId, String email) {
+		recommendRepository.delete(recommendRepository.findByBoardIdAndEmail(boardId, email));
 	}
 }

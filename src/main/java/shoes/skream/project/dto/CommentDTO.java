@@ -25,7 +25,7 @@ public class CommentDTO {
 	public static CommentDTO from(Comment comment, BoardDtoMapper boardmDtoMapper){
 
 		List<RecommentDTO> recomments = new ArrayList<>();
-		for(Recomment recom :boardmDtoMapper.listRecommnet(comment.getCommentId())){
+		for(Recomment recom :boardmDtoMapper.listRecomment(comment.getCommentId())){
 			recomments.add(RecommentDTO.from(recom, boardmDtoMapper));
 		}
 		return CommentDTO.builder()

@@ -5,6 +5,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -671,5 +674,20 @@ public class BoardController {
 	@ResponseBody
 	public Resource downloadImage(@PathVariable("fileId") Long id, Model model) throws IOException {
 		return fileServiceInterface.downloadImage(id);
+	}
+
+	
+	@PostMapping("recommendDo")
+	public String recommendDo(long boardId, String email, HttpServletRequest request){
+		boardServiceInterface.boardUpdate(boardId);
+		boardServiceInterface.recommendCreDo(boardId, email);
+		return "redirect:" + request.getHeader("Referer");
+	}
+
+	@PostMapping("recommendUnDo")
+	public String recommendUnDo(long boardId, String email, HttpServletRequest request){
+		boardServiceInterface.boardUnUpdate(boardId);
+		boardServiceInterface.recommendDelDo(boardId, email);
+		return "redirect:" + request.getHeader("Referer");
 	}
 }

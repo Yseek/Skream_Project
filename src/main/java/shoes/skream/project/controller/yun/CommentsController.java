@@ -1,5 +1,7 @@
 package shoes.skream.project.controller.yun;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,26 +17,26 @@ public class CommentsController {
 	CommentsServiceInterface commentsServiceInterface;
 
 	@PostMapping("commentWrite")
-	public String commentWrite(Comment comment){
+	public String commentWrite(Comment comment, HttpServletRequest request){
 		commentsServiceInterface.writeComment(comment);
-		return "redirect:boardlist";
+		return "redirect:" + request.getHeader("Referer");
 	}
 	
 	@PostMapping("recommentWrite")
-	public String recommentWrite(Recomment recomment){
+	public String recommentWrite(Recomment recomment,HttpServletRequest request){
 		commentsServiceInterface.writeReComment(recomment);
-		return "redirect:boardlist";
+		return "redirect:" + request.getHeader("Referer");
 	}
 
 	@PostMapping("deletComment")
-	public String deletComment(long commentId){
+	public String deletComment(long commentId,HttpServletRequest request){
 		commentsServiceInterface.deleteComment(commentId);
-		return "redirect:boardlist";
+		return "redirect:" + request.getHeader("Referer");
 	}
 
 	@PostMapping("deletReComment")
-	public String deletReComment(long recommentId){
+	public String deletReComment(long recommentId,HttpServletRequest request){
 		commentsServiceInterface.deleteReComment(recommentId);
-		return "redirect:boardlist";
+		return "redirect:" + request.getHeader("Referer");
 	}
 }
