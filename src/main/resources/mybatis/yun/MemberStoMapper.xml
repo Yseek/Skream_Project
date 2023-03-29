@@ -8,17 +8,17 @@
 	<!-- 회원 정보 리스트  -->	 
 	<select id="member" parameterType="String" resultType="shoes.skream.project.dto.hoya.MemberDTO">
      select * from `member`
-		where email = #{email} ;
+		where email = #{email}
     </select>	
 	
 	
 	<!-- 회원 정보 업데이트  -->	 
     <update id="memberUpdatePost" parameterType="shoes.skream.project.dto.hoya.MemberDTO" >
-       update `member` set 
-       		name = #{name} ,       	 	
-       	 	phone = #{phone},
-       	 	pwd = #{pwd},
-       	 	udate = now() 
-		where email = #{email} ;
+		update `member` set 
+			name = #{name} ,       	 	
+			phone = #{phone},
+			pwd = #{pwd},
+			udate = now() 
+		where email = #{email}
     </update>	
 </mapper>

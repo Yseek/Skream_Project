@@ -30,6 +30,6 @@ Array.from(removeUploadedImageButton).forEach(element => {
         imagecounting = imagecounting -1;
         console.log(imagecounting);
         const fileButton = document.getElementById("fileButton");
-	    fileButton.innerHTML = `업로드(${imagecounting}/10)`;
+		fileButton.innerHTML = `업로드(${imagecounting}/10)`;
     })
 });

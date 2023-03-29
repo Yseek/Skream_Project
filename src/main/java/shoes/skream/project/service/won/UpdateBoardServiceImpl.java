@@ -2,7 +2,6 @@ package shoes.skream.project.service.won;
 
 import java.util.List;
 
-import lombok.extern.slf4j.Slf4j;
 import shoes.skream.project.domain.Board;
 import shoes.skream.project.domain.Category;
 import shoes.skream.project.domain.Fileup;
@@ -12,7 +11,6 @@ import shoes.skream.project.repository.won.BoardfileRepositoryWon;
 import shoes.skream.project.repository.won.CategoryRepositoryWon;
 import shoes.skream.project.repository.won.FileupRepositoryWon;
 
-@Slf4j
 public class UpdateBoardServiceImpl implements UpdateBoardService{
     
     private final BoardRepositoryWon boardRepositoryWon;
