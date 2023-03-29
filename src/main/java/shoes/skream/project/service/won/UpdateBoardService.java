@@ -14,4 +14,6 @@ public interface UpdateBoardService {
     long saveUpdateFile(MultipartFile file) throws IOException;
     void saveUpdateBoardfile(long boardId, long fileupId);
     void deleteUploadedFile(String removeList);
+    void deleteFileup(long fileId);
+    long setDefaultImage(long boardId) throws IOException;
 }

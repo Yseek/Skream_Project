@@ -118,6 +118,28 @@ public class UpdateBoardServiceImpl implements UpdateBoardService{
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
     }
+
+    @Override
+    public void deleteFileup(long fileId) {
+        fileupRepositoryWon.deleteById(fileId);
+    }
+
+    @Override
+    public long setDefaultImage(long boardId) throws IOException{
+        File defaultFile = new File("images/noImage.png");
+        String origName = defaultFile.getName();
+        String savedName = origName;
+        String savedPath = "images/noImage.png";
+
+        Fileup fileup = Fileup.builder()
+                .orgnm(origName)
+                .savednm(savedName)
+                .savedpath(savedPath)
+                .build();
+        // fileup
+        return fileupRepositoryWon.save(fileup).getFileId();
+    }
+
+    
 }

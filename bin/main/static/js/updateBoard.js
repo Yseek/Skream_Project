@@ -1,5 +1,10 @@
 function initImagecounting(uploadedimage){
     imagecounting = imagecounting + uploadedimage.length;
+    if(uploadedimage[0].orgnm=="noImage.png"){
+        console.log(imagecounting);
+        imagecounting -= 1;
+        console.log(imagecounting);
+    }
     const fileButton = document.getElementById("fileButton");
 	fileButton.innerHTML = `업로드(${imagecounting}/10)`;
 }

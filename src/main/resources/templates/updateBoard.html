@@ -47,16 +47,18 @@
                <td align="center">IMAGE</td>
                <td>
                   <div id="preview">
-                     <p id="emptyImage" th:if="${updateBoardDto.fileList[0].orgnm} == noImage.png">업로드할 이미지를 선택해주세요</p>
+                     <p id="emptyImage" th:if="${updateBoardDto.fileList[0].orgnm} == 'noImage.png'">업로드할 이미지를 선택해주세요</p>
                      <ol id="imageList">
-                        <li th:each="file : ${updateBoardDto.fileList}" th:id="${file.fileId}">
-                           <img th:src="|/uploadedimages/${file.fileId}|" class="imagefile">
-                           <p style="text-align:center;">
-                              <span th:text="${file.orgnm.length lt 10} ? ${file.orgnm}
-                              : ${#strings.substring(file.orgnm, 0, 6)}+'... '"></span>
-                              <button class="removeUploadedImage">X</button>
-                           </p>
-                        </li>
+                        <th:block th:if="${updateBoardDto.fileList[0].orgnm} != 'noImage.png'">
+                           <li th:each="file : ${updateBoardDto.fileList}" th:id="${file.fileId}">
+                              <img th:src="|/uploadedimages/${file.fileId}|" class="imagefile">
+                              <p style="text-align:center;">
+                                 <span th:text="${file.orgnm.length lt 10} ? ${file.orgnm}
+                                 : ${#strings.substring(file.orgnm, 0, 6)}+'... '"></span>
+                                 <button class="removeUploadedImage">X</button>
+                              </p>
+                           </li>
+                        </th:block>
                      </ol>
                   </div>
                </td>
