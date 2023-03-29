@@ -14,11 +14,11 @@ import shoes.skream.project.domain.Category;
 import shoes.skream.project.domain.Fileup;
 import shoes.skream.project.domain.Member;
 import shoes.skream.project.dto.won.WriteBoardDto;
+import shoes.skream.project.repository.won.BoardRepositoryWon;
+import shoes.skream.project.repository.won.BoardfileRepositoryWon;
 import shoes.skream.project.repository.won.CategoryRepositoryWon;
 import shoes.skream.project.repository.won.FileupRepositoryWon;
 import shoes.skream.project.repository.won.MemberRepositoryWon;
-import shoes.skream.project.repository.won.BoardRepositoryWon;
-import shoes.skream.project.repository.won.BoardfileRepositoryWon;
 
 public class WriteBoardServiceImpl implements WriteBoardService{
 
