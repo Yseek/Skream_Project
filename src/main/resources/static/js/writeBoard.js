@@ -43,7 +43,7 @@ function updateImageDisplay() {
 			const removeButton = document.createElement('button');
 			removeButton.textContent = "X";
 			removeButton.dataset.index = file.lastModified;
-			// 미리보기 개별 삭제
+			// 미리보기 개별 삭제 리스너
 			removeButton.addEventListener('click', (e) => removeImage(e));
 			para.appendChild(removeButton);
 
@@ -64,7 +64,7 @@ function updateImageDisplay() {
 			console.log("input FIles =>", document.getElementsByName("file")[0].files);
 		}
 		const fileButton = document.getElementById("fileButton");
-		fileButton.innerHTML = `업로드(${dataTransfer.files.length}/10)`;
+		fileButton.innerHTML = `업로드(${imagecounting}/10)`;
 	}
 }
 
@@ -73,28 +73,27 @@ function removeImage(e){
     // 버튼의 부모의 부모 태그(li)를 제거
     const removeTargetId = e.target.dataset.index;
     const removeTarget = document.getElementById(removeTargetId);
+	
     // 해당 파일을 filelist에서 제거
-    const originFiles = document.getElementsByName("file")[0].files;
-    console.log(`originFiles.length : ${originFiles.length}`);
-
 	Array.from(dataTransfer.files)
 		.filter(file => file.lastModified == removeTargetId)
 		.forEach(file => {
 			dataTransfer.items.remove(file);
 			console.log("dataTransfer =>", dataTransfer.files);
-			console.log("originFiles =>", originFiles);
 		});
 
 	const newFiles = document.getElementsByName("file")[0].files = dataTransfer.files;
 
 	removeTarget.remove();
 	// 업로드할 이미지 갯수 갱신
+	imagecounting -= 1;
 	const fileButton = document.getElementById("fileButton");
-	fileButton.innerHTML = `업로드(${newFiles.length}/10)`;
+	fileButton.innerHTML = `업로드(${imagecounting}/10)`;
 
 	if (newFiles.length == 0) {
 		const preview = document.getElementById("preview");
 		const para = document.createElement('p');
+		para.id = "emptyImage";
 		para.textContent = "업로드할 이미지를 선택해주세요";
 		preview.appendChild(para);
 	}

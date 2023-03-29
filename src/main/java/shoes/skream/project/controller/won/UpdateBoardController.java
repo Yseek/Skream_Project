@@ -81,7 +81,7 @@ public class UpdateBoardController {
 
         // 새로 업로드한 이미지가 없고, 전에 업로드했던 이미지를 다 지운다면
         UpdateBoardDto updatedBoardDto = updateBoardService.getBoard(updateBoardDto.getSeq());
-        if(updatedBoardDto.getFileList() == null){
+        if(updatedBoardDto.getFileList().isEmpty()){
             // -> 디폴트 이미지를 업로드한다
             long fileId = updateBoardService.setDefaultImage(updateBoardDto.getSeq());
             writeBoardService.saveBoardfile(updateBoardDto.getSeq(), fileId);

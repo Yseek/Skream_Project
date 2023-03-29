@@ -1,9 +1,7 @@
 function initImagecounting(uploadedimage){
-    imagecounting = imagecounting + uploadedimage.length;
+    imagecounting += uploadedimage.length;
     if(uploadedimage[0].orgnm=="noImage.png"){
-        console.log(imagecounting);
         imagecounting -= 1;
-        console.log(imagecounting);
     }
     const fileButton = document.getElementById("fileButton");
 	fileButton.innerHTML = `업로드(${imagecounting}/10)`;
@@ -30,7 +28,7 @@ Array.from(removeUploadedImageButton).forEach(element => {
         imgTag.remove(); 
         
         // imagecounting과 버튼 텍스트 수정
-        imagecounting = imagecounting -1;
+        imagecounting -= 1;
         console.log(imagecounting);
         const fileButton = document.getElementById("fileButton");
 		fileButton.innerHTML = `업로드(${imagecounting}/10)`;
