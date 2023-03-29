@@ -32,12 +32,12 @@ public class UpdateBoardController {
     WriteBoardService writeBoardService;
 
     @PostMapping("updateBoard")
-    public String updateBoard(long boardId, Model model, HttpServletRequest request){
+    public String updateBoard(long boardId, Model model, HttpServletRequest request, String posturl){
         List<Category> categoryList = writeBoardService.getCategoryList();       
         model.addAttribute("categoryList", categoryList);
         UpdateBoardDto updateBoardDto = updateBoardService.getBoard(boardId);
         model.addAttribute("updateBoardDto", updateBoardDto);
-        log.info("$$$$ 파일리스트의 첫번째 파일 이름: {}", updateBoardDto.getSubject());
+        model.addAttribute("request", request.getHeader("Referer"));
         return "updateBoard";
     }
 
@@ -51,14 +51,19 @@ public class UpdateBoardController {
 
     @PostMapping("updateBoard/{id}")
     public String saveUpdateBoard(UpdateBoardDto updateBoardDto, @RequestParam("file") List<MultipartFile> files
-                , HttpServletRequest request) throws IOException{
+                , HttpServletRequest request, String posturl) throws IOException{
         log.info("$$$$ saveUpdateDto: {}", updateBoardDto.getRemoveList());
         // board update
         updateBoardService.updateBoard(updateBoardDto);
         // 새로 업로드 fileup, boardfile insert
-        
+        for (MultipartFile file : files) {
+            long fileupId = updateBoardService.saveUpdateFile(file);
+            if(fileupId != -1){
+                updateBoardService.saveUpdateBoardfile(updateBoardDto.getSeq(), fileupId);
+            }
+        }
         // 이전 업로드 지울 경우 delete
-
-        return "redirect:" + request.getHeader("Referer");
+        //updateBoardService.deleteUploadedFile(updateBoardDto.getRemoveList());
+        return "redirect:" + posturl;
     }
 }

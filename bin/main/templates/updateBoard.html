@@ -6,7 +6,7 @@
    <title>글 수정</title>
    <link rel="stylesheet" th:href="@{/css/writeBoard.css}">
    <script th:src="@{/js/writeBoard.js}"></script>
-   <script th:src="@{/js/updateBoard.js}"></script>
+   <script defer th:src="@{/js/updateBoard.js}"></script>
 </head>
 <article>
 
@@ -41,7 +41,7 @@
             </tr>
             <tr>
                <td align="center">SUBJECT</td>
-               <td><input type="text" name="subject" th:value=${updateBoardDto.subject} size="60"></td>
+               <td><input type="text" name="subject" th:value="${updateBoardDto.subject}" size="60"></td>
             </tr>
             <tr>
                <td align="center">IMAGE</td>

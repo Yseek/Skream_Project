@@ -1,9 +1,20 @@
 package shoes.skream.project.service.won;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.slf4j.Slf4j;
 import shoes.skream.project.domain.Board;
+import shoes.skream.project.domain.Boardfile;
 import shoes.skream.project.domain.Category;
 import shoes.skream.project.domain.Fileup;
 import shoes.skream.project.dto.won.UpdateBoardDto;
@@ -15,6 +26,9 @@ import shoes.skream.project.repository.won.FileupRepositoryWon;
 @Slf4j
 public class UpdateBoardServiceImpl implements UpdateBoardService{
     
+    @Value("${file.dir}")
+    private String fileDir;
+
     private final BoardRepositoryWon boardRepositoryWon;
     private final BoardfileRepositoryWon boardfileRepositoryWon;
     private final FileupRepositoryWon fileupRepositoryWon;
@@ -50,5 +64,51 @@ public class UpdateBoardServiceImpl implements UpdateBoardService{
         Category category = categoryRepositoryWon.findById(updateBoardDto.getCategory()).get();
         board.setCategory(category);
         boardRepositoryWon.save(board);
+    }
+
+    @Override
+    public long saveUpdateFile(MultipartFile file) throws IOException{
+        if (file.isEmpty()) {
+            return -1;
+        }
+        String origName = file.getOriginalFilename(); // 원래 파일 이름 추출
+        String uuid = UUID.randomUUID().toString(); // 파일 이름으로 쓸 uuid 생성
+        String extension = origName.substring(origName.lastIndexOf(".")); // 확장자 추출(ex : .png)
+        String savedName = uuid + extension; // uuid와 확장자 결합
+        String savedPath = fileDir + savedName; // 파일을 불러올 때 사용할 파일 경로
+
+        Fileup fileup = Fileup.builder()
+                .orgnm(origName)
+                .savednm(savedName)
+                .savedpath(savedPath)
+                .build();
+        
+        file.transferTo(new File(savedPath)); // 실제로 로컬에 uuid를 파일명으로 저장
+        return fileupRepositoryWon.save(fileup).getFileId(); // 데이터베이스에 파일 정보 저장
+    }
+
+    @Override
+    public void saveUpdateBoardfile(long boardId, long fileupId) {
+        Boardfile boardfile = new Boardfile();
+        boardfile.setBoardId(boardId);
+        boardfile.setFileupFileId(fileupId);
+        boardfileRepositoryWon.save(boardfile);
+    }
+
+    @Override
+    public void deleteUploadedFile(String removeList) {
+        // removeList(직렬화된 json) -> 핸들링
+        JSONParser parser = new JSONParser();
+        try {
+            JSONArray jsonarray = (JSONArray) parser.parse(removeList);
+            for(int i=0; i < jsonarray.size(); i++){
+                JSONObject obj = (JSONObject) jsonarray.get(i);
+                String fileId = (String) obj.get("fileId");
+                log.info("fileId", fileId);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 }
