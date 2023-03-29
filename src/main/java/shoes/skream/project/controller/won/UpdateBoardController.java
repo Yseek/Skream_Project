@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
@@ -51,8 +50,8 @@ public class UpdateBoardController {
     }
 
     @PostMapping("updateBoard/{id}")
-    public String saveUpdateBoard(UpdateBoardDto updateBoardDto, @RequestParam("file") List<MultipartFile> files)
-                throws IOException{
+    public String saveUpdateBoard(UpdateBoardDto updateBoardDto, @RequestParam("file") List<MultipartFile> files
+                , HttpServletRequest request) throws IOException{
         log.info("$$$$ saveUpdateDto: {}", updateBoardDto.getRemoveList());
         // board update
         updateBoardService.updateBoard(updateBoardDto);
@@ -60,6 +59,6 @@ public class UpdateBoardController {
         
         // 이전 업로드 지울 경우 delete
 
-        return "redirect:boardlist";
+        return "redirect:" + request.getHeader("Referer");
     }
 }
