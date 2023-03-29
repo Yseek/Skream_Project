@@ -23,28 +23,29 @@ import shoes.skream.project.service.won.WriteBoardService;
 @Slf4j
 @Controller
 public class WriteBoardController {
-    @Autowired
-    WriteBoardService writeBoardService;
 
-    @GetMapping("writeBoard")
-    public String writeBoard(HttpServletRequest request, HttpSession session, Model model) {
-        List<Category> categoryList = writeBoardService.getCategoryList();
-        model.addAttribute("categoryList", categoryList);
-        session = request.getSession();
-        log.info("#### session.loginEmail: {}", session.getAttribute("loginEmail"));
-        return "writeBoard";
-    }
+	@Autowired
+	WriteBoardService writeBoardService;
 
-    @Transactional
-    @PostMapping("writeBoard")
-    public String writeBoardTest(WriteBoardDto boardDto, @RequestParam("file") List<MultipartFile> files)
-            throws IOException {
-        long boardId = writeBoardService.writeBoard(boardDto);
+	@GetMapping("writeBoard")
+	public String writeBoard(HttpServletRequest request, HttpSession session, Model model) {
+		List<Category> categoryList = writeBoardService.getCategoryList();
+		model.addAttribute("categoryList", categoryList);
+		session = request.getSession();
+		log.info("#### session.loginEmail: {}", session.getAttribute("loginEmail"));
+		return "writeBoard";
+	}
 
-        for (MultipartFile file : files) {
-            long fileupId = writeBoardService.saveFile(file);
-            writeBoardService.saveBoardfile(boardId, fileupId);
-        }
-        return "redirect:boardlist";
-    }
+	@Transactional
+	@PostMapping("writeBoard")
+	public String writeBoardTest(WriteBoardDto boardDto, @RequestParam("file") List<MultipartFile> files)
+			throws IOException {
+		long boardId = writeBoardService.writeBoard(boardDto);
+
+		for (MultipartFile file : files) {
+			long fileupId = writeBoardService.saveFile(file);
+			writeBoardService.saveBoardfile(boardId, fileupId);
+		}
+		return "redirect:boardlist";
+	}
 }
