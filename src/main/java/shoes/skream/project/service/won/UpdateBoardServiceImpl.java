@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.slf4j.Slf4j;
@@ -96,6 +97,7 @@ public class UpdateBoardServiceImpl implements UpdateBoardService{
     }
 
     @Override
+    @Transactional
     public void deleteUploadedFile(String removeList) {
         // removeList(직렬화된 json) -> 핸들링
         JSONParser parser = new JSONParser();
@@ -103,8 +105,17 @@ public class UpdateBoardServiceImpl implements UpdateBoardService{
             JSONArray jsonarray = (JSONArray) parser.parse(removeList);
             for(int i=0; i < jsonarray.size(); i++){
                 JSONObject obj = (JSONObject) jsonarray.get(i);
-                String fileId = (String) obj.get("fileId");
-                log.info("fileId", fileId);
+                String fileIdStr = (String) obj.get("fileId");
+                Long fileId = Long.parseLong(fileIdStr);
+                // 로컬 파일 삭제
+                Fileup fileup = fileupRepositoryWon.findById(fileId).orElse(null);
+                String savedpath = fileup.getSavedpath();
+                File f = new File(savedpath);
+                if(f.exists()){
+                    f.delete();
+                }
+                // DB 삭제
+                fileupRepositoryWon.deleteById(fileId);
             }
         } catch (ParseException e) {
             e.printStackTrace();

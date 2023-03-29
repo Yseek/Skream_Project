@@ -53,17 +53,14 @@ public class UpdateBoardController {
     public String saveUpdateBoard(UpdateBoardDto updateBoardDto, @RequestParam("file") List<MultipartFile> files
                 , HttpServletRequest request, String posturl) throws IOException{
         log.info("$$$$ saveUpdateDto: {}", updateBoardDto.getRemoveList());
-        // board update
         updateBoardService.updateBoard(updateBoardDto);
-        // 새로 업로드 fileup, boardfile insert
         for (MultipartFile file : files) {
             long fileupId = updateBoardService.saveUpdateFile(file);
             if(fileupId != -1){
                 updateBoardService.saveUpdateBoardfile(updateBoardDto.getSeq(), fileupId);
             }
         }
-        // 이전 업로드 지울 경우 delete
-        //updateBoardService.deleteUploadedFile(updateBoardDto.getRemoveList());
+        updateBoardService.deleteUploadedFile(updateBoardDto.getRemoveList());
         return "redirect:" + posturl;
     }
 }

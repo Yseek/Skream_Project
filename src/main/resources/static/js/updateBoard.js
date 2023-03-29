@@ -20,9 +20,7 @@ Array.from(removeUploadedImageButton).forEach(element => {
         let jsonData = JSON.stringify(removeList);
         let removeListTag = document.getElementsByName("removeList")[0];
         console.log(removeListTag);
-        removeListTag.value = jsonData;
-        // removeListTag.setAttribute("value", jsonData);
-        
+        removeListTag.value = jsonData;        
         // 이미지 태그 제거
         imgTag.remove(); 
         
