@@ -32,3 +32,4 @@ document.querySelector('.parallax_page').addEventListener('scroll', function () 
 });
 
 
+
