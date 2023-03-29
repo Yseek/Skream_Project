@@ -31,7 +31,7 @@
     margin-top: 5%;
     margin-right: 5%;
     margin-left: 5%;
-    width: 30%;
+    width: 22%;
     height: 7%;
     font-size: 15px;
     color: white;
@@ -46,20 +46,22 @@
 </style>
 
 <body>
-  <div class="warpper">
-    <h2>정보 수정</h2>
-    <form action="memberUpdate" method="POST">
-    <input class="txt_style" id= 'email' name='email' type="text" placeholder="이메일" th:value="${session.loginEmail}" readonly><br>
-    <input class="txt_style" id= 'name' name='name' type="text" placeholder="닉네임" th:value="${member.name}" ><br>
-    <input class="txt_style" id= 'pwd' name='pwd' type="password" th:value="${member.pwd}" placeholder="변경 비밀번호"><br>
-    <input class="txt_style" type="password" placeholder="비밀번호 확인" th:value="${member.pwd}" ><br>
-    <input class="txt_style" id= 'phone' name='phone' type="text" th:value="${member.phone}" placeholder="전화번호(010-0000-0000)">
-    <input class="btn_style" type="submit" value="수 정">
-    <input class="btn_style" type="button" value="뒤로가기">
-    <input class="btn_style" type="button" value="회원 탈퇴">
-    </form>
+  <form action="memberUpdate" method="POST">
+    <div class="warpper">
+      <h2>정보 수정 / 탈퇴</h2>
+      <input class="txt_style" id='email' name='email' type="text" placeholder="이메일" th:value="${session.loginEmail}"
+        readonly><br>
+      <input class="txt_style" id='name' name='name' type="text" placeholder="닉네임" th:value="${member.name}"><br>
+      <input class="txt_style" id='pwd' name='pwd' type="password" placeholder="변경 비밀번호"><br>
+      <input class="txt_style" type="password" placeholder="비밀번호 확인"><br>
+      <input class="txt_style" id='phone' name='phone' type="text" placeholder="전화번호(010-0000-0000)">
+      <input class="btn_style" type="submit" value="수  정">
+  </form>
+  <form action="memberDelete" method="POST">
+    <input class="btn_style" type="submit" value="회원 탈퇴">
+    <input type="hidden" name="email" th:value="${session.loginEmail}">
+  </form>
   </div>
-</form>
 </body>
 
 </html>
