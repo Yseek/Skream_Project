@@ -40,7 +40,7 @@
 					<td align="center">IMAGE</td>
 					<td>
 						<div id="preview">
-							<p id="emptyImage">이미지 없음</p>
+							<p id="emptyImage">업로드할 이미지를 선택해주세요</p>
 							<ol id="imageList"></ol>
 						</div>
 					</td>
@@ -52,7 +52,7 @@
 				<tr>
 					<td colspan="2" align="center">
 						<input type="button" value="전송" onclick="check()">
-						<input type="reset" value="다시입력" onclick="input.writer.focus()">
+						<input type="reset" value="다시입력" onclick="input.subject.focus()">
 						<label id="fileButton" for="file">업로드(최대 10개)</label>
 						<input type="file" name="file" id="file" multiple="multiple" accept="image/*"
 							onchange="updateImageDisplay()">

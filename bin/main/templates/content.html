@@ -29,6 +29,13 @@
 						<button>삭제</button>
 					</form>
 				</span>
+				<span th:if="${session.loginEmail == contents.email}" style="float: right; font-size: 0.7em;">
+					<form action="updateBoard" method="post">
+						<input type="hidden" name="boardId" th:value="${seq}">
+						<input type="hidden" name="posturl" th:value="${request}">
+						<button>수정</button>
+					</form>
+				</span>
 			</h3>
 		</div>
 		<hr>
