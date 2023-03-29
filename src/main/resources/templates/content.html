@@ -20,7 +20,7 @@
 					<span class="category_text" th:text="|[${contents.Cg.cgname}]|">[나이키]</span>
 					<span class="subject_inner_text" th:text="${contents.subject}">아디다스 신발</span>
 					<strong class="reply_count" th:if="${contents.comments.size}>0"
-						th:text="|[${contents.comments.size}]|">[12]</strong>
+						th:text="|[${contents.comments.size}]|" style="color: green;">[12]</strong>
 				</span>
 				<span th:if="${session.loginEmail == contents.email}" style="float: right; font-size: 0.7em;">
 					<form action="deleteBoard" method="post">
@@ -51,9 +51,9 @@
 			<div class="content">
 				<th:block th:each="contents:${contents}">
 					<div th:each="imgs:${contents.fileUp}" style="width:100%">
-						<a th:href="@{#pop_info_${imgs.fileId}}" class="btn_open"><img th:src="|/contentimages/${imgs.fileId}|"
+						<a th:href="${'#pop_info_'+imgs.fileId}" class="btn_open"><img th:src="|/contentimages/${imgs.fileId}|"
 								style="border:1px solid silver; width:60%; height:auto; margin:2%"></img></a>
-						<div th:id="pop_info_1" class="pop_wrap" style="display:none;">
+						<div th:id="${'pop_info_'+imgs.fileId}" class="pop_wrap" style="display:none;">
 							<div class="pop_inner">
 								<button type="button" class="btn_close"
 									style="background-color: transparent; border:none">
