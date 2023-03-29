@@ -165,4 +165,9 @@ public class BoardService implements BoardServiceInterface {
 	public void recommendDelDo(long boardId, String email) {
 		recommendRepository.delete(recommendRepository.findByBoardIdAndEmail(boardId, email));
 	}
+
+	@Override
+	public void deleteBoard(long boardId) {
+		boardRepository.deleteById(boardId);
+	}
 }

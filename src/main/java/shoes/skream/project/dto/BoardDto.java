@@ -33,6 +33,7 @@ public class BoardDto {
 	private final List<List<Recomment>> recomlist;
 	private final List<Recommend> recommends;
 	private final List<String> recommendsEmail;
+	private final String email;
 
 	public static BoardDto from(Board board, BoardDtoMapper boardDtoMapper) {
 		List<Boardfile> files = boardDtoMapper.selectBoardFile(board.getBoardId());
@@ -65,6 +66,7 @@ public class BoardDto {
 				.recomlist(recomlist)
 				.recommends(recommends)
 				.recommendsEmail(recommendsEmail)
+				.email(board.getMember().getEmail())
 				.build();
 	}
 }

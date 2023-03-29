@@ -13,6 +13,7 @@
 <body>
 	<article th:fragment="boardFragment">
 		<div style="float: left;">
+			<button onclick="main()">메인</button>
 			<button onclick="wholeList()">전체글</button>
 			<!-- <button>공지</button> -->
 			<div class="dropdown">
@@ -63,8 +64,8 @@
 					<td th:text="${list.seq}">3</td>
 					<input type="hidden" class="listSeq" th:value="${list.seq}">
 					<td>
-						<img th:if="|/contentimages/${list.fileUp.get(0).orgnm}|!='/contentimages/noImage.png'" th:src="|/contentimages/${list.fileUp.get(0).fileId}|">
-						<img th:if="|/contentimages/${list.fileUp.get(0).orgnm}|=='/contentimages/noImage.png'" src="images/noImage.png">
+						<img th:if="|/contentimages/${list.fileUp.get(0).orgnm}|!='/contentimages/noImage.png'" style="max-width: 200px;" th:src="|/contentimages/${list.fileUp.get(0).fileId}|">
+						<img th:if="|/contentimages/${list.fileUp.get(0).orgnm}|=='/contentimages/noImage.png'" style="max-width: 200px;" src="images/noImage.png">
 					</td>
 					<td id="subject">
 						<span style="float: left;">
@@ -99,7 +100,7 @@
 		</table>
 		<div style="float: left;">
 			<button onclick="wholeList()">전체글</button>
-			<a href="writeBoard">글쓰기</a>
+			<button onclick="writeBoard()">글쓰기</button>
 		</div>
 		<br>
 		<hr>
@@ -289,6 +290,14 @@
 
 			function wholeList() {
 				location.href = "board?&page=1";
+			}
+
+			function main(){
+				location.href = "main?";
+			}
+
+			function writeBoard(){
+				location.href = "writeBoard?";
 			}
 		</script>
 	</article>

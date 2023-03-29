@@ -14,28 +14,28 @@ import shoes.skream.project.service.hoya.MemberService;
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
-  private final MemberService memberService;
+	private final MemberService memberService;
 
-  @PostMapping("join.do")
-  public String save(@ModelAttribute MemberDTO memberDTO) {
-    memberService.save(memberDTO);
-    return "main";
-  }
+	@PostMapping("join.do")
+	public String save(@ModelAttribute MemberDTO memberDTO) {
+		memberService.save(memberDTO);
+		return "main";
+	}
 
-  @PostMapping("login.do")
-  public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
-    MemberDTO loginResult = memberService.login(memberDTO);
-    if (loginResult != null) {
-      session.setAttribute("loginEmail", loginResult.getEmail());
-      return "main";
-    } else {
-      return "main";
-    }
-  }
+	@PostMapping("login.do")
+	public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
+		MemberDTO loginResult = memberService.login(memberDTO);
+		if (loginResult != null) {
+			session.setAttribute("loginEmail", loginResult.getEmail());
+			return "redirect:main";
+		} else {
+			return "redirect:main";
+		}
+	}
 
-  @GetMapping("logout.do")
-  public String Logout(HttpSession session) {
-    session.invalidate();
-    return "redirect:/main";
-  }
+	@GetMapping("logout.do")
+	public String Logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:main";
+	}
 }

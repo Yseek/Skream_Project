@@ -7,6 +7,9 @@ insert into MEMBER values('abc3@naver.com', '사용자3', '1992/01/01','010-3333
 insert into CATEGORY values(1, '나이키');
 insert into CATEGORY values(2, '아디다스');
 insert into CATEGORY values(3, '뉴발란스');
+insert into CATEGORY values(4, '반스');
+insert into CATEGORY values(5, '아식스');
+insert into CATEGORY values(6, '컨버스');
 
 
 insert into BOARD values(null,'제목1','내용1',now(),now(),1,1,1,'abc1@naver.com');

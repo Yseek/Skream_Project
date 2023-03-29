@@ -19,7 +19,15 @@
 				<span class="subject_text">
 					<span class="category_text" th:text="|[${contents.Cg.cgname}]|">[나이키]</span>
 					<span class="subject_inner_text" th:text="${contents.subject}">아디다스 신발</span>
-					<strong class="reply_count" th:text="|[${contents.comments.size}]|">[12]</strong>
+					<strong class="reply_count" th:if="${contents.comments.size}>0"
+						th:text="|[${contents.comments.size}]|">[12]</strong>
+				</span>
+				<span th:if="${session.loginEmail == contents.email}" style="float: right; font-size: 0.7em;">
+					<form action="deleteBoard" method="post">
+						<input type="hidden" name="boardId" th:value="${seq}">
+						<input type="hidden" name="posturl" th:value="${request}">
+						<button>삭제</button>
+					</form>
 				</span>
 			</h3>
 		</div>
@@ -47,18 +55,20 @@
 					게시글 내용
 				</div>
 				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-					<form th:if="${!#lists.contains(contents.recommendsEmail, session.loginEmail)}" action="recommendDo" method="post">
-						<input type="hidden" name="boardId" th:value="${contents.seq}">
-						<input type="hidden" name="email" th:value="${session.loginEmail}">
-						<button style="color:black;background-color: white;"><img src="images/good.png"
-								style="height:25px">추천</button>
-					</form>
-					<form th:if="${#lists.contains(contents.recommendsEmail, session.loginEmail)}" action="recommendUnDo" method="post">
-						<input type="hidden" name="boardId" th:value="${contents.seq}">
-						<input type="hidden" name="email" th:value="${session.loginEmail}">
-						<button style="color:black;background-color: gray;"><img src="images/good.png"
-								style="height:25px">완료</button>
-					</form>
+				<form th:if="${!#lists.contains(contents.recommendsEmail, session.loginEmail)}" action="recommendDo"
+					method="post">
+					<input type="hidden" name="boardId" th:value="${contents.seq}">
+					<input type="hidden" name="email" th:value="${session.loginEmail}">
+					<button style="color:black;background-color: white;"><img src="images/good.png"
+							style="height:25px">추천</button>
+				</form>
+				<form th:if="${#lists.contains(contents.recommendsEmail, session.loginEmail)}" action="recommendUnDo"
+					method="post">
+					<input type="hidden" name="boardId" th:value="${contents.seq}">
+					<input type="hidden" name="email" th:value="${session.loginEmail}">
+					<button style="color:black;background-color: gray;"><img src="images/good.png"
+							style="height:25px">완료</button>
+				</form>
 			</div>
 		</div>
 		<hr>
@@ -133,15 +143,10 @@
 			</div>
 			<hr>
 		</div>
-		<div class="content_bottom_button">
-			<button>목 록</button> |
-			<button>이전글</button> |
-			<button>다음글</button>
-		</div>
-		<hr>
-		</div>
+		<br>
 		<hr style="margin-bottom:5px">
 	</article>
+
 	<article th:replace="~{board :: boardFragment}"></article>
 	<script>
 		const recommentsWritebox = document.querySelectorAll('.recommentsWritebox');
