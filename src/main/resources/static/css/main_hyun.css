@@ -1983,42 +1983,46 @@ button {
   width: 94%;
   height: 100%
 }
-.tab1_content table{
-  border:1px solid silver;
+
+.tab1_content table {
+  border: 1px solid silver;
   border-collapse: collapse;
   width: 100%;
   text-align: center;
-  font-size : 100px;
+  font-size: 100px;
   background-color: rgb(241, 241, 241);
 }
-.tab1_content table tr td{
-  border:1px solid silver;
+
+.tab1_content table tr td {
+  border: 1px solid silver;
   border-collapse: collapse;
   font-size: 16px;
 }
 
-.tab2_content table{
-  border:1px solid silver;
+.tab2_content table {
+  border: 1px solid silver;
   border-collapse: collapse;
   width: 100%;
   text-align: center;
   background-color: rgb(241, 241, 241);
 }
-.tab2_content table tr td{
-  border:1px solid silver;
+
+.tab2_content table tr td {
+  border: 1px solid silver;
   border-collapse: collapse;
   font-size: 16px;
 }
 
-.tab3_content table{
-  border:1px solid silver;
+.tab3_content table {
+  border: 1px solid silver;
   border-collapse: collapse;
   width: 100%;
   text-align: center;
   background-color: rgb(241, 241, 241);
 }
-.tab3_content table tr td{
-  border:1px solid silver;
+
+.tab3_content table tr td {
+  border: 1px solid silver;
   border-collapse: collapse;
   font-size: 16px;
 }
