@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import lombok.extern.slf4j.Slf4j;
 import shoes.skream.project.domain.Board;
 import shoes.skream.project.domain.Boardfile;
 import shoes.skream.project.domain.Category;
@@ -24,7 +23,6 @@ import shoes.skream.project.repository.won.BoardfileRepositoryWon;
 import shoes.skream.project.repository.won.CategoryRepositoryWon;
 import shoes.skream.project.repository.won.FileupRepositoryWon;
 
-@Slf4j
 public class UpdateBoardServiceImpl implements UpdateBoardService{
     
     @Value("${file.dir}")

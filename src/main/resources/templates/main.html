@@ -245,7 +245,7 @@
 											<a th:href="@{content?(page=${nowPage},seq=${list.seq})}"
 												th:text="${list.subject}">제목 [10]</a>
 											<span th:if="${list.comments.size>0}"
-												th:text="|[${list.comments.size}]|"></span>
+												th:text="|[${list.comments.size}]|" style="color: green;"></span>
 										</li>
 									</ul>
 									<a href="boardlist?page=1" class="more" title="더 보기">More <i
@@ -260,7 +260,7 @@
 											<a th:href="@{content?(page=${nowPagerecom},orderby=${orderbyrecom},seq=${recom.seq})}"
 												th:text="${recom.subject}">제목 </a>
 											<span th:if="${recom.comments.size>0}"
-												th:text="|[${recom.comments.size}]|"></span>
+												th:text="|[${recom.comments.size}]|" style="color: green;"></span>
 										</li>
 									</ul>
 									<a href="boardlist?page=1&orderby=recom" class="more" title="더 보기">More <i
@@ -274,7 +274,7 @@
 											<a th:href="@{content?(page=${nowPagehits},orderby=${orderbyhits},seq=${hits.seq})}"
 												th:text="${hits.subject}">제목 [10]</a>
 											<span th:if="${hits.comments.size>0}"
-												th:text="|[${hits.comments.size}]|"></span>
+												th:text="|[${hits.comments.size}]|" style="color: green;"></span>
 										</li>
 									</ul>
 									<a href="boardlist?page=1&orderby=hits" class="more" title="더 보기">More <i

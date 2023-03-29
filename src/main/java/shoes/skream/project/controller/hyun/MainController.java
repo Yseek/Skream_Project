@@ -98,7 +98,7 @@ public class MainController {
 
 		model.addAttribute("member", member);
 
-		return "main";
+		return "redirect:main";
 	}
 
 	@PostMapping("memberDelete")
