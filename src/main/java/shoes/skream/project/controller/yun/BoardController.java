@@ -41,7 +41,8 @@ public class BoardController {
 			@RequestParam(value = "cate", required = false, defaultValue = "0") Integer categoryId,
 			@RequestParam(required = false, defaultValue = "") String keyword,
 			@RequestParam(value = "search", required = false, defaultValue = "") String searchForWhat,
-			@PageableDefault(page = 0, size = 3, sort = "boardId", direction = Sort.Direction.DESC) Pageable pageable) {
+			@PageableDefault(page = 0, size = 10, sort = "boardId", direction = Sort.Direction.DESC) Pageable pageable,
+			HttpServletRequest request) {
 		boardServiceInterface.hitsCountUp(seq); // 조회수 증가
 		List<Category> categories = boardServiceInterface.listCategories();
 		if (keyword.length() != 0) {
@@ -59,6 +60,7 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("request", request.getHeader("Referer"));
 				model.addAttribute("contents", contents);
 				model.addAttribute("comments", comments);
 				model.addAttribute("keyword", keyword);
@@ -90,6 +92,7 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("request", request.getHeader("Referer"));
 				model.addAttribute("contents", contents);
 				model.addAttribute("comments", comments);
 				model.addAttribute("keyword", keyword);
@@ -121,6 +124,7 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("request", request.getHeader("Referer"));
 				model.addAttribute("contents", contents);
 				model.addAttribute("comments", comments);
 				model.addAttribute("keyword", keyword);
@@ -152,6 +156,7 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("request", request.getHeader("Referer"));
 				model.addAttribute("contents", contents);
 				model.addAttribute("comments", comments);
 				model.addAttribute("keyword", keyword);
@@ -187,6 +192,7 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("request", request.getHeader("Referer"));
 				model.addAttribute("contents", contents);
 				model.addAttribute("comments", comments);
 				model.addAttribute("seq", seq);
@@ -214,6 +220,7 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("request", request.getHeader("Referer"));
 				model.addAttribute("contents", contents);
 				model.addAttribute("comments", comments);
 				model.addAttribute("seq", seq);
@@ -241,6 +248,7 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("request", request.getHeader("Referer"));
 				model.addAttribute("contents", contents);
 				model.addAttribute("comments", comments);
 				model.addAttribute("seq", seq);
@@ -271,6 +279,7 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("request", request.getHeader("Referer"));
 				model.addAttribute("contents", contents);
 				model.addAttribute("comments", comments);
 				model.addAttribute("seq", seq);
@@ -298,6 +307,7 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("request", request.getHeader("Referer"));
 				model.addAttribute("contents", contents);
 				model.addAttribute("comments", comments);
 				model.addAttribute("seq", seq);
@@ -325,6 +335,7 @@ public class BoardController {
 					startPage = Math.max(endPage - 9, 1);
 				}
 				int size = list.getPageable().getPageSize();
+				model.addAttribute("request", request.getHeader("Referer"));
 				model.addAttribute("contents", contents);
 				model.addAttribute("comments", comments);
 				model.addAttribute("seq", seq);
@@ -347,7 +358,7 @@ public class BoardController {
 			@RequestParam(value = "cate", required = false, defaultValue = "0") Integer categoryId,
 			@RequestParam(required = false, defaultValue = "") String keyword,
 			@RequestParam(value = "search", required = false, defaultValue = "") String searchForWhat,
-			@PageableDefault(page = 0, size = 3, sort = "boardId", direction = Sort.Direction.DESC) Pageable pageable) {
+			@PageableDefault(page = 0, size = 10, sort = "boardId", direction = Sort.Direction.DESC) Pageable pageable) {
 		List<Category> categories = boardServiceInterface.listCategories();
 		// 검색기능
 		if (keyword.length() != 0) {
@@ -601,7 +612,7 @@ public class BoardController {
 	@GetMapping("board") // 현재 마지막페이지가 조회 할 마지막페이지 보다 클때 조회 할 페이지의 넘버 조정
 	public String list_(Model model, @RequestParam(required = false, defaultValue = "") String orderby, int page,
 			@RequestParam(value = "cate", required = false, defaultValue = "0") Integer categoryId,
-			@PageableDefault(page = 0, size = 3, sort = "boardId", direction = Sort.Direction.DESC) Pageable pageable) {
+			@PageableDefault(page = 0, size = 10, sort = "boardId", direction = Sort.Direction.DESC) Pageable pageable) {
 		if (categoryId == 0) {
 			if (orderby.equals("hits")) {
 				Page<BoardDto> list = boardServiceInterface.listByView(pageable);
@@ -660,7 +671,7 @@ public class BoardController {
 
 	@GetMapping("search.do")
 	public String search(Model model, String keyword, String searchForWhat,
-			@PageableDefault(page = 0, size = 3, sort = "boardId", direction = Sort.Direction.DESC) Pageable pageable) {
+			@PageableDefault(page = 0, size = 10, sort = "boardId", direction = Sort.Direction.DESC) Pageable pageable) {
 		System.out.println(searchForWhat);
 		try {
 			keyword = URLEncoder.encode(keyword, "utf-8");
@@ -676,18 +687,23 @@ public class BoardController {
 		return fileServiceInterface.downloadImage(id);
 	}
 
-	
 	@PostMapping("recommendDo")
-	public String recommendDo(long boardId, String email, HttpServletRequest request){
+	public String recommendDo(long boardId, String email, HttpServletRequest request) {
 		boardServiceInterface.boardUpdate(boardId);
 		boardServiceInterface.recommendCreDo(boardId, email);
 		return "redirect:" + request.getHeader("Referer");
 	}
 
 	@PostMapping("recommendUnDo")
-	public String recommendUnDo(long boardId, String email, HttpServletRequest request){
+	public String recommendUnDo(long boardId, String email, HttpServletRequest request) {
 		boardServiceInterface.boardUnUpdate(boardId);
 		boardServiceInterface.recommendDelDo(boardId, email);
 		return "redirect:" + request.getHeader("Referer");
+	}
+
+	@PostMapping("deleteBoard")
+	public String deleteBoard(long boardId, String posturl) {
+		boardServiceInterface.deleteBoard(boardId);
+		return "redirect:" + posturl;
 	}
 }

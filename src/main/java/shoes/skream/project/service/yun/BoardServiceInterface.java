@@ -31,4 +31,5 @@ public interface BoardServiceInterface {
 	void boardUnUpdate(long boardId);
 	void recommendCreDo(long boardId, String email);
 	void recommendDelDo(long boardId, String email);
+	void deleteBoard(long boardId);
 }
