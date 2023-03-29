@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.slf4j.Slf4j;
 import shoes.skream.project.domain.Category;
-import shoes.skream.project.dto.WriteBoardDto;
+import shoes.skream.project.dto.won.WriteBoardDto;
 import shoes.skream.project.service.won.WriteBoardService;
 
 @Slf4j

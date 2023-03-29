@@ -40,3 +40,9 @@ article{
     min-height: 1000px;
     z-index: -3;
   }
+
+  .imagefile {
+    width: 7rem;
+    height: 7rem;
+    margin: 0 1rem;
+  }
