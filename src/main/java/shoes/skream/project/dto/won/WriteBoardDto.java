@@ -1,4 +1,4 @@
-package shoes.skream.project.dto;
+package shoes.skream.project.dto.won;
 
 import lombok.Builder;
 import lombok.Getter;
