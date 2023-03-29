@@ -8,11 +8,15 @@ article {
 
 .subject_row {
 	text-align: left;
+	height: 30px;
+	padding-bottom:7px;
 }
 
 .user_info {
+	padding-top:7px;
 	text-align: left;
 	font-size: 13px;
+	height: 30px;
 }
 
 .user_info>img {
@@ -199,6 +203,7 @@ a {
 	background: rgba(0, 0, 0, .8);
 	font-size: 0;
 	text-align: center;
+
 	z-index: 1;
 }
 
@@ -214,10 +219,4 @@ a {
 	width: auto;
 	vertical-align: middle;
 
-}
-.img_btn{
-	border:1px solid silver; 
-	width:60%; 
-	height:auto; 
-	margin:2%
 }

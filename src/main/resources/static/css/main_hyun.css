@@ -17,6 +17,21 @@
   url(hermes.png) 20 30, auto; 
 }  
 
+.area_basket{
+    position : fixed;
+    left: 50%;
+    top: 0;
+}
+
+.basket{
+    position: absolute;
+    right: -710px;
+    top: 250px;
+    width: 100px;
+    height: 250px;
+    background-color: rgb(0, 217, 255);
+}
+
 body,
 div,
 ul,
@@ -307,7 +322,7 @@ nav {
   height: 50px;
   background-color: white;
   font-size: 30px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "궁서";
 }
 
 .header>.header_title a span {
@@ -363,7 +378,7 @@ nav {
 
 .header>.header_menu .header_menu_intro_a {
   font-size: 11px;
-  font-family: "돋움", Dotum, "돋움체", DotumChe;
+  font-family: "돋움";
 }
 
 .header>.header_menu a:hover {
@@ -760,8 +775,6 @@ nav {
   margin-left: 1px;
 }
 
-/* it makes div auto control */
-/* http://uxuiz.cafe24.com/wp/archives/1445 */
 .column.col1 {
   border-bottom: 0;
   overflow: hidden;
