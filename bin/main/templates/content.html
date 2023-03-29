@@ -51,9 +51,9 @@
 			<div class="content">
 				<th:block th:each="contents:${contents}">
 					<div th:each="imgs:${contents.fileUp}" style="width:100%">
-						<a href="#pop_info_1" class="btn_open"><img th:src="|/contentimages/${imgs.fileId}|"
+						<a th:href="@{#pop_info_${imgs.fileId}}" class="btn_open"><img th:src="|/contentimages/${imgs.fileId}|"
 								style="border:1px solid silver; width:60%; height:auto; margin:2%"></img></a>
-						<div id="pop_info_1" class="pop_wrap" style="display:none;">
+						<div th:id="pop_info_1" class="pop_wrap" style="display:none;">
 							<div class="pop_inner">
 								<button type="button" class="btn_close"
 									style="background-color: transparent; border:none">
@@ -62,10 +62,10 @@
 							</div>
 						</div>
 					</div>
+				</th:block>
 			</div>
 		</div>
 		<br>
-		</th:block>
 		<div style="text-align:left;" th:text="${contents.contents}">
 			게시글 내용
 		</div>
