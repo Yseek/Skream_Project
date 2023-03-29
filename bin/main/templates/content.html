@@ -40,18 +40,18 @@
 		</div>
 		<hr>
 		<div class="board_main_view">
-			<div class="content">
+			<div class="content" style="text-align:center">
 				<th:block th:each="contents:${contents}">
-					<table>
+					<table style="width:95%; display:inline-block">
 						<tr>
-							<td th:each="imgs:${contents.fileUp}" style="border: 1px solid green;">
-								<img th:src="|/contentimages/${imgs.fileId}|"></img>
+							<td th:each="imgs:${contents.fileUp}" style="border:1px dotted silver">
+								<img style="width:95%; height:auto;"th:src="|/contentimages/${imgs.fileId}|"></img>
 							</td>
 						</tr>
 					</table>
 				</th:block>
 				<br>
-				<div th:text="${contents.contents}">
+				<div style="text-align:left; margin:3%"th:text="${contents.contents}">
 					게시글 내용
 				</div>
 				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -154,5 +154,6 @@
 			recommentsWriteboxButton[i].addEventListener('click', () => recommentsWritebox[i].classList.toggle('show'));
 		}
 	</script>
+	
 </body>
 </html>
