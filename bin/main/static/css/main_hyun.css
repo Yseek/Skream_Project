@@ -12,7 +12,10 @@
   --accent-color: white;
 }
 
-
+.link:hover 
+{ cursor : url(hermes.png) 20 30, 
+  url(hermes.png) 20 30, auto; 
+}  
 
 body,
 div,
