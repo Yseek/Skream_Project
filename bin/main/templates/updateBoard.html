@@ -5,10 +5,8 @@
    <meta charset="utf-8">
    <title>글 수정</title>
    <link rel="stylesheet" th:href="@{/css/writeBoard.css}">
-   <script th:inline="javascript">
-   </script>
    <script th:src="@{/js/writeBoard.js}"></script>
-   <script defer th:src="@{/js/updateBoard.js}" ></script>
+   <script th:src="@{/js/updateBoard.js}"></script>
 </head>
 <article>
 
@@ -32,11 +30,11 @@
             <tr>
                <td align="center">CATEGORY</td>
                <td>
-						<select name="category">
+                  <select name="category">
 							<option  th:each="category : ${categoryList}" th:value=${category.categoryId}
 									th:selected="${category.categoryId}==${updateBoardDto.category}">[[${category.cgname}]]</option>
-						</select>
-					</td>
+                  </select>
+               </td>
             </tr>
             <tr>
                <td align="center">SUBJECT</td>

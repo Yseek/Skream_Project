@@ -3,6 +3,9 @@ package shoes.skream.project.controller.won;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
@@ -29,13 +32,13 @@ public class UpdateBoardController {
     @Autowired
     WriteBoardService writeBoardService;
 
-    @GetMapping("updateBoard/{id}")
-    public String updateBoard(@PathVariable Long id, Model model){
+    @PostMapping("updateBoard")
+    public String updateBoard(long boardId, Model model, HttpServletRequest request){
         List<Category> categoryList = writeBoardService.getCategoryList();       
         model.addAttribute("categoryList", categoryList);
-        UpdateBoardDto updateBoardDto = updateBoardService.getBoard(id);
+        UpdateBoardDto updateBoardDto = updateBoardService.getBoard(boardId);
         model.addAttribute("updateBoardDto", updateBoardDto);
-        log.info("$$$$ 파일리스트의 첫번째 파일 이름: {}", updateBoardDto.getFileList().get(0).getOrgnm());
+        log.info("$$$$ 파일리스트의 첫번째 파일 이름: {}", updateBoardDto.getSubject());
         return "updateBoard";
     }
 
@@ -54,9 +57,9 @@ public class UpdateBoardController {
         // board update
         updateBoardService.updateBoard(updateBoardDto);
         // 새로 업로드 fileup, boardfile insert
-
+        
         // 이전 업로드 지울 경우 delete
 
-        return "redirect:content";
+        return "redirect:boardlist";
     }
 }

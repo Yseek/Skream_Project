@@ -44,12 +44,11 @@ public class UpdateBoardServiceImpl implements UpdateBoardService{
 
     @Override
     public void updateBoard(UpdateBoardDto updateBoardDto) {
-        Board board = new Board();
-        board.setBoardId(updateBoardDto.getSeq());
+        Board board = boardRepositoryWon.findById(updateBoardDto.getSeq()).get();
         board.setSubject(updateBoardDto.getSubject());
         board.setContent(updateBoardDto.getContent());
         Category category = categoryRepositoryWon.findById(updateBoardDto.getCategory()).get();
-        board.setCategory(category); 
+        board.setCategory(category);
         boardRepositoryWon.save(board);
     }
 }
