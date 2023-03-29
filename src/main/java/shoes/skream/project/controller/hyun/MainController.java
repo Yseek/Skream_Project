@@ -8,7 +8,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import shoes.skream.project.dto.BoardDto;
 import shoes.skream.project.service.yun.BoardServiceInterface;
@@ -20,34 +19,30 @@ public class MainController {
 	BoardServiceInterface boardServiceInterface;
 
 	@GetMapping("main")
-	public String main(Model model, @RequestParam(required = false, defaultValue = "") String orderby,
-			@PageableDefault(page = 0, size = 5, sort = "boardId", direction = Sort.Direction.DESC) Pageable pageable) {
+	public String main(Model model,
+			@PageableDefault(page = 0, size = 10, sort = "boardId", direction = Sort.Direction.DESC) Pageable pageable) {
 
-		if (orderby.equals("hits")) {
-			Page<BoardDto> list = boardServiceInterface.listByView(pageable);
-			int nowPage = list.getPageable().getPageNumber() + 1;
+		Page<BoardDto> listhits = boardServiceInterface.listByView(pageable);
+		int nowPagehits = listhits.getPageable().getPageNumber() + 1;
 
-			model.addAttribute("orderby", orderby);
-			model.addAttribute("list", list);
-			model.addAttribute("nowPage", nowPage);
-			return "main";
-		} else if (orderby.equals("recom")) {
-			Page<BoardDto> list = boardServiceInterface.listByRecom(pageable);
-			int nowPage = list.getPageable().getPageNumber() + 1;
+		model.addAttribute("orderbyhits", "hits");
+		model.addAttribute("listhits", listhits);
+		model.addAttribute("nowPagehits", nowPagehits);
 
-			model.addAttribute("orderby", orderby);
-			model.addAttribute("list", list);
-			model.addAttribute("nowPage", nowPage);
-			return "main";
-		} else {
-			Page<BoardDto> list = boardServiceInterface.list(pageable);
-			int nowPage = list.getPageable().getPageNumber() + 1;
+		Page<BoardDto> listrecom = boardServiceInterface.listByRecom(pageable);
+		int nowPagerecom = listrecom.getPageable().getPageNumber() + 1;
 
-			model.addAttribute("orderby", orderby);
-			model.addAttribute("list", list);
-			model.addAttribute("nowPage", nowPage);
-			return "main";
-		}
+		model.addAttribute("orderbyrecom", "recom");
+		model.addAttribute("listrecom", listrecom);
+		model.addAttribute("nowPagerecom", nowPagerecom);
+
+		Page<BoardDto> list = boardServiceInterface.list(pageable);
+		int nowPage = list.getPageable().getPageNumber() + 1;
+
+		model.addAttribute("list", list);
+		model.addAttribute("nowPage", nowPage);
+		return "main";
+
 	}
 
 	@GetMapping("memberUpdate")

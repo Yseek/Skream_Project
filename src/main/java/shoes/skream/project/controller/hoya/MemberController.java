@@ -27,15 +27,15 @@ public class MemberController {
 		MemberDTO loginResult = memberService.login(memberDTO);
 		if (loginResult != null) {
 			session.setAttribute("loginEmail", loginResult.getEmail());
-			return "main";
+			return "redirect:main";
 		} else {
-			return "main";
+			return "redirect:main";
 		}
 	}
 
 	@GetMapping("logout.do")
 	public String Logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/main";
+		return "redirect:main";
 	}
 }
