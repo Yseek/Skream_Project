@@ -2,8 +2,6 @@ package shoes.skream.project.service.hoya;
 
 import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -11,14 +9,15 @@ import shoes.skream.project.domain.Member;
 import shoes.skream.project.dto.hoya.MemberDTO;
 import shoes.skream.project.mapper.hyun.MemberDtoMapper;
 import shoes.skream.project.repository.hoya.MemberRepository;
+import shoes.skream.project.repository.yun.BoardMemberRepository;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService {
 
 	private final MemberRepository memberRepository;
-
 	private final MemberDtoMapper memberDtoMapper;
+	private final BoardMemberRepository boardMemberRepository;
 
 	public void save(MemberDTO memberDTO) {
 		Member member = Member.toMember(memberDTO);
@@ -60,5 +59,9 @@ public class MemberService {
 	public int memberUpdatePost(MemberDTO memberDto) {
 
 		return memberDtoMapper.memberUpdatePost(memberDto);
+	}
+
+	public void memberDelete(String email) {
+		boardMemberRepository.deleteById(email);
 	}
 }
