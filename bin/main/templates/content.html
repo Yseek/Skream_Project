@@ -50,26 +50,32 @@
 			<div class="content">
 				<th:block th:each="contents:${contents}">
 					<div th:each="imgs:${contents.fileUp}" style="width:100%">
-						<img th:src="|/contentimages/${imgs.fileId}|" style="border:1px solid silver; width:60%; height:auto"></img>
+						<a href="#pop_info_1" class="btn_open"><img th:src="|/contentimages/${imgs.fileId}|" style="border:1px solid silver; width:60%; height:auto; margin:2%"></img></a>
+						<div id="pop_info_1" class="pop_wrap" style="display:none;">
+							<div class="pop_inner">
+								<button type="button" class="btn_close" style="background-color: transparent; border:none">
+									<img th:src="|/contentimages/${imgs.fileId}|"></img>
+								</button>
+							</div>
+						</div>
 					</div>
 			</div>
-			<br>
-				</th:block>
-			<div style="text-align:left; margin:3%" th:text="${contents.contents}">
-				게시글 내용
-			</div>
-			<form th:if="${!#lists.contains(contents.recommendsEmail, session.loginEmail)}" action="recommendDo"
-				method="post">
-				<input type="hidden" name="boardId" th:value="${contents.seq}">
-				<input type="hidden" name="email" th:value="${session.loginEmail}">
-				<button style="color:black;background-color: white;"><img src="images/good.png" style="height:25px">추천</button>
-			</form>
-			<form th:if="${#lists.contains(contents.recommendsEmail, session.loginEmail)}" action="recommendUnDo"
-				method="post">
-				<input type="hidden" name="boardId" th:value="${contents.seq}">
-				<input type="hidden" name="email" th:value="${session.loginEmail}">
-				<button style="color:black;background-color: gray;"><img src="images/good.png" style="height:25px">완료</button>
-			</form>
+		</div>
+		<br>
+		</th:block>
+		<div style="text-align:left;" th:text="${contents.contents}">
+			게시글 내용
+		</div>
+		<form th:if="${!#lists.contains(contents.recommendsEmail, session.loginEmail)}" action="recommendDo" method="post">
+			<input type="hidden" name="boardId" th:value="${contents.seq}">
+			<input type="hidden" name="email" th:value="${session.loginEmail}">
+			<button style="color:black;background-color: white;"><img src="images/good.png" style="height:25px">추천</button>
+		</form>
+		<form th:if="${#lists.contains(contents.recommendsEmail, session.loginEmail)}" action="recommendUnDo" method="post">
+			<input type="hidden" name="boardId" th:value="${contents.seq}">
+			<input type="hidden" name="email" th:value="${session.loginEmail}">
+			<button style="color:black;background-color: gray;"><img src="images/good.png" style="height:25px">완료</button>
+		</form>
 		</div>
 		</div>
 		<hr>

@@ -199,6 +199,7 @@ a {
 	background: rgba(0, 0, 0, .8);
 	font-size: 0;
 	text-align: center;
+	z-index: 1;
 }
 
 .pop_wrap:after {
@@ -206,12 +207,17 @@ a {
 	height: 100%;
 	vertical-align: middle;
 	content: '';
-	z-index: 1;
 }
 
 .pop_wrap .pop_inner {
 	display: inline-block;
 	width: auto;
 	vertical-align: middle;
-	z-index: 1;
+
+}
+.img_btn{
+	border:1px solid silver; 
+	width:60%; 
+	height:auto; 
+	margin:2%
 }
