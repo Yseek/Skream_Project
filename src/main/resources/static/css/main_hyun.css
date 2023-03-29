@@ -12,24 +12,24 @@
   --accent-color: white;
 }
 
-.link:hover 
-{ cursor : url(hermes.png) 20 30, 
-  url(hermes.png) 20 30, auto; 
-}  
-
-.area_basket{
-    position : fixed;
-    left: 50%;
-    top: 0;
+.link:hover {
+  cursor: url(hermes.png) 20 30,
+    url(hermes.png) 20 30, auto;
 }
 
-.basket{
-    position: absolute;
-    right: -710px;
-    top: 250px;
-    width: 100px;
-    height: 250px;
-    background-color: rgb(0, 217, 255);
+.area_basket {
+  position: fixed;
+  left: 50%;
+  top: 0;
+}
+
+.basket {
+  position: absolute;
+  right: -710px;
+  top: 250px;
+  width: 100px;
+  height: 250px;
+  background-color: rgb(0, 217, 255);
 }
 
 body,
@@ -105,6 +105,7 @@ td {
   width: 100%;
   height: 100%;
 }
+
 .ir_su {
   overflow: hidden;
   position: absolute;
@@ -1057,6 +1058,12 @@ nav {
   width: 32%;
 }
 
+.notice24 {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
 :is(.notice1,
   .notice2,
   .notice3,
@@ -1437,15 +1444,16 @@ button {
   width: 247px;
   height: 300px;
 }
+
 .cont_right_img2 {
-width: 247px;
-height: 150px;
+  width: 247px;
+  height: 150px;
 }
 
 .cont_right_img3 {
   width: 247px;
   height: 347px;
-  }
+}
 
 .notice25 ol {
   list-style-position: inside;
@@ -1798,6 +1806,12 @@ height: 150px;
   .notice24 {
     float: none;
     clear: both;
+    width: 32%;
+  }
+
+  .notice100 {
+    float: none;
+    clear: both;
     width: 100%;
   }
 
@@ -1894,4 +1908,117 @@ height: 150px;
 
 ::-webkit-scrollbar-track {
   background: #ffffff;
+}
+
+#css_tabs {
+  font-family: 'nanumgothic', '나눔고딕', 'malgun gothic', '맑은 고딕', 'dotum', '돋움', sans-serif
+}
+
+/* 탭 선택 시 표시할 요소(div) 정의(1번 탭 선택 시 첫 번째 div 요소 표시) */
+#css_tabs input:nth-of-type(1),
+#css_tabs input:nth-of-type(1)~div:nth-of-type(1),
+#css_tabs input:nth-of-type(2),
+#css_tabs input:nth-of-type(2)~div:nth-of-type(2),
+#css_tabs input:nth-of-type(3),
+#css_tabs input:nth-of-type(3)~div:nth-of-type(3) {
+  display: none
+}
+
+#css_tabs input:nth-of-type(1):checked~div:nth-of-type(1),
+#css_tabs input:nth-of-type(2):checked~div:nth-of-type(2),
+#css_tabs input:nth-of-type(3):checked~div:nth-of-type(3) {
+  display: block
+}
+
+/* 라벨 기본 스타일 지정 */
+#css_tabs>label {
+  display: inline-block;
+  font-variant: small-caps;
+  font-size: .9em;
+  padding: 5px;
+  text-align: center;
+  width: 20%;
+  line-height: 1.8em;
+  font-weight: 700;
+  border-radius: 3px 3px 0 0;
+  background: #eee;
+  color: #777;
+  border: 1px solid #ccc;
+  border-width: 1px 1px 0
+}
+
+#css_tabs>label:hover {
+  cursor: pointer
+}
+
+#css_tabs label[for=tab1] {
+  margin-left: 1.5em
+}
+
+/* 선택된 라벨, 커서를 올린 라벨 스타일 지정 */
+#css_tabs input:nth-of-type(1):checked~label:nth-of-type(1),
+#css_tabs>label[for=tab1]:hover {
+  background: black;
+  color: #fff
+}
+
+#css_tabs input:nth-of-type(2):checked~label:nth-of-type(2),
+#css_tabs>label[for=tab2]:hover {
+  background: black;
+  color: #fff
+}
+
+#css_tabs input:nth-of-type(3):checked~label:nth-of-type(3),
+#css_tabs>label[for=tab3]:hover {
+  background: black;
+  color: #fff
+}
+
+/* 실제 내용이 담긴 div 요소 스타일 지정 */
+#css_tabs .tab1_content,
+#css_tabs .tab2_content,
+#css_tabs .tab3_content {
+  padding: 2em;
+  border: 1px solid #ddd;
+  width: 94%;
+  height: 100%
+}
+.tab1_content table{
+  border:1px solid silver;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  font-size : 100px;
+  background-color: rgb(241, 241, 241);
+}
+.tab1_content table tr td{
+  border:1px solid silver;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.tab2_content table{
+  border:1px solid silver;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(241, 241, 241);
+}
+.tab2_content table tr td{
+  border:1px solid silver;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.tab3_content table{
+  border:1px solid silver;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(241, 241, 241);
+}
+.tab3_content table tr td{
+  border:1px solid silver;
+  border-collapse: collapse;
+  font-size: 16px;
 }
