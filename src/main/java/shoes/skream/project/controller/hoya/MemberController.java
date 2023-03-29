@@ -38,4 +38,8 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:main";
 	}
+	@GetMapping("popup.do")
+	public String popUp() {
+		return "popup";
+	}
 }

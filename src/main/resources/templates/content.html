@@ -35,8 +35,8 @@
 		<div class="user_info">
 			<img src="images/user_ico.png"> <span th:text="${contents.writer}">깃태식이</span>
 			&nbsp;&nbsp;
-			<img src="images/upload_time.png"> <span
-				th:text="${#temporals.format(contents.rdate,'yy/MM/dd HH:mm')}">23/03/23 19:50</span>
+			<img src="images/upload_time.png"> <span th:text="${#temporals.format(contents.rdate,'yy/MM/dd HH:mm')}">23/03/23
+				19:50</span>
 		</div>
 		<hr>
 		<div class="board_main_view">
@@ -45,13 +45,13 @@
 					<table style="width:95%; display:inline-block">
 						<tr>
 							<td th:each="imgs:${contents.fileUp}" style="border:1px dotted silver">
-								<img style="width:95%; height:auto;"th:src="|/contentimages/${imgs.fileId}|"></img>
+								<img style="width:95%; height:auto;" th:src="|/contentimages/${imgs.fileId}|"></img>
 							</td>
 						</tr>
 					</table>
 				</th:block>
 				<br>
-				<div style="text-align:left; margin:3%"th:text="${contents.contents}">
+				<div style="text-align:left; margin:3%" th:text="${contents.contents}">
 					게시글 내용
 				</div>
 				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -66,8 +66,7 @@
 					method="post">
 					<input type="hidden" name="boardId" th:value="${contents.seq}">
 					<input type="hidden" name="email" th:value="${session.loginEmail}">
-					<button style="color:black;background-color: gray;"><img src="images/good.png"
-							style="height:25px">완료</button>
+					<button style="color:black;background-color: gray;"><img src="images/good.png" style="height:25px">완료</button>
 				</form>
 			</div>
 		</div>
@@ -101,8 +100,7 @@
 									<span style="float:left;" th:text="${comment.coContext}">깃태식이 발표 잘하네</span><br>
 									<span></span>
 
-									<button class="recommentsWriteboxButton"
-										style="float:left; margin-top:1%;">답글</button>
+									<button class="recommentsWriteboxButton" style="float:left; margin-top:1%;">답글</button>
 
 									<div class="recommentsWritebox">
 										<form action="recommentWrite" method="post">
@@ -115,15 +113,14 @@
 									</div>
 									<form action="deletComment" method="post">
 										<input type="hidden" name="commentId" th:value="${comment.commentId}">
-										<button class="delBtn"th:if="${session.loginEmail==comment.email}">삭제</button>
+										<button class="delBtn" th:if="${session.loginEmail==comment.email}">삭제</button>
 									</form>
 
 								</td>
 							</tr>
 							<tr class="comment_element_child" th:each="recom:${comment.recomments}">
 								<td class="user" style="background-color:white;">
-									<strong style="float:left; margin-left:5%"
-										th:text="${recom.recommentWriter}">대원</strong>
+									<strong style="float:left; margin-left:5%" th:text="${recom.recommentWriter}">대원</strong>
 									<span style="float:right"
 										th:text="${#temporals.format(recom.rdate,'yy/MM/dd HH:mm')}">23/01/01</span><br>
 									<span style="float:left; margin-left:5%" th:text="${recom.recoContext}">ㄹㅇ 깃태식이 발표
@@ -154,6 +151,6 @@
 			recommentsWriteboxButton[i].addEventListener('click', () => recommentsWritebox[i].classList.toggle('show'));
 		}
 	</script>
-	
 </body>
+
 </html>
