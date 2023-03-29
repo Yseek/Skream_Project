@@ -10,34 +10,33 @@
 <article>
 
 	<body onload="input.writer.focus()">
-		<center>
-			<hr width="600" size='2' color="gray" noshade>
-			<h3> write front 작업 </h3>
-			<a href=''>리스트</a>
-			<a href=''>인덱스</a>
-			<hr width="600" size="2" color="gray" noshade>
-		</center>
+		<div style="text-align:center; margin-top:50px">
+			<h2> 게시글 작성 </h2>
+			<a href="main">메인</a>&nbsp;|
+			<a href="boardlist">게시판</a>
+			<hr style="width:600px; margin-bottom:50px;">
+		</div>
 
 		<form name="input" method="post" action="writeBoard" enctype="multipart/form-data">
-			<table border="0" width="600" align="center" cellpadding="3" cellspacing="1" bordercolor="gray">
+			<table border="0" width="600px" align="center" cellpadding="3" cellspacing="1" bordercolor="gray">
 				<tr>
-					<td><input type="hidden" name="member" th:value=${session.loginEmail} size="60"></td>
+					<input type="hidden" name="member" th:value=${session.loginEmail} size="60">
 				</tr>
 				<tr>
-					<td align="center">CATEGORY</td>
+					<td>CATEGORY</td>
 					<td>
 						<select name="category">
-							<option  th:each="category : ${categoryList}" th:value=${category.categoryId}
-									th:selected="${category.categoryId}==1">[[${category.cgname}]]</option>
+							<option th:each="category : ${categoryList}" th:value=${category.categoryId}
+								th:selected="${category.categoryId}==1">[[${category.cgname}]]</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<td align="center">SUBJECT</td>
-					<td><input type="text" name="subject" size="60"></td>
+					<td>SUBJECT</td>
+					<td><input type="text" name="subject" style="float:left; width:100%"></td>
 				</tr>
 				<tr>
-					<td align="center">IMAGE</td>
+					<td>IMAGE</td>
 					<td>
 						<div id="preview">
 							<p id="emptyImage">업로드할 이미지를 선택해주세요</p>
@@ -46,22 +45,21 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="center">CONTENT</td>
-					<td><textarea name="content" rows="15" cols="70"></textarea></td>
+					<td>CONTENT</td>
+					<td><textarea name="content" rows="15" cols="70" style="float:left; width:100%"></textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="button" value="전송" onclick="check()">
-						<input type="reset" value="다시입력" onclick="input.subject.focus()">
+						<input type="button" value="전송" class="btn" onclick="check()">&nbsp;|
+						<input type="reset" value="다시입력" class="btn" onclick="input.subject.focus()">&nbsp;|
 						<label id="fileButton" for="file">업로드(최대 10개)</label>
 						<input type="file" name="file" id="file" multiple="multiple" accept="image/*"
 							onchange="updateImageDisplay()">
 					</td>
 				</tr>
 			</table>
-			<hr width="600" size="2" color="gray" noshade>
 		</form>
-		</font>
+		</div>
 		<div class="parallax_back_layer"></div>
 	</body>
 </article>
