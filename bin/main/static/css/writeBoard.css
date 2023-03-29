@@ -1,26 +1,36 @@
-a{text-decoration:none}
-article{
+a {
+    text-decoration: none
+}
+
+article {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
 }
-#preview{
-    overflow:auto;
-    overflow-y:hidden;
+
+#preview {
+    overflow: auto;
+    overflow-y: hidden;
     white-space: nowrap;
     width: 30rem;
 }
-#preview>ol>li{
-    display:inline-block;
+
+#preview>ol>li {
+    display: inline-block;
     marker: none;
 }
-#thumbnail{opacity: 0;}
 
-#file{display: none;}
+#thumbnail {
+    opacity: 0;
+}
 
-#fileButton{
-    padding: 6px 25px;
-    background-color:#FF6600;
+#file {
+    display: none;
+}
+
+#fileButton {
+    padding: 1px 10px;
+    background-color: black;
     border-radius: 4px;
     color: white;
     cursor: pointer;
@@ -39,10 +49,31 @@ article{
     opacity: 0.1;
     min-height: 1000px;
     z-index: -3;
-  }
+}
 
-  .imagefile {
+.imagefile {
     width: 7rem;
     height: 7rem;
     margin: 0 1rem;
-  }
+}
+
+table {
+
+    border-collapse: collapse;
+    font-weight: bold;
+    padding: 10px;
+}
+
+td {
+    border-bottom: 1px solid lightgrey;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.btn {
+    padding: 1px 10px;
+    background-color: black;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
