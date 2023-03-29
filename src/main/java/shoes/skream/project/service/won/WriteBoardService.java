@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import shoes.skream.project.domain.Category;
 import shoes.skream.project.domain.Member;
-import shoes.skream.project.dto.WriteBoardDto;
+import shoes.skream.project.dto.won.WriteBoardDto;
 
 public interface WriteBoardService {
     List<Category> getCategoryList();
