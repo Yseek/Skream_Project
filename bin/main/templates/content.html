@@ -47,35 +47,30 @@
 		</div>
 		<hr>
 		<div class="board_main_view">
-			<div class="content" style="text-align:center">
+			<div class="content">
 				<th:block th:each="contents:${contents}">
-					<table style="width:95%; display:inline-block">
-						<tr>
-							<td th:each="imgs:${contents.fileUp}" style="border:1px dotted silver">
-								<img style="width:95%; height:auto;" th:src="|/contentimages/${imgs.fileId}|"></img>
-							</td>
-						</tr>
-					</table>
-				</th:block>
-				<br>
-				<div style="text-align:left; margin:3%" th:text="${contents.contents}">
-					게시글 내용
-				</div>
-				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-				<form th:if="${!#lists.contains(contents.recommendsEmail, session.loginEmail)}" action="recommendDo"
-					method="post">
-					<input type="hidden" name="boardId" th:value="${contents.seq}">
-					<input type="hidden" name="email" th:value="${session.loginEmail}">
-					<button style="color:black;background-color: white;"><img src="images/good.png"
-							style="height:25px">추천</button>
-				</form>
-				<form th:if="${#lists.contains(contents.recommendsEmail, session.loginEmail)}" action="recommendUnDo"
-					method="post">
-					<input type="hidden" name="boardId" th:value="${contents.seq}">
-					<input type="hidden" name="email" th:value="${session.loginEmail}">
-					<button style="color:black;background-color: gray;"><img src="images/good.png" style="height:25px">완료</button>
-				</form>
+					<div th:each="imgs:${contents.fileUp}" style="width:100%">
+						<img th:src="|/contentimages/${imgs.fileId}|" style="border:1px solid silver; width:60%; height:auto"></img>
+					</div>
 			</div>
+			<br>
+				</th:block>
+			<div style="text-align:left; margin:3%" th:text="${contents.contents}">
+				게시글 내용
+			</div>
+			<form th:if="${!#lists.contains(contents.recommendsEmail, session.loginEmail)}" action="recommendDo"
+				method="post">
+				<input type="hidden" name="boardId" th:value="${contents.seq}">
+				<input type="hidden" name="email" th:value="${session.loginEmail}">
+				<button style="color:black;background-color: white;"><img src="images/good.png" style="height:25px">추천</button>
+			</form>
+			<form th:if="${#lists.contains(contents.recommendsEmail, session.loginEmail)}" action="recommendUnDo"
+				method="post">
+				<input type="hidden" name="boardId" th:value="${contents.seq}">
+				<input type="hidden" name="email" th:value="${session.loginEmail}">
+				<button style="color:black;background-color: gray;"><img src="images/good.png" style="height:25px">완료</button>
+			</form>
+		</div>
 		</div>
 		<hr>
 		<div class="comment_wrapper">
@@ -156,6 +151,26 @@
 		const recommentsWriteboxButton = document.querySelectorAll('.recommentsWriteboxButton');
 		for (let i = 0; recommentsWriteboxButton.length; i++) {
 			recommentsWriteboxButton[i].addEventListener('click', () => recommentsWritebox[i].classList.toggle('show'));
+		}
+	</script>
+	<script>
+		var target = document.querySelectorAll('.btn_open');
+		var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+		var targetID;
+
+		// 팝업 열기
+		for (var i = 0; i < target.length; i++) {
+			target[i].addEventListener('click', function () {
+				targetID = this.getAttribute('href');
+				document.querySelector(targetID).style.display = 'block';
+			});
+		}
+
+		// 팝업 닫기
+		for (var j = 0; j < target.length; j++) {
+			btnPopClose[j].addEventListener('click', function () {
+				this.parentNode.parentNode.style.display = 'none';
+			});
 		}
 	</script>
 </body>
