@@ -23,6 +23,7 @@ import shoes.skream.project.service.won.WriteBoardService;
 @Slf4j
 @Controller
 public class WriteBoardController {
+
     @Autowired
     WriteBoardService writeBoardService;
 
