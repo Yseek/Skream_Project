@@ -1496,9 +1496,6 @@ button {
   position: relative;
   float: left;
   width: 32%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .notice28 h5 {
@@ -1514,9 +1511,22 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding-top: 5px;
+  padding-top: 1px;
   padding-left: 8px;
 }
+
+.notice28 li a {
+  max-width: 250px;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notice28 li span{
+  vertical-align: top;
+}
+
 
 .notice28 li:before {
   content: "";
