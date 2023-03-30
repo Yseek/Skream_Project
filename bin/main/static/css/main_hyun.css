@@ -2,7 +2,6 @@
 
 :root {
   --text-color: #f0f4f5;
-  /* sejong crimson red : #c3002e sejong ivory :#fffde4 */
   --background-color: #000000;
   --content-font-color: #111;
   --content-li-before-color: #111;
@@ -85,6 +84,7 @@ td {
   width: 100%;
   height: 100%;
 }
+
 .ir_su {
   overflow: hidden;
   position: absolute;
@@ -454,8 +454,6 @@ nav {
   transition: all 0.3s;
 }
 
-/* To make a scroll when Position is fixed(Position:fixed), add overflow:auto */
-
 .mobile_header>.mobile_header_sidebar>.sidebar.active {
   left: 0;
 }
@@ -522,7 +520,6 @@ nav {
   border-bottom: 1px solid var(--background-color);
 }
 
-/* box-sizing:border-box makes a padding or margin in the box */
 .mobile_header>.mobile_header_sidebar>.sidebar>.sidebar_ul>ul>.parent_menu>a {
   padding: 3px 8px;
   width: 100%;
@@ -1265,12 +1262,10 @@ button {
   font-size: 0;
 }
 
-/* font-size:0 inline block ul에 사용시 li(이미지) 간 간격을 없애줌*/
 .slide ul li {
   display: inline-block;
 }
 
-/* display inline block이 이미지크기에 맞게끔 영역잡게함 */
 .slide button.prev {
   position: absolute;
   left: 20px;
@@ -1417,15 +1412,16 @@ button {
   width: 247px;
   height: 300px;
 }
+
 .cont_right_img2 {
-width: 247px;
-height: 150px;
+  width: 247px;
+  height: 150px;
 }
 
 .cont_right_img3 {
   width: 247px;
   height: 347px;
-  }
+}
 
 .notice25 ol {
   list-style-position: inside;
@@ -1439,7 +1435,6 @@ height: 150px;
 .innerimg10 {
   position: relative;
   padding-top: 100%;
-  /* 1:1 ratio */
   overflow: hidden;
 }
 
@@ -1497,71 +1492,13 @@ height: 150px;
   font-size: 10px;
 }
 
-/* 게시판27:강의평가 */
-.notice27.star_rating {
-  position: relative;
-  float: left;
-  width: 98%;
-}
-
-.notice27.star_rating ul {
-  border-bottom: 1px dotted #f7f9fa;
-}
-
-.notice27.star_rating .fa-star {
-  color: #f5e007;
-}
-
-.notice27.star_rating h5 {
-  font-size: 15px;
-  color: var(--content-font-color);
-  padding-bottom: 0px;
-  border-bottom: 1px solid var(--content-h5-border-bottom-color);
-}
-
-.notice27.star_rating li {
-  font-size: 12px;
-  position: relative;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding-top: 5px;
-  padding-left: 8px;
-}
-
-.notice27.star_rating .star_title:before {
-  content: "";
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background-color: var(--content-li-before-color);
-  position: absolute;
-  left: 0;
-  top: 9px;
-}
-
-.notice27.star_rating ul>.star_title {
-  font-size: 12px;
-}
-
-.notice27.star_rating ul>.star_content {
-  font-size: 11px;
-  color: #777;
-}
-
-.notice27.star_rating .more {
-  position: absolute;
-  right: 7px;
-  top: 6px;
-  color: #878787;
-  text-transform: uppercase;
-  font-size: 10px;
-}
-
 .notice28 {
   position: relative;
   float: left;
-  width: 98%;
+  width: 32%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .notice28 h5 {
