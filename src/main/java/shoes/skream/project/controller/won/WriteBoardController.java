@@ -31,6 +31,10 @@ public class WriteBoardController {
 		List<Category> categoryList = writeBoardService.getCategoryList();
 		model.addAttribute("categoryList", categoryList);
 		session = request.getSession();
+		String loginUser = (String)session.getAttribute("loginEmail");
+		if(loginUser == null){
+			return "redirect:main";
+		}
 		return "writeBoard";
 	}
 
