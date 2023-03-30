@@ -37,7 +37,12 @@
 			<a th:if="${categoryId == 0}" th:href="@{board?(page=${nowPage},orderby=recom)}">추천순</a>
 			<a th:if="${categoryId != 0}" th:href="@{board?(page=${nowPage},orderby=recom,cate=${categoryId})}">추천순</a>
 			|
-			<a href="writeBoard">글쓰기</a>
+			<span th:if="${session.loginEmail == null}">
+				<a href="javascript:history.back();" onclick="javascript:alert('로그인해주세요');">글쓰기</a>
+			</span>
+			<span th:unless="${session.loginEmail == null}">
+				<a href="writeBoard">글쓰기</a>
+			</span>
 		</div>
 		<br>
 		<hr style="margin-top:10px">
@@ -100,7 +105,12 @@
 		</table>
 		<div style="float: left;">
 			<button onclick="wholeList()">전체글</button>
-			<button onclick="writeBoard()">글쓰기</button>
+			<span th:if="${session.loginEmail == null}">
+				<button onclick="javascript:alert('로그인해주세요');history.back();">글쓰기</button>
+			</span>
+			<span th:unless="${session.loginEmail == null}">
+				<button onclick="writeBoard()">글쓰기</button>
+			</span>
 		</div>
 		<br>
 		<hr style="margin-top: 10px;">
