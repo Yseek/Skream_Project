@@ -11,19 +11,19 @@ import shoes.skream.project.domain.Member;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberDTO {
-  
-  private String email;
-  private String pwd;
-  private String checkPwd;
-  private String name;
-  private Date birth;
-  private String phone;
 
-  public static MemberDTO toMemberDTO(Member member) {
-    MemberDTO memberDTO = new MemberDTO();
-    memberDTO.setEmail(member.getEmail());
-    memberDTO.setPwd(member.getPwd());
-	memberDTO.setName(member.getName());
-    return memberDTO;
-  }
+	private String email;
+	private String pwd;
+	private String checkPwd;
+	private String name;
+	private Date birth;
+	private String phone;
+
+	public static MemberDTO toMemberDTO(Member member) {
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setEmail(member.getEmail());
+		memberDTO.setPwd(member.getPwd());
+		memberDTO.setName(member.getName());
+		return memberDTO;
+	}
 }

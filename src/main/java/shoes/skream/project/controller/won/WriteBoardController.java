@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import lombok.extern.slf4j.Slf4j;
 import shoes.skream.project.domain.Category;
 import shoes.skream.project.dto.won.WriteBoardDto;
 import shoes.skream.project.service.won.WriteBoardService;
 
-@Slf4j
 @Controller
 public class WriteBoardController {
 	@Autowired

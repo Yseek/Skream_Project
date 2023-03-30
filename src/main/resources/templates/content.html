@@ -103,7 +103,8 @@
 					<input type="hidden" name="boardId" th:value="${seq}">
 					<input type="hidden" name="email" th:value="${session.loginEmail}">
 					<div><span id="letterCount">0</span> /100</div>
-					<button type="button" id="commentWrite" onclick="noneCheck()">댓글작성</button>
+					<button th:unless="${#strings.isEmpty(session.loginEmail)}" type="button" id="commentWrite" onclick="noneCheck()">댓글작성</button>
+					<button th:if="${#strings.isEmpty(session.loginEmail)}" disabled type="button" id="commentWrite" onclick="noneCheck()">로그인필요</button>
 				</form>
 			</div>
 			<script>
@@ -154,8 +155,10 @@
 											<input type="hidden" name="email" th:value="${session.loginEmail}">
 											<div><span th:id="${'reletterCountId'+comment.commentId}">0</span> /100
 											</div>
-											<button type="button"
-												th:onclick="reNoneCheck([[${comment.commentId}]])">대댓글작성</button>
+											<button th:unless="${#strings.isEmpty(session.loginEmail)}" type="button"
+											th:onclick="reNoneCheck([[${comment.commentId}]])">대댓글작성</button>
+											<button th:if="${#strings.isEmpty(session.loginEmail)}" type="button"
+												th:onclick="reNoneCheck([[${comment.commentId}]])" disabled>로그인필요</button>
 										</form>
 									</div>
 									<form action="deletComment" method="post">
