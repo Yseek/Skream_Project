@@ -28,16 +28,31 @@
     height: 7%;
   }
 
-  .btn_style {
+  .update_btn {
     margin-top: 5%;
     margin-right: 5%;
-    margin-left: 5%;
+    margin-left: 10%;
     width: 22%;
     height: 7%;
     font-size: 15px;
     color: white;
     border-radius: 5px;
     background-color: black;
+    cursor: pointer;
+    float: left;
+  }
+
+  .delete_btn {
+    width: 22%;
+    float: left;
+    background-color: black;
+    color: white;
+    height: 40px;
+    margin-top: 5%;
+    margin-right: 5%;
+    margin-left: 2%;
+    border-radius: 5px;
+    font-size: 15px;
     cursor: pointer;
   }
 
@@ -55,14 +70,40 @@
       <input class="txt_style" id='name' name='name' type="text" placeholder="닉네임" th:value="${member.name}"><br>
       <input class="txt_style" id='pwd' name='pwd' type="password" placeholder="변경 비밀번호"><br>
       <input class="txt_style" type="password" placeholder="비밀번호 확인"><br>
-      <input class="txt_style" id='phone' name='phone' type="text" placeholder="전화번호(010-0000-0000)">
-      <input class="btn_style" type="submit" value="수  정">
+      <input class="txt_style" id='phone' name='phone' type="text" placeholder="변경 전화번호(010-0000-0000)">
+      <div id="phoneError" style="color:red; margin-bottom: 5%; margin-top: 0px;"></div>
+      <input type="submit" class="update_btn" value="수 정">
   </form>
   <form action="memberDelete" method="POST">
-    <input class="btn_style" type="submit" value="회원 탈퇴">
+    <input class="delete_btn" type="submit" value="회원 탈퇴">
     <input type="hidden" name="email" th:value="${session.loginEmail}">
   </form>
+  <input class="delete_btn" type="button" value="뒤로가기" onclick="location.href='main'">
   </div>
 </body>
 
+<script>
+	function checkPhoneExists(phone) {
+		return fetch(`/api/user/checkPhone?phone=${phone}`)
+			.then(response => {
+				if (response.ok) {
+					return Promise.resolve();
+				} else {
+					return Promise.reject("이미 사용중인 전화번호 입니다");
+				}
+			});
+	}
+	const phoneInput = document.getElementById("phone");
+	const phoneError = document.getElementById("phoneError");
+
+	phoneInput.addEventListener("blur", () => {
+		checkPhoneExists(phoneInput.value)
+			.then(() => {
+				phoneError.textContent = "";
+			})
+			.catch(error => {
+				phoneError.textContent = error;
+			});
+	});
+</script>
 </html>

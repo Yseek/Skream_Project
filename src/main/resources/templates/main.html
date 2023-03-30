@@ -39,46 +39,40 @@
 						<div class="header_menu">
 							<div class="header_menu_intro">
 								<a href="boardlist" class="header_menu_intro_a notice"
-									onmouseover="show_alarm()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;게시판 입장!<span
-										class="unread"></span>
+									onmouseover="show_alarm()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;게시판 입장!<span class="unread"></span>
 								</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<span th:text="${session.loginEmail}"></span> <span th:if="${session.loginEmail}">님
 									환영합니다</span>
 
-								<button class="btn-open-join"
-									th:unless="${session.loginEmail}">회원가입</button>&nbsp;&nbsp;
-								<button onclick="location.href='memberUpdate'"
-									th:if="${session.loginEmail}">정보수정</button>&nbsp;&nbsp;
+								<button class="btn-open-join" th:unless="${session.loginEmail}">회원가입</button>&nbsp;&nbsp;
+								<button onclick="location.href='memberUpdate'" th:if="${session.loginEmail}">정보수정</button>&nbsp;&nbsp;
 								<div class="modal_join">
 									<form action="join.do" method="post">
 										<div class="modal_body">
-											<div class="close-area"><a href="#"
-													onclick="location.href=document.referrer"
+											<div class="close-area"><a href="#" onclick="location.href='main'"
 													style="text-decoration-line:none; float: right; color:#ffffff">X</a>
 											</div>
-											<h2 style="font-size: 30px; color:white; margin-bottom:20%;"
-												th:unless="${session.loginEmail}">회원가입</h2>
-											<input style="margin-bottom:0" class="join_text" type="text" name="email"
-												id="email" th:unless="${session.loginEmail}" placeholder="이메일"><br>
-											<div id="emailError"
-												style="color:white; margin-bottom: 5%; margin-top: 0px;"
+											<h2 style="font-size: 30px; color:white; margin-bottom:20%;" th:unless="${session.loginEmail}">
+												회원가입</h2>
+											<input style="margin-bottom:0" class="join_text" type="text" name="email" id="email"
+												th:unless="${session.loginEmail}" placeholder="이메일"><br>
+											<div id="emailError" style="color:white; margin-bottom: 5%; margin-top: 0px;"
 												th:unless="${session.loginEmail}"></div>
-											<input class="join_text" type="password" name="pwd"
-												th:unless="${session.loginEmail}" placeholder="비밀번호">
-											<input class="join_text" type="password" name="checkPwd"
-												th:unless="${session.loginEmail}" placeholder="비밀번호 확인">
-											<input style="margin-bottom:0" class="join_text" type="text" name="name"
-												id="name" th:unless="${session.loginEmail}" placeholder="닉네임">
+											<input class="join_text" type="password" name="pwd" th:unless="${session.loginEmail}"
+												placeholder="비밀번호">
+											<input class="join_text" type="password" name="checkPwd" th:unless="${session.loginEmail}"
+												placeholder="비밀번호 확인">
+											<input style="margin-bottom:0" class="join_text" type="text" name="name" id="name"
+												th:unless="${session.loginEmail}" placeholder="닉네임">
 											<div id="nameError" style="color:white; margin-bottom: 5%; margin-top: 0px;"
 												th:unless="${session.loginEmail}"></div>
-											<input class="join_text" type="date" name="birth"
-												th:unless="${session.loginEmail}">
-											<input class="join_text" type="text" name="phone"
-												th:unless="${session.loginEmail}" placeholder="전화번호(010-0000-0000)">
-											<input class="join_button" type="submit" value="가입"
-												th:unless="${session.loginEmail}">
-											<input class="join_button" type="button" value="취소"
-												onclick="location.href=document.referrer"
+											<input class="join_text" type="date" name="birth" th:unless="${session.loginEmail}">
+											<input class="join_text" type="text" name="phone" id="phone" th:unless="${session.loginEmail}"
+												placeholder="전화번호(010-0000-0000)">
+											<div id="phoneError" style="color:white; margin-bottom: 5%; margin-top: 0px;"
+												th:unless="${session.loginEmail}"></div>
+											<input class="join_button" type="submit" value="가입" th:unless="${session.loginEmail}">
+											<input class="join_button" type="button" value="취소" onclick="location.href='main'"
 												th:unless="${session.loginEmail}">
 										</div>
 									</form>
@@ -88,16 +82,14 @@
 								<div class="modal_login">
 									<form action="login.do" method="post">
 										<div class="modal_body">
-											<div class="close-area"><a href="#"
-													onclick="location.href=document.referrer"
+											<div class="close-area"><a href="#" onclick="location.href=document.referrer"
 													style="text-decoration-line:none; float: right; color:#ffffff">X</a>
 											</div>
 											<h2 style="font-size: 30px; color:white; margin-bottom:37%">로그인</h2>
 											<input class="login_text" type="text" name="email" placeholder="이메일">
 											<input class="login_text" type="password" name="pwd" placeholder="비밀번호">
 											<input class="login_button" type="submit" value="로그인">
-											<input class="login_button" type="button" value="취소"
-												onclick="location.href='main'">
+											<input class="login_button" type="button" value="취소" onclick="location.href='main'">
 										</div>
 									</form>
 								</div>
@@ -251,14 +243,12 @@
 									<h5>최근 게시물</h5>
 									<ul th:each="list:${list}">
 										<li>
-											<a th:href="@{content?(page=${nowPage},seq=${list.seq})}"
-												th:text="${list.subject}">제목 [10]</a>
-											<span th:if="${list.comments.size>0}"
-												th:text="|[${list.comments.size}]|" style="color: green;"></span>
+											<a th:href="@{content?(page=${nowPage},seq=${list.seq})}" th:text="${list.subject}">제목 [10]</a>
+											<span th:if="${list.comments.size>0}" th:text="|[${list.comments.size}]|"
+												style="color: green;"></span>
 										</li>
 									</ul>
-									<a href="boardlist?page=1" class="more" title="더 보기">More <i
-											class="fa fa-plus-circle"></i></a>
+									<a href="boardlist?page=1" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
 								</div>
 								<!-- 게시판  -->
 								<div class="notice2 pr5">
@@ -268,8 +258,8 @@
 										<li>
 											<a th:href="@{content?(page=${nowPagerecom},orderby=${orderbyrecom},seq=${recom.seq})}"
 												th:text="${recom.subject}">제목 </a>
-											<span th:if="${recom.comments.size>0}"
-												th:text="|[${recom.comments.size}]|" style="color: green;"></span>
+											<span th:if="${recom.comments.size>0}" th:text="|[${recom.comments.size}]|"
+												style="color: green;"></span>
 										</li>
 									</ul>
 									<a href="boardlist?page=1&orderby=recom" class="more" title="더 보기">More <i
@@ -282,20 +272,204 @@
 										<li>
 											<a th:href="@{content?(page=${nowPagehits},orderby=${orderbyhits},seq=${hits.seq})}"
 												th:text="${hits.subject}">제목 [10]</a>
-											<span th:if="${hits.comments.size>0}"
-												th:text="|[${hits.comments.size}]|" style="color: green;"></span>
+											<span th:if="${hits.comments.size>0}" th:text="|[${hits.comments.size}]|"
+												style="color: green;"></span>
 										</li>
 									</ul>
 									<a href="boardlist?page=1&orderby=hits" class="more" title="더 보기">More <i
 											class="fa fa-plus-circle"></i></a>
 								</div>
 							</article>
-							<article class="column col3">
-								<div class="notice3">
-									<h5 class="ir_su">Notice1</h5>
-									<h5>사이즈 표</h5>
-									<img th:src="@{/img/banner.png}" class="cont_right_img"></a>
+							<h3 style="margin-left:5px;">사이즈 표</h3>
+							<hr style="height:1px; border:none;background-color:black; margin:0.5%">
+							<div id="css_tabs">
+								<input id="tab1" type="radio" name="tab" checked="checked" />
+								<input id="tab2" type="radio" name="tab" />
+								<input id="tab3" type="radio" name="tab" />
+								<label for="tab1">MEN</label>
+								<label for="tab2">WOMAN</label>
+								<label for="tab3">KIDS</label>
+								<div class="tab1_content">
+									<table>
+										<tr>
+											<td style="font-weight:bold">한 국</td>
+											<td>240</td>
+											<td>245</td>
+											<td>250</td>
+											<td>255</td>
+											<td>260</td>
+											<td>265</td>
+											<td>270</td>
+											<td>275</td>
+											<td>280</td>
+											<td>285</td>
+											<td>290</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold">미 국</td>
+											<td>6</td>
+											<td>6.5</td>
+											<td>7</td>
+											<td>7.5</td>
+											<td>8</td>
+											<td>8.5</td>
+											<td>9</td>
+											<td>9.5</td>
+											<td>10</td>
+											<td>10.5</td>
+											<td>11</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold">유 럽</td>
+											<td>38.5</td>
+											<td>39</td>
+											<td>40</td>
+											<td>40.5</td>
+											<td>41</td>
+											<td>42</td>
+											<td>42.5</td>
+											<td>43</td>
+											<td>43.5</td>
+											<td>44</td>
+											<td>44.5</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold">일 본</td>
+											<td>24</td>
+											<td>24.5</td>
+											<td>25</td>
+											<td>25</td>
+											<td>25.5</td>
+											<td>26</td>
+											<td>26.5</td>
+											<td>27</td>
+											<td>27.5</td>
+											<td>28</td>
+											<td>28.5</td>
+										</tr>
+									</table>
 								</div>
+								<div class="tab2_content">
+									<table>
+										<tr>
+											<td style="font-weight:bold">한 국</td>
+											<td>220</td>
+											<td>225</td>
+											<td>230</td>
+											<td>235</td>
+											<td>245</td>
+											<td>250</td>
+											<td>255</td>
+											<td>260</td>
+											<td>265</td>
+											<td>270</td>
+											<td>275</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold">미 국</td>
+											<td>5</td>
+											<td>5.5</td>
+											<td>6</td>
+											<td>6.5</td>
+											<td>7</td>
+											<td>7.5</td>
+											<td>8</td>
+											<td>8.5</td>
+											<td>9</td>
+											<td>9.5</td>
+											<td>10</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold">유 럽</td>
+											<td>36</td>
+											<td>36.5</td>
+											<td>37</td>
+											<td>37.5</td>
+											<td>38</td>
+											<td>38.5</td>
+											<td>39</td>
+											<td>40</td>
+											<td>40.5</td>
+											<td>41</td>
+											<td>42</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold">일 본</td>
+											<td>22</td>
+											<td>22.5</td>
+											<td>23</td>
+											<td>23.5</td>
+											<td>24</td>
+											<td>24.5</td>
+											<td>25</td>
+											<td>25</td>
+											<td>25.5</td>
+											<td>26</td>
+											<td>26.5</td>
+										</tr>
+									</table>
+								</div>
+								<div class="tab3_content">
+									<table>
+										<tr>
+											<td style="font-weight:bold">한 국</td>
+											<td>80</td>
+											<td>85</td>
+											<td>90</td>
+											<td>95</td>
+											<td>100</td>
+											<td>105</td>
+											<td>110</td>
+											<td>115</td>
+											<td>120</td>
+											<td>125</td>
+											<td>130</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold">미 국</td>
+											<td>2</td>
+											<td>2.5</td>
+											<td>3</td>
+											<td>3.5</td>
+											<td>4</td>
+											<td>4.5</td>
+											<td>5</td>
+											<td>5.5</td>
+											<td>6</td>
+											<td>6.5</td>
+											<td>7</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold">유 럽</td>
+											<td>17</td>
+											<td>18</td>
+											<td>18.5</td>
+											<td>19</td>
+											<td>19.5</td>
+											<td>20</td>
+											<td>21</td>
+											<td>21.5</td>
+											<td>22</td>
+											<td>22.5</td>
+											<td>23</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold">일 본</td>
+											<td>8</td>
+											<td>8.5</td>
+											<td>9</td>
+											<td>9.5</td>
+											<td>10</td>
+											<td>10.5</td>
+											<td>11</td>
+											<td>11.5</td>
+											<td>12</td>
+											<td>12.5</td>
+											<td>13</td>
+										</tr>
+									</table>
+								</div>
+							</div>
 							</article>
 						</section>
 						<article class="column col11">
@@ -354,7 +528,7 @@
 	</div>
 	<div class="area_basket">
 		<div class="basket">플로팅 배너</div>
-		</div>
+	</div>
 </body>
 
 <script>
@@ -415,6 +589,30 @@
 			})
 			.catch(error => {
 				nameError.textContent = error;
+			});
+	});
+</script>
+<script>
+	function checkPhoneExists(phone) {
+		return fetch(`/api/user/checkPhone?phone=${phone}`)
+			.then(response => {
+				if (response.ok) {
+					return Promise.resolve();
+				} else {
+					return Promise.reject("이미 사용중인 전화번호 입니다");
+				}
+			});
+	}
+	const phoneInput = document.getElementById("phone");
+	const phoneError = document.getElementById("phoneError");
+
+	phoneInput.addEventListener("blur", () => {
+		checkPhoneExists(phoneInput.value)
+			.then(() => {
+				phoneError.textContent = "";
+			})
+			.catch(error => {
+				phoneError.textContent = error;
 			});
 	});
 </script>
