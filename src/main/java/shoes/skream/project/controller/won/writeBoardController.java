@@ -31,7 +31,6 @@ public class WriteBoardController {
 		List<Category> categoryList = writeBoardService.getCategoryList();
 		model.addAttribute("categoryList", categoryList);
 		session = request.getSession();
-		log.info("#### session.loginEmail: {}", session.getAttribute("loginEmail"));
 		return "writeBoard";
 	}
 

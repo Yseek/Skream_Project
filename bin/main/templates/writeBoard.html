@@ -52,7 +52,7 @@
 				<tr>
 					<td colspan="2" align="center">
 						<input type="button" value="전송" class="btn" onclick="check()">&nbsp;|
-						<input type="reset" value="다시입력" class="btn" onclick="input.subject.focus()">&nbsp;|
+						<input type="button" value="취소" class="btn" onclick="history.back()">&nbsp;|
 						<label id="fileButton" for="file">업로드(최대 10개)</label>
 						<input type="file" name="file" id="file" multiple="multiple" accept="image/*"
 							onchange="updateImageDisplay()">
