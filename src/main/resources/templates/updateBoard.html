@@ -7,7 +7,7 @@
    <link rel="stylesheet" th:href="@{/css/writeBoard.css}">
    <link rel="shortcut icon" th:href="@{/img/hermes.png}" />
    <script th:src="@{/js/writeBoard.js}"></script>
-   <script th:src="@{/js/updateBoard.js}"></script>
+   <script defer th:src="@{/js/updateBoard.js}"></script>
 </head>
 <article>
 
@@ -41,23 +41,25 @@
             </tr>
             <tr>
                <td>SUBJECT</td>
-               <td><input type="text" name="subject" th:value=${updateBoardDto.subject} style="float:left; width:100%">
+               <td><input type="text" name="subject" th:value="${updateBoardDto.subject}" style="float:left; width:100%">
                </td>
             </tr>
             <tr>
                <td>IMAGE</td>
                <td>
                   <div id="preview">
-                     <p id="emptyImage" th:if="${updateBoardDto.fileList[0].orgnm} == noImage.png">업로드할 이미지를 선택해주세요</p>
+                     <p id="emptyImage" th:if="${updateBoardDto.fileList[0].orgnm} == 'noImage.png'">업로드할 이미지를 선택해주세요</p>
                      <ol id="imageList">
-                        <li th:each="file : ${updateBoardDto.fileList}" th:id="${file.fileId}">
-                           <img th:src="|/uploadedimages/${file.fileId}|" class="imagefile">
-                           <p style="text-align:center;">
-                              <span th:text="${file.orgnm.length lt 10} ? ${file.orgnm}
-                              : ${#strings.substring(file.orgnm, 0, 6)}+'... '"></span>
-                              <button class="removeUploadedImage">X</button>
-                           </p>
-                        </li>
+                        <th:block th:if="${updateBoardDto.fileList[0].orgnm} != 'noImage.png'">
+                           <li th:each="file : ${updateBoardDto.fileList}" th:id="${file.fileId}">
+                              <img th:src="|/uploadedimages/${file.fileId}|" class="imagefile">
+                              <p style="text-align:center;">
+                                 <span th:text="${file.orgnm.length lt 10} ? ${file.orgnm}
+                                 : ${#strings.substring(file.orgnm, 0, 6)}+'... '"></span>
+                                 <button class="removeUploadedImage">X</button>
+                              </p>
+                           </li>
+                        </th:block>
                      </ol>
                   </div>
                </td>
@@ -70,7 +72,7 @@
             <tr>
                <td colspan="2" align="center">
                   <input type="button" value="전송" class="btn" onclick="check()">
-                  <input type="reset" value="다시입력" class="btn" onclick="input.writer.focus()">
+                  <input type="button" value="취소" class="btn" onclick="history.back()">
                   <label id="fileButton" for="file">업로드(최대 10개)</label>
                   <input type="file" name="file" id="file" multiple="multiple" accept="image/*"
                      onchange="updateImageDisplay()">
