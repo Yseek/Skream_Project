@@ -1978,9 +1978,9 @@ button {
 #css_tabs .tab1_content,
 #css_tabs .tab2_content,
 #css_tabs .tab3_content {
-  padding: 2em;
+  padding: 1em;
   border: 1px solid #ddd;
-  width: 94%;
+  width: 98%;
   height: 100%
 }
 

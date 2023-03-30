@@ -49,7 +49,7 @@
 								<div class="modal_join">
 									<form action="join.do" method="post">
 										<div class="modal_body">
-											<div class="close-area"><a href="#" onclick="location.href=document.referrer"
+											<div class="close-area"><a href="#" onclick="location.href='main'"
 													style="text-decoration-line:none; float: right; color:#ffffff">X</a>
 											</div>
 											<h2 style="font-size: 30px; color:white; margin-bottom:20%;" th:unless="${session.loginEmail}">
@@ -280,6 +280,7 @@
 											class="fa fa-plus-circle"></i></a>
 								</div>
 							</article>
+							<h3 style="margin-left:5px;">사이즈 표</h3>
 							<hr style="height:1px; border:none;background-color:black; margin:0.5%">
 							<div id="css_tabs">
 								<input id="tab1" type="radio" name="tab" checked="checked" />
