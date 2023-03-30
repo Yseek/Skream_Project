@@ -1,4 +1,4 @@
-package shoes.skream.project.controller.hoya;
+package shoes.skream.project.controller;
 
 import javax.servlet.http.HttpSession;
 

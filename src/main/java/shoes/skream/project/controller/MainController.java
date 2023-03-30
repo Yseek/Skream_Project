@@ -1,4 +1,4 @@
-package shoes.skream.project.controller.hyun;
+package shoes.skream.project.controller;
 
 import javax.servlet.http.HttpSession;
 

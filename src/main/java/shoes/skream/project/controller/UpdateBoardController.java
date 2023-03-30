@@ -1,4 +1,4 @@
-package shoes.skream.project.controller.won;
+package shoes.skream.project.controller;
 
 import java.io.IOException;
 import java.util.List;
