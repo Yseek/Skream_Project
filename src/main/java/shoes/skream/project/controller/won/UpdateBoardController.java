@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
@@ -39,6 +40,11 @@ public class UpdateBoardController {
         UpdateBoardDto updateBoardDto = updateBoardService.getBoard(boardId);
         model.addAttribute("updateBoardDto", updateBoardDto);
         model.addAttribute("request", request.getHeader("Referer"));
+        HttpSession session = request.getSession();
+		String loginUser = (String)session.getAttribute("loginEmail");
+		if(loginUser == null){
+			return "redirect:" + posturl;
+		}
         return "updateBoard";
     }
 
