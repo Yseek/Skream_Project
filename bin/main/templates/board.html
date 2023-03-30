@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<article th:fragment="boardFragment">
+	<article th:fragment="boardFragment" style="margin-top:50px">
 		<div style="float: left;">
 			<button onclick="main()">메인</button>
 			<button onclick="wholeList()">전체글</button>
@@ -45,7 +45,7 @@
 			</span>
 		</div>
 		<br>
-		<hr>
+		<hr style="margin-top:10px">
 		<table class="board_table" style="width: 100%;">
 			<thead>
 				<tr>
@@ -113,7 +113,7 @@
 			</span>
 		</div>
 		<br>
-		<hr>
+		<hr style="margin-top: 10px;">
 		<div style="width: 100%; margin-top: 1%;">
 			<div style="float: left;">
 				<span>총페이지: </span>
@@ -217,7 +217,7 @@
 				</div>
 			</div>
 		</div>
-		<hr>
+		<hr style="margin-top:10px">
 		<div style="width: 100%; margin-top: 1%;">
 			<span style="float: right; margin-right: 1%;">
 				<form action="search.do" method="get">
