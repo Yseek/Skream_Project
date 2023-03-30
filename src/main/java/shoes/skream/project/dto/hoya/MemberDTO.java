@@ -23,6 +23,7 @@ public class MemberDTO {
     MemberDTO memberDTO = new MemberDTO();
     memberDTO.setEmail(member.getEmail());
     memberDTO.setPwd(member.getPwd());
+	memberDTO.setName(member.getName());
     return memberDTO;
   }
 }
