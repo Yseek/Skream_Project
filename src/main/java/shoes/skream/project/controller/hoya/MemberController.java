@@ -19,7 +19,7 @@ public class MemberController {
 	@PostMapping("join.do")
 	public String save(@ModelAttribute MemberDTO memberDTO) {
 		memberService.save(memberDTO);
-		return "main";
+		return "redirect:main";
 	}
 
 	@PostMapping("login.do")

@@ -25,7 +25,7 @@
 				<div class="container">
 					<div class="header">
 						<div class="header_title">
-							<a href="http://127.0.0.1:8080/main" class="header_title_img">
+							<a th:href="@{main}" class="header_title_img">
 								<div>
 									<div style="float: left">
 										<img th:src="@{/img/hermes.png}" />
@@ -44,7 +44,6 @@
 								</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<span th:text="${session.loginEmail}"></span> <span th:if="${session.loginEmail}">님
 									환영합니다</span>
-
 								<button class="btn-open-join"
 									th:unless="${session.loginEmail}">회원가입</button>&nbsp;&nbsp;
 								<button onclick="location.href='memberUpdate'"
@@ -253,8 +252,8 @@
 										<li>
 											<a th:href="@{content?(page=${nowPage},seq=${list.seq})}"
 												th:text="${list.subject}">제목 [10]</a>
-											<span th:if="${list.comments.size>0}"
-												th:text="|[${list.comments.size}]|" style="color: green;"></span>
+											<span th:if="${list.comments.size>0}" th:text="|[${list.comments.size}]|"
+												style="color: green;"></span>
 										</li>
 									</ul>
 									<a href="boardlist?page=1" class="more" title="더 보기">More <i
@@ -268,8 +267,8 @@
 										<li>
 											<a th:href="@{content?(page=${nowPagerecom},orderby=${orderbyrecom},seq=${recom.seq})}"
 												th:text="${recom.subject}">제목 </a>
-											<span th:if="${recom.comments.size>0}"
-												th:text="|[${recom.comments.size}]|" style="color: green;"></span>
+											<span th:if="${recom.comments.size>0}" th:text="|[${recom.comments.size}]|"
+												style="color: green;"></span>
 										</li>
 									</ul>
 									<a href="boardlist?page=1&orderby=recom" class="more" title="더 보기">More <i
@@ -282,8 +281,8 @@
 										<li>
 											<a th:href="@{content?(page=${nowPagehits},orderby=${orderbyhits},seq=${hits.seq})}"
 												th:text="${hits.subject}">제목 [10]</a>
-											<span th:if="${hits.comments.size>0}"
-												th:text="|[${hits.comments.size}]|" style="color: green;"></span>
+											<span th:if="${hits.comments.size>0}" th:text="|[${hits.comments.size}]|"
+												style="color: green;"></span>
 										</li>
 									</ul>
 									<a href="boardlist?page=1&orderby=hits" class="more" title="더 보기">More <i
@@ -354,7 +353,7 @@
 	</div>
 	<div class="area_basket">
 		<div class="basket">플로팅 배너</div>
-		</div>
+	</div>
 </body>
 
 <script>

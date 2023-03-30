@@ -96,13 +96,13 @@
 				</div>
 			</div>
 			<div class="comment_count_row">
-				<div>글자수 제한 <span id="letterCount">0</span> /100</div>
 				<form action="commentWrite" id="commentWriteId" method="post">
 					<input type="text" id="coContentId" name="coContent" placeholder="댓글을 입력해 주세요"
 						onkeydown="lengthCheck()">
 					<input type="hidden" name="commentId" th:value="0">
 					<input type="hidden" name="boardId" th:value="${seq}">
 					<input type="hidden" name="email" th:value="${session.loginEmail}">
+					<div><span id="letterCount">0</span> /100</div>
 					<button type="button" id="commentWrite" onclick="noneCheck()">댓글작성</button>
 				</form>
 			</div>
@@ -114,6 +114,17 @@
 						alert("글자수 제한을 지켜주세요.")
 						typeLen = 100;
 						document.getElementById("letterCount").innerHTML = typeLen;
+						return false;
+					}
+				}
+
+				function relengthCheck(commentId) {
+					let typeLen = document.getElementById("reContentId" + commentId).value.length;
+					document.getElementById("reletterCountId" + commentId).innerHTML = typeLen;
+					if (typeLen > 100) {
+						alert("글자수 제한을 지켜주세요.")
+						typeLen = 100;
+						document.getElementById("reletterCountId" + commentId).innerHTML = typeLen;
 						return false;
 					}
 				}
@@ -133,13 +144,18 @@
 									<button class="recommentsWriteboxButton"
 										style="float:left; margin-top:1%;">답글</button>
 									<div class="recommentsWritebox">
-										<div>글자수 제한 <span th:id="${'reletterCountId'+comment.commentId}">0</span> /100</div>
-										<form action="recommentWrite" th:id="${'recommentWriteId'+comment.commentId}" method="post">
-											<input type="text" name="recoContent" th:placeholder="${session.loginName}">
+										<form action="recommentWrite" th:id="${'recommentWriteId'+comment.commentId}"
+											method="post">
+											<input type="text" name="recoContent"
+												th:id="${'reContentId'+comment.commentId}"
+												th:placeholder="${session.loginName}" th:onkeydown="relengthCheck([[${comment.commentId}]])">
 											<input type="hidden" name="recommentId" th:value="0">
 											<input type="hidden" name="commentId" th:value="${comment.commentId}">
 											<input type="hidden" name="email" th:value="${session.loginEmail}">
-											<button type="button" onclick="alert('[[${comment.commentId}]]')">대댓글작성</button>
+											<div><span th:id="${'reletterCountId'+comment.commentId}">0</span> /100
+											</div>
+											<button type="button"
+												th:onclick="reNoneCheck([[${comment.commentId}]])">대댓글작성</button>
 										</form>
 									</div>
 									<form action="deletComment" method="post">
@@ -223,6 +239,20 @@
 				return false
 			}
 			document.forms["commentWriteId"].submit();
+		}
+
+
+		function reNoneCheck(commentId) {
+			if (document.getElementById("reContentId" + commentId).value == "") {
+				alert("내용이 없습니다.")
+				return false
+			}
+			var blank_pattern = /^\s+|\s+$/g;
+			if (document.getElementById("reContentId" + commentId).value.replace(blank_pattern, '') == "") {
+				alert('공백만 입력되었습니다.');
+				return false
+			}
+			document.forms["recommentWriteId" + commentId].submit();
 		}
 	</script>
 </body>
