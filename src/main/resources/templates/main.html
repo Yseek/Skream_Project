@@ -238,46 +238,56 @@
 							</article>
 							<article class="column col2">
 								<!-- 게시판  -->
-								<div class="notice1 pr5">
+								<div class="notice28 pr5">
 									<h5 class="ir_su">Notice1</h5>
 									<h5>최근 게시물</h5>
-									<ul th:each="list:${list}">
-										<li>
-											<a th:href="@{content?(page=${nowPage},seq=${list.seq})}" th:text="${list.subject}">제목 [10]</a>
-											<span th:if="${list.comments.size>0}" th:text="|[${list.comments.size}]|"
-												style="color: green;"></span>
-										</li>
-									</ul>
-									<a href="boardlist?page=1" class="more" title="더 보기">More <i class="fa fa-plus-circle"></i></a>
+									<div style="padding-top: 10px;">
+										<ul th:each="list:${list}">
+											<li>
+												<a th:href="@{content?(page=${nowPage},seq=${list.seq})}"
+													th:text="${list.subject}">제목 [10]</a>
+												<span th:if="${list.comments.size>0}"
+													th:text="|[${list.comments.size}]|" style="color: green;"></span>
+											</li>
+										</ul>
+										<a href="boardlist?page=1" class="more" title="더 보기">More <i
+												class="fa fa-plus-circle"></i></a>
+									</div>
+
 								</div>
 								<!-- 게시판  -->
-								<div class="notice2 pr5">
+								<div class="notice28 pr5">
 									<h5 class="ir_su">Notice1</h5>
 									<h5>인기(추천) 게시물</h5>
-									<ul th:each="recom:${listrecom}">
-										<li>
-											<a th:href="@{content?(page=${nowPagerecom},orderby=${orderbyrecom},seq=${recom.seq})}"
-												th:text="${recom.subject}">제목 </a>
-											<span th:if="${recom.comments.size>0}" th:text="|[${recom.comments.size}]|"
-												style="color: green;"></span>
-										</li>
-									</ul>
-									<a href="boardlist?page=1&orderby=recom" class="more" title="더 보기">More <i
-											class="fa fa-plus-circle"></i></a>
+									<div style="padding-top: 10px;">
+										<ul th:each="recom:${listrecom}">
+											<li>
+												<a th:href="@{content?(page=${nowPagerecom},orderby=${orderbyrecom},seq=${recom.seq})}"
+													th:text="${recom.subject}">제목 </a>
+												<span th:if="${recom.comments.size>0}"
+													th:text="|[${recom.comments.size}]|" style="color: green;"></span>
+											</li>
+										</ul>
+										<a href="boardlist?page=1&orderby=recom" class="more" title="더 보기">More <i
+												class="fa fa-plus-circle"></i></a>
+									</div>
+
 								</div>
-								<div class="notice3">
+								<div class="notice28">
 									<h5 class="ir_su">Notice1</h5>
 									<h5>베스트 조회 수</h5>
-									<ul th:each="hits:${listhits}">
-										<li>
-											<a th:href="@{content?(page=${nowPagehits},orderby=${orderbyhits},seq=${hits.seq})}"
-												th:text="${hits.subject}">제목 [10]</a>
-											<span th:if="${hits.comments.size>0}" th:text="|[${hits.comments.size}]|"
-												style="color: green;"></span>
-										</li>
-									</ul>
-									<a href="boardlist?page=1&orderby=hits" class="more" title="더 보기">More <i
-											class="fa fa-plus-circle"></i></a>
+									<div style="padding-top: 10px;">
+										<ul th:each="hits:${listhits}">
+											<li>
+												<a th:href="@{content?(page=${nowPagehits},orderby=${orderbyhits},seq=${hits.seq})}"
+													th:text="${hits.subject}">제목 [10]</a>
+												<span th:if="${hits.comments.size>0}"
+													th:text="|[${hits.comments.size}]|" style="color: green;"></span>
+											</li>
+										</ul>
+										<a href="boardlist?page=1&orderby=hits" class="more" title="더 보기">More <i
+												class="fa fa-plus-circle"></i></a>
+									</div>
 								</div>
 							</article>
 							<h3 style="margin-left:5px;">사이즈 표</h3>
@@ -525,9 +535,6 @@
 			</footer>
 		</div>
 		<div class="parallax_back_layer"></div>
-	</div>
-	<div class="area_basket">
-		<div class="basket">플로팅 배너</div>
 	</div>
 </body>
 
