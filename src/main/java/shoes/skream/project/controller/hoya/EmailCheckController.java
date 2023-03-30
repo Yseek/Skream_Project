@@ -32,4 +32,13 @@ public class EmailCheckController {
             return ResponseEntity.ok().build();
         }
     }
+
+    @GetMapping("/user/checkPhone")
+    public ResponseEntity<?> checkPhoneExists(@RequestParam String phone) {
+        if (memberRepository.existsByPhone(phone)) {
+            return ResponseEntity.badRequest().body("이미 사용중인 닉네임 입니다");
+        } else {
+            return ResponseEntity.ok().build();
+        }
+    }
 }
