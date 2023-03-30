@@ -1,4 +1,4 @@
-package shoes.skream.project.controller.yun;
+package shoes.skream.project.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

@@ -1,4 +1,4 @@
-package shoes.skream.project.config.yun;
+package shoes.skream.project.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
