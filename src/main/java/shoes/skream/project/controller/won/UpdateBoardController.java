@@ -54,21 +54,15 @@ public class UpdateBoardController {
     @PostMapping("updateBoard/{id}")
     public String saveUpdateBoard(UpdateBoardDto updateBoardDto, @RequestParam("file") List<MultipartFile> files
                 , HttpServletRequest request, String posturl) throws IOException{
-        log.info("$$$$ saveUpdateDto: {}", updateBoardDto.getRemoveList());
         
-        // 게시글 수정 내용 업데이트
         updateBoardService.updateBoard(updateBoardDto);
 
-        // 새로운 이미지 파일 업로드
         for (MultipartFile file : files) {
             long fileupId = updateBoardService.saveUpdateFile(file);
             if(fileupId != -1){
-                // 글 수정 시 새로 업로드한 파일이 있고, 디폴트 이미지 파일이 존재한다면
-                // 파일의 orgnm 이 noImage.png 와 같다면
                 UpdateBoardDto boardDto = updateBoardService.getBoard(updateBoardDto.getSeq());
                 for(Fileup imagefile : boardDto.getFileList()){
                     if(imagefile.getOrgnm().equals("noImage.png")){
-                        // 해당 파일 삭제
                         updateBoardService.deleteFileup(imagefile.getFileId());
                     }
                 }
@@ -76,13 +70,10 @@ public class UpdateBoardController {
             }
         }
 
-        // 이전에 업로드했던 파일 중 선택한 파일을 삭제
         updateBoardService.deleteUploadedFile(updateBoardDto.getRemoveList());
 
-        // 새로 업로드한 이미지가 없고, 전에 업로드했던 이미지를 다 지운다면
         UpdateBoardDto updatedBoardDto = updateBoardService.getBoard(updateBoardDto.getSeq());
         if(updatedBoardDto.getFileList().isEmpty()){
-            // -> 디폴트 이미지를 업로드한다
             long fileId = updateBoardService.setDefaultImage(updateBoardDto.getSeq());
             writeBoardService.saveBoardfile(updateBoardDto.getSeq(), fileId);
         }

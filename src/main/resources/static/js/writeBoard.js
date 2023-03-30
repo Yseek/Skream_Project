@@ -13,8 +13,6 @@ const imageLimit = 10;
 var imagecounting = 0;
 
 function updateImageDisplay() {
-	const preview = document.getElementById("preview");
-	// p tag 이미지없음 제거
 	const emptyImage = document.getElementById("emptyImage");
 	if (emptyImage != null) {
 		emptyImage.remove();
@@ -43,7 +41,6 @@ function updateImageDisplay() {
 			const removeButton = document.createElement('button');
 			removeButton.textContent = "X";
 			removeButton.dataset.index = file.lastModified;
-			// 미리보기 개별 삭제 리스너
 			removeButton.addEventListener('click', (e) => removeImage(e));
 			para.appendChild(removeButton);
 
@@ -54,14 +51,11 @@ function updateImageDisplay() {
 			listItem.appendChild(para);
 			list.appendChild(listItem);
 		}
-		// filelist 업데이트
 		if (curFiles != null && curFiles.length > 0) {
 			for (let i = 0; i < curFiles.length; i++) {
 				dataTransfer.items.add(curFiles[i])
 			}
 			document.getElementsByName("file")[0].files = dataTransfer.files;
-			console.log("dataTransfer =>", dataTransfer.files);
-			console.log("input FIles =>", document.getElementsByName("file")[0].files);
 		}
 		const fileButton = document.getElementById("fileButton");
 		fileButton.innerHTML = `업로드(${imagecounting}/10)`;
@@ -70,21 +64,19 @@ function updateImageDisplay() {
 
 function removeImage(e){
     e.preventDefault();
-    // 버튼의 부모의 부모 태그(li)를 제거
     const removeTargetId = e.target.dataset.index;
     const removeTarget = document.getElementById(removeTargetId);
 	
-    // 해당 파일을 filelist에서 제거
-	Array.from(dataTransfer.files)
-		.filter(file => file.lastModified == removeTargetId)
-		.forEach(file => {
-			dataTransfer.items.remove(file);
-			console.log("dataTransfer =>", dataTransfer.files);
-		});
-
+	const dataList = dataTransfer.files;
+	for(let i=0; dataList.length; i++){
+		if(dataList[i].lastModified == removeTargetId){
+			dataTransfer.items.remove(i);
+			break;
+		}
+	}
 	const newFiles = document.getElementsByName("file")[0].files = dataTransfer.files;
-
 	removeTarget.remove();
+
 	// 업로드할 이미지 갯수 갱신
 	imagecounting -= 1;
 	const fileButton = document.getElementById("fileButton");
