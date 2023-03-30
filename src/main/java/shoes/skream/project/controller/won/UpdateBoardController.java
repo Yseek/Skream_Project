@@ -18,14 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import lombok.extern.slf4j.Slf4j;
 import shoes.skream.project.domain.Category;
 import shoes.skream.project.domain.Fileup;
 import shoes.skream.project.dto.won.UpdateBoardDto;
 import shoes.skream.project.service.won.UpdateBoardService;
 import shoes.skream.project.service.won.WriteBoardService;
 
-@Slf4j
 @Controller
 public class UpdateBoardController {
     @Autowired

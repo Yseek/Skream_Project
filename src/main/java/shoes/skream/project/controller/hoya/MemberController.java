@@ -19,7 +19,7 @@ public class MemberController {
 	@PostMapping("join.do")
 	public String save(@ModelAttribute MemberDTO memberDTO) {
 		memberService.save(memberDTO);
-		return "main";
+		return "redirect:main";
 	}
 
 	@PostMapping("login.do")
@@ -27,6 +27,7 @@ public class MemberController {
 		MemberDTO loginResult = memberService.login(memberDTO);
 		if (loginResult != null) {
 			session.setAttribute("loginEmail", loginResult.getEmail());
+			session.setAttribute("loginName", loginResult.getName());
 			return "redirect:main";
 		} else {
 			return "redirect:main";
