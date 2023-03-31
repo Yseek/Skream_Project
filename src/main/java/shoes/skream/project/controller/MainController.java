@@ -105,6 +105,7 @@ public class MainController {
 	public String memberDelete(String email, HttpSession session) {
 		memberService.memberDelete(email);
 		session.invalidate();
+		MemberController.loginUsers.remove(session.getId());
 		return "redirect:main";
 	}
 

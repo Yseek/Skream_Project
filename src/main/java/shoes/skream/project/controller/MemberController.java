@@ -22,7 +22,7 @@ import shoes.skream.project.service.hoya.MemberService;
 public class MemberController {
 	private final MemberService memberService;
 
-	Map<String, String> loginUsers = new HashMap<>();
+	public static Map<String, String> loginUsers = new HashMap<>();
 
 	@PostMapping("join.do")
 	public String save(@ModelAttribute MemberDTO memberDTO) {
