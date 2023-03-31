@@ -25,7 +25,7 @@
 				<div class="container">
 					<div class="header">
 						<div class="header_title">
-							<a th:href="@{main}" class="header_title_img">
+							<a th:href="@{main?}" class="header_title_img">
 								<div>
 									<div style="float: left">
 										<img th:src="@{/img/hermes.png}" />
@@ -39,40 +39,48 @@
 						<div class="header_menu">
 							<div class="header_menu_intro">
 								<a href="boardlist" class="header_menu_intro_a notice"
-									onmouseover="show_alarm()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;게시판 입장!<span class="unread"></span>
+									onmouseover="show_alarm()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;게시판 입장!<span
+										class="unread"></span>
 								</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<span th:text="${session.loginEmail}"></span> <span th:if="${session.loginEmail}">님
 									환영합니다</span>
-								<button class="btn-open-join" th:unless="${session.loginEmail}">회원가입</button>&nbsp;&nbsp;
-								<button onclick="location.href='memberUpdate'" th:if="${session.loginEmail}">정보수정</button>&nbsp;&nbsp;
+								<button class="btn-open-join"
+									th:unless="${session.loginEmail}">회원가입</button>&nbsp;&nbsp;
+								<button onclick="location.href='memberUpdate'"
+									th:if="${session.loginEmail}">정보수정</button>&nbsp;&nbsp;
 								<div class="modal_join">
 									<form action="join.do" method="post">
 										<div class="modal_body">
-											<div class="close-area"><a href="#" onclick="location.href='main'"
+											<div class="close-area"><a href="#" onclick="location.href='main?'"
 													style="text-decoration-line:none; float: right; color:#ffffff">X</a>
 											</div>
-											<h2 style="font-size: 30px; color:white; margin-bottom:20%;" th:unless="${session.loginEmail}">
+											<h2 style="font-size: 30px; color:white; margin-bottom:20%;"
+												th:unless="${session.loginEmail}">
 												회원가입</h2>
-											<input style="margin-bottom:0" class="join_text" type="text" name="email" id="email"
-												th:unless="${session.loginEmail}" placeholder="이메일"><br>
-											<div id="emailError" style="color:white; margin-bottom: 5%; margin-top: 0px;"
+											<input style="margin-bottom:0" class="join_text" type="text" name="email"
+												id="email" th:unless="${session.loginEmail}" placeholder="이메일"><br>
+											<div id="emailError"
+												style="color:white; margin-bottom: 5%; margin-top: 0px;"
 												th:unless="${session.loginEmail}"></div>
-											<input class="join_text" type="password" name="pwd" th:unless="${session.loginEmail}"
-												placeholder="비밀번호">
-											<input class="join_text" type="password" name="checkPwd" th:unless="${session.loginEmail}"
-												placeholder="비밀번호 확인">
-											<input style="margin-bottom:0" class="join_text" type="text" name="name" id="name"
-												th:unless="${session.loginEmail}" placeholder="닉네임">
+											<input class="join_text" type="password" name="pwd"
+												th:unless="${session.loginEmail}" placeholder="비밀번호">
+											<input class="join_text" type="password" name="checkPwd"
+												th:unless="${session.loginEmail}" placeholder="비밀번호 확인">
+											<input style="margin-bottom:0" class="join_text" type="text" name="name"
+												id="name" th:unless="${session.loginEmail}" placeholder="닉네임">
 											<div id="nameError" style="color:white; margin-bottom: 5%; margin-top: 0px;"
 												th:unless="${session.loginEmail}"></div>
-											<input class="join_text" type="date" name="birth" th:unless="${session.loginEmail}">
-											<input class="join_text" type="text" name="phone" id="phone" th:unless="${session.loginEmail}"
-												placeholder="전화번호(010-0000-0000)">
-											<div id="phoneError" style="color:white; margin-bottom: 5%; margin-top: 0px;"
-												th:unless="${session.loginEmail}"></div>
-											<input class="join_button" type="submit" value="가입" th:unless="${session.loginEmail}">
-											<input class="join_button" type="button" value="취소" onclick="location.href='main'"
+											<input class="join_text" type="date" name="birth"
 												th:unless="${session.loginEmail}">
+											<input class="join_text" type="text" name="phone" id="phone"
+												th:unless="${session.loginEmail}" placeholder="전화번호(010-0000-0000)">
+											<div id="phoneError"
+												style="color:white; margin-bottom: 5%; margin-top: 0px;"
+												th:unless="${session.loginEmail}"></div>
+											<input class="join_button" type="submit" value="가입"
+												th:unless="${session.loginEmail}">
+											<input class="join_button" type="button" value="취소"
+												onclick="location.href='main?'" th:unless="${session.loginEmail}">
 										</div>
 									</form>
 								</div>
@@ -81,14 +89,15 @@
 								<div class="modal_login">
 									<form action="login.do" method="post">
 										<div class="modal_body">
-											<div class="close-area"><a href="#" onclick="location.href=document.referrer"
+											<div class="close-area"><a href="#" onclick="location.href='main?'"
 													style="text-decoration-line:none; float: right; color:#ffffff">X</a>
 											</div>
 											<h2 style="font-size: 30px; color:white; margin-bottom:37%">로그인</h2>
 											<input class="login_text" type="text" name="email" placeholder="이메일">
 											<input class="login_text" type="password" name="pwd" placeholder="비밀번호">
 											<input class="login_button" type="submit" value="로그인">
-											<input class="login_button" type="button" value="취소" onclick="location.href='main'">
+											<input class="login_button" type="button" value="취소"
+												onclick="location.href='main?'">
 										</div>
 									</form>
 								</div>
@@ -217,6 +226,7 @@
 									var index = 0;   // 이미지 접근 인덱스
 									window.onload = function () {
 										slideView();
+										setInterval(function () { testFetch(); }, 3000);
 									}
 
 									function slideView() {
@@ -485,8 +495,13 @@
 							<h4 class="ir_su col_tit"></h4>
 							<p class="ir_su col_desc"></p>
 							<h4 class="ir_su col_tit"></h4>
-							<p class="col_desc"><a href="https://www.nike.com/kr/">
-									<img th:src="@{/img/banner.png}" class="cont_right_img"></a>
+							<p class="col_desc">
+							<div style="height: 300px;">
+								<h3>현재 사이트 접속중</h5>
+								<div class="loginUsers">
+								</div>
+							</div>
+							</p>
 						</article>
 						<article class="column col11">
 							<h4 class="ir_su col_tit"></h4>
@@ -621,6 +636,28 @@
 				phoneError.textContent = error;
 			});
 	});
+</script>
+<script>
+	const check = "[[${check}]]"
+	if (Number(check) == 1) {
+		alert("정보없음");
+		history.go(-1);
+	}
+	check = 2;
+
+	function testFetch() {
+		document.querySelector('.loginUsers').innerHTML = "";
+		fetch("loginUserCheck")
+			.then((response) => response.json())
+			.then((text) => {
+				for (let userName in text) {
+					let div = document.createElement('div');
+					div.setAttribute('class', 'users');
+					div.innerHTML = `<div>${text[userName]}</div>`;
+					document.querySelector(".loginUsers").appendChild(div);
+				}
+			});
+	}
 </script>
 
 </html>
