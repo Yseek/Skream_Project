@@ -10,6 +10,7 @@ insert into CATEGORY values(3, '뉴발란스');
 insert into CATEGORY values(4, '반스');
 insert into CATEGORY values(5, '아식스');
 insert into CATEGORY values(6, '컨버스');
+insert into CATEGORY values(7, '기타');
 
 
 insert into BOARD values(null,'제목1','내용1',now(),now(),1,1,1,'abc1@naver.com');
